@@ -2,7 +2,7 @@ import { MigrationInterface, QueryRunner, TableForeignKey } from 'typeorm';
 
 export class AddBlockRelationToSection1583042676400 implements MigrationInterface {
   private tableForeignKey = new TableForeignKey({
-    name: 'fk_iblock_iblock_section',
+    name: 'fk_iblock_section_iblock',
     columnNames: ['iblock_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock',
