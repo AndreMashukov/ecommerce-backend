@@ -32,7 +32,7 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
       key ix_iblock_section_left_margin (iblock_id,left_margin,right_margin),
       key ix_iblock_section_right_margin (iblock_id,right_margin,left_margin),
       key ix_iblock_section_code (iblock_id, code)
-    ) default charset=cp1251 auto_increment=1 ;`);
+    ) default charset=cp1251 auto_increment=110;`);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
