@@ -38,11 +38,25 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
 
     await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForElement);
     await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
+
+    await queryRunner.query(`
+      CREATE OR REPLACE VIEW bitrix.view_iblock_element_property
+      AS
+      SELECT ep.id, ep.iblock_property_id, ep.iblock_element_id,
+        ep.value, p.name
+      FROM bitrix.b_iblock_element_property ep
+      LEFT JOIN  bitrix.b_iblock_property p
+      ON (ep.iblock_property_id = p.id)
+      LEFT JOIN bitrix.b_iblock_element e
+      ON (ep.iblock_element_id = e.id)
+      AND (e.iblock_id = p.iblock_id)
+    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable('b_iblock_element_property');
     await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForElement);
     await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
+    await queryRunner.dropView('view_iblock_element_property');
   }
 }
