@@ -23,9 +23,9 @@ export class ProductResponse {
 export class ProductController {
   constructor(private elementService: ElementService) {}
 
-  @Get('/:sectionId')
+  @Get('/:blockId&:sectionId')
   @ResponseSchema(ProductResponse)
-  public find(@Param('sectionId') sectionId: string): Promise<Element[] | undefined> {
-      return this.elementService.findBySectionId(sectionId);
+  public find(@Param('blockId') blockId: string, @Param('sectionId') sectionId: string): Promise<Element[] | undefined> {
+      return this.elementService.findByBlockAndSectionId(blockId, sectionId);
   }
 }
