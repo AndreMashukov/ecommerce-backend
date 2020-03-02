@@ -21,6 +21,10 @@ export class ElementProperty {
   public value: string;
 
   @ManyToOne(type => Element, element => element.properties)
-  @JoinColumn({ name: 'elementId' })
+  @JoinColumn({ name: 'iblock_element_id' })
   public element: Element;
+
+  // @ManyToOne(type => User, user => user.pets)
+  // @JoinColumn({ name: 'user_id' })
+  // public user: User;
 }

@@ -7,10 +7,17 @@ export class ElementPropertyRepository extends Repository<ElementProperty> {
   /**
    * Find by elementId is used for our data-loader to get all needed pets in one query.
    */
-  public findByElementIds(ids: string[]): Promise<ElementProperty[]> {
+  public findByElementId(id: number): Promise<ElementProperty> {
     return this.createQueryBuilder()
       .select()
-      .where(`b_iblock_element_property.iblock_element_id IN (${ids.map(id => `'${id}'`).join(', ')})`)
-      .getMany();
+      .where(`b_iblock_element_property.iblock_element_id = ${id}`)
+      .getOne();
   }
+
+  // public findByUserIds(ids: string[]): Promise<Pet[]> {
+  //   return this.createQueryBuilder()
+  //       .select()
+  //       .where(`pet.user_id IN (${ids.map(id => `'${id}'`).join(', ')})`)
+  //       .getMany();
+  // }
 }

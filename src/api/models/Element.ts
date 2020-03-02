@@ -32,6 +32,9 @@ export class Element {
   @Column({ name: 'preview_text_type' })
   public previewType: string;
 
-  @OneToMany(type => ElementProperty, property => property.elementId)
+  @OneToMany(type => ElementProperty, property => property.element)
   public properties: ElementProperty[];
+
+  // @OneToMany(type => Pet, pet => pet.user)
+  // public pets: Pet[];
 }
