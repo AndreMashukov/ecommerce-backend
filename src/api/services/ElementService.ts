@@ -15,10 +15,16 @@ export class ElementService {
   public findByBlockAndSectionId(_blockId: number, _sectionId: number): Promise<Element[]> {
     this.log.info('Find all Elements for section', _sectionId);
     return this.elementRepository.find({
+      relations: ['properties'],
       where: {
         blockId: _blockId,
         sectionId: _sectionId,
       },
     });
   }
+
+  // public find(): Promise<User[]> {
+  //   this.log.info('Find all users');
+  //   return this.userRepository.find({ relations: ['pets'] });
+  // }
 }
