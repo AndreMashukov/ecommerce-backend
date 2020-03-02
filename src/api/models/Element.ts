@@ -25,6 +25,20 @@ export class Element {
   public code: string;
 
   @IsNotEmpty()
+  @Column()
+  public sort: string;
+
+  @IsNotEmpty()
+  @Column()
+  public active: string;
+
+  @Column({ name: 'active_from' })
+  public activeFrom: string;
+
+  @Column({ name: 'active_to' })
+  public activeTo: string;
+
+  @IsNotEmpty()
   @Column({ name: 'preview_text' })
   public preview: string;
 
