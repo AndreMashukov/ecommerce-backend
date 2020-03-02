@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
-import { Get, JsonController, Param } from 'routing-controllers';
+import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import { Get, JsonController, QueryParams } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 
 import { Element } from '../models/Element';
@@ -19,13 +19,21 @@ export class ProductResponse {
   public code: string;
 }
 
+class GetProductsQuery {
+  @IsPositive()
+  public blockId: number;
+
+  @IsPositive()
+  public sectionId: number;
+}
+
 @JsonController('/products')
 export class ProductController {
   constructor(private elementService: ElementService) {}
 
-  @Get('/:blockId&:sectionId')
+  @Get('/')
   @ResponseSchema(ProductResponse)
-  public find(@Param('blockId') blockId: string, @Param('sectionId') sectionId: string): Promise<Element[] | undefined> {
-      return this.elementService.findByBlockAndSectionId(blockId, sectionId);
+  public find(@QueryParams() query: GetProductsQuery): Promise<Element[] | undefined> {
+      return this.elementService.findByBlockAndSectionId(query.blockId, query.sectionId);
   }
 }

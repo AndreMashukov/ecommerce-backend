@@ -12,7 +12,7 @@ export class ElementService {
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
-  public findByBlockAndSectionId(_blockId: string, _sectionId: string): Promise<Element[]> {
+  public findByBlockAndSectionId(_blockId: number, _sectionId: number): Promise<Element[]> {
     this.log.info('Find all Elements for section', _sectionId);
     return this.elementRepository.find({
       where: {
