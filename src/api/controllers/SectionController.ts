@@ -29,7 +29,7 @@ export class SectionController {
 
   @Get()
   @ResponseSchema(SectionResponse, { isArray: true })
-  public find(): Promise<Section[]> {
+  public findAll(): Promise<Section[]> {
     return this.sectionService.find();
   }
 

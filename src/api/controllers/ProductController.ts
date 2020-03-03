@@ -34,6 +34,6 @@ export class ProductController {
   @Get('/')
   @ResponseSchema(ProductResponse, { isArray: true })
   public find(@QueryParams() query: GetProductsQuery): Promise<Element[] | undefined> {
-      return this.elementService.findByBlockAndSectionId(query.blockId, query.sectionId);
+      return this.elementService.findRecursivelyByBlockAndSectionId(query.blockId, query.sectionId);
   }
 }

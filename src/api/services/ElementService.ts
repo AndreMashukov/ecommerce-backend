@@ -4,11 +4,13 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { Element } from '../models/Element';
 import { ElementRepository } from '../repositories/ElementRepository';
+import { SectionService } from '../services/SectionService';
 
 @Service()
 export class ElementService {
   constructor(
     @OrmRepository() private elementRepository: ElementRepository,
+    private sectionService: SectionService,
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
@@ -23,8 +25,13 @@ export class ElementService {
     });
   }
 
-  // public find(): Promise<User[]> {
-  //   this.log.info('Find all users');
-  //   return this.userRepository.find({ relations: ['pets'] });
-  // }
+  public async findRecursivelyByBlockAndSectionId(_blockId: number, _sectionId: number): Promise<Element[]> {
+    const promises = [];
+    const childSections = await this.sectionService.findChildSections(_blockId, _sectionId);
+    childSections.forEach(item => {
+      promises.push(this.findByBlockAndSectionId(_blockId, parseInt(item.id, 0)));
+    });
+
+    return Promise.all(promises);
+  }
 }
