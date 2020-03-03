@@ -32,7 +32,7 @@ export class ProductController {
   constructor(private elementService: ElementService) {}
 
   @Get('/')
-  @ResponseSchema(ProductResponse)
+  @ResponseSchema(ProductResponse, { isArray: true })
   public find(@QueryParams() query: GetProductsQuery): Promise<Element[] | undefined> {
       return this.elementService.findByBlockAndSectionId(query.blockId, query.sectionId);
   }

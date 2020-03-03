@@ -1,31 +1,26 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
-import { Get, JsonController, OnUndefined, Param } from 'routing-controllers';
+import { IsPositive } from 'class-validator';
+import { Get, JsonController, OnUndefined, QueryParams } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 
 import { Section } from '../models/Section';
 import { SectionService } from '../services/SectionService';
 import { SectionNotFoundError } from '../errors/SectionNotFoundError';
 
-class BaseSection {
-  @IsNotEmpty()
-  public name: string;
+export class SectionResponse {
+  public sections: Section[];
+}
 
-  @IsNotEmpty()
-  public description: string;
-
-  @IsNotEmpty()
-  public code: string;
-
-  @IsNumber()
+class GetChildSectionsQuery {
+  @IsPositive()
   public blockId: number;
 
-  @IsNumber()
+  @IsPositive()
   public sectionId: number;
 }
 
-export class SectionResponse extends BaseSection {
-  @IsNumber()
-  public id: string;
+class GetSectionsQuery {
+  @IsPositive()
+  public blockId: number;
 }
 
 @JsonController('/sections')
@@ -38,10 +33,16 @@ export class SectionController {
     return this.sectionService.find();
   }
 
-  @Get('/:blockId')
+  @Get('/block')
   @OnUndefined(SectionNotFoundError)
-  @ResponseSchema(SectionResponse)
-  public one(@Param('blockId') blockId: string): Promise<Section[] | undefined> {
-      return this.sectionService.findByBlockId(blockId);
+  @ResponseSchema(SectionResponse, { isArray: true })
+  public findByBlockId(@QueryParams() query: GetSectionsQuery): Promise<Section[] | undefined> {
+      return this.sectionService.findByBlockId(query.blockId);
+  }
+
+  @Get('/children')
+  @ResponseSchema(SectionResponse, { isArray: true })
+  public async findChildSections(@QueryParams() query: GetChildSectionsQuery): Promise<Section[] | undefined> {
+      return this.sectionService.findChildSections(query.blockId, query.sectionId);
   }
 }
