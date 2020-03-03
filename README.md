@@ -22,7 +22,7 @@
 - **TypeGraphQL** thanks to [TypeGraphQL](https://19majkel94.github.io/type-graphql/) we have a some cool decorators to simplify the usage of GraphQL.
 - **DataLoaders** helps with performance thanks to caching and batching [DataLoaders](https://github.com/facebook/dataloader).
 
-![divider]
+
 
 ## ❯ Table of Contents
 
@@ -40,7 +40,7 @@
 - [Related Projects](#-related-projects)
 - [License](#-license)
 
-![divider]
+
 
 ## ❯ Getting Started
 
@@ -90,7 +90,7 @@ yarn start serve
 > This starts a local server using `nodemon`, which will watch for any file changes and will restart the sever according to these changes.
 > The server address will be displayed to you as `http://0.0.0.0:3000`.
 
-![divider]
+
 
 ## ❯ Scripts and Tasks
 
@@ -133,14 +133,14 @@ All script are defined in the `package-scripts.js` file, but the most important 
 
 - Run `yarn start db.seed` to seed your seeds into the database.
 
-![divider]
+
 
 ## ❯ Debugger in VSCode
 
 To debug your code run `yarn start build` or hit <kbd>cmd</kbd> + <kbd>b</kbd> to build your app.
 Then, just set a breakpoint and hit <kbd>F5</kbd> in your Visual Studio Code.
 
-![divider]
+
 
 ## ❯ API Routes
 
@@ -156,7 +156,7 @@ The swagger and the monitor route can be altered in the `.env` file.
 | **/api/users** | Example entity endpoint |
 | **/api/pets**  | Example entity endpoint |
 
-![divider]
+
 
 ## ❯ Project Structure
 
@@ -196,7 +196,7 @@ The swagger and the monitor route can be altered in the `.env` file.
 | .env.test                         | Test environment configurations |
 | mydb.sql                          | SQLite database for integration tests. Ignored by git and only available after integration tests |
 
-![divider]
+
 
 ## ❯ Logging
 
@@ -216,7 +216,7 @@ export class UserService {
     ...
 ```
 
-![divider]
+
 
 ## ❯ Event Dispatching
 
@@ -241,7 +241,7 @@ export class UserService {
     }
 ```
 
-![divider]
+
 
 ## ❯ Seeding
 
@@ -356,7 +356,7 @@ yarn start db.seed
 | `yarn start "db.seed --factories <path>"`            | Add a different path to your factories (Default: `src/database/`) |
 | `yarn start "db.seed --seeds <path>"`                | Add a different path to your seeds (Default: `src/database/seeds/`) |
 
-![divider]
+
 
 ## ❯ GraphQL
 
@@ -486,7 +486,7 @@ DB_HOST=localhost
 DB_PORT=3306
 ```
 
-![divider]
+
 
 ## ❯ Further Documentations
 
@@ -510,7 +510,7 @@ DB_PORT=3306
 | [GraphQL Documentation](http://graphql.org/graphql-js/) | A query language for your API. |
 | [DataLoader Documentation](https://github.com/facebook/dataloader) | DataLoader is a generic utility to be used as part of your application's data fetching layer to provide a consistent API over various backends and reduce requests to those backends via batching and caching. |
 
-![divider]
+
 
 
 ## ❯ License
