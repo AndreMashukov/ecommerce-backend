@@ -13,7 +13,7 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "repository": "git+ssh://git@github.com/w3tec/express-typescript-boilerplate.git",
+  "repository": "git+ssh://git@github.com/AndreMashukov/ecommerce-backend.git",
   "keywords": [
     "NodeJS",
     "TypeScript",
@@ -23,7 +23,7 @@
     "starter-kit",
     "w3tec.ch"
   ],
-  "homepage": "https://github.com/w3tec/express-typescript-boilerplate#readme",
+  "homepage": "https://github.com/AndreMashukov/ecommerce-backend#readme",
   "author": "w3tec.ch <info@w3tec.ch>",
   "contributors": [
     {

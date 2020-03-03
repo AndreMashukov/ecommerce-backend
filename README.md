@@ -1,40 +1,4 @@
-<p align="center">
-  <img src="./w3tec-logo.png" alt="w3tec" width="400" />
-</p>
-
-<h1 align="center">Express Typescript Boilerplate</h1>
-
-<p align="center">
-  <a href="https://david-dm.org/w3tecch/express-typescript-boilerplate">
-    <img src="https://david-dm.org/w3tecch/express-typescript-boilerplate/status.svg?style=flat" alt="dependency" />
-  </a>
-  <a href="https://travis-ci.org/w3tecch/express-typescript-boilerplate">
-    <img src="https://travis-ci.org/w3tecch/express-typescript-boilerplate.svg?branch=master" alt="travis" />
-  </a>
-  <a href="https://ci.appveyor.com/project/dweber019/express-typescript-boilerplate/branch/master">
-    <img src="https://ci.appveyor.com/api/projects/status/f8e7jdm8v58hcwpq/branch/master?svg=true&passingText=Windows%20passing&pendingText=Windows%20pending&failingText=Windows%20failing" alt="appveyor" />
-  </a>
-  <a href="https://stackshare.io/hirsch88/express-typescript-boilerplate">
-    <img src="https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat" alt="StackShare" />
-  </a>
-</p>
-
-<p align="center">
-  <b>A delightful way to building a Node.js RESTful API Services with beautiful code written in TypeScript.</b></br>
-  <span>Inspired by the awesome framework <a href="https://laravel.com/">laravel</a> in PHP and of the repositories from <a href="https://github.com/pleerock">pleerock</a></span></br>
-  <sub>Made with ❤️ by <a href="https://github.com/w3tecch">w3tech</a>, <a href="https://twitter.com/GeryHirschfeld1">Gery Hirschfeld</a> and <a href="https://github.com/w3tecch/express-typescript-boilerplate/graphs/contributors">contributors</a></sub>
-</p>
-
-<br />
-
-![divider](./w3tec-divider.png)
-
-## ❯ Why
-
-Our main goal with this project is a feature complete server application.
-We like you to be focused on your business and not spending hours in project configuration.
-
-Try it!! We are happy to hear your feedback or any kind of new features.
+<h1 align="center">Ecommerce Backend</h1>
 
 ### Features
 
@@ -58,7 +22,7 @@ Try it!! We are happy to hear your feedback or any kind of new features.
 - **TypeGraphQL** thanks to [TypeGraphQL](https://19majkel94.github.io/type-graphql/) we have a some cool decorators to simplify the usage of GraphQL.
 - **DataLoaders** helps with performance thanks to caching and batching [DataLoaders](https://github.com/facebook/dataloader).
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Table of Contents
 
@@ -76,7 +40,7 @@ Try it!! We are happy to hear your feedback or any kind of new features.
 - [Related Projects](#-related-projects)
 - [License](#-license)
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Getting Started
 
@@ -126,7 +90,7 @@ yarn start serve
 > This starts a local server using `nodemon`, which will watch for any file changes and will restart the sever according to these changes.
 > The server address will be displayed to you as `http://0.0.0.0:3000`.
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Scripts and Tasks
 
@@ -169,14 +133,14 @@ All script are defined in the `package-scripts.js` file, but the most important 
 
 - Run `yarn start db.seed` to seed your seeds into the database.
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Debugger in VSCode
 
 To debug your code run `yarn start build` or hit <kbd>cmd</kbd> + <kbd>b</kbd> to build your app.
 Then, just set a breakpoint and hit <kbd>F5</kbd> in your Visual Studio Code.
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ API Routes
 
@@ -192,7 +156,7 @@ The swagger and the monitor route can be altered in the `.env` file.
 | **/api/users** | Example entity endpoint |
 | **/api/pets**  | Example entity endpoint |
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Project Structure
 
@@ -232,7 +196,7 @@ The swagger and the monitor route can be altered in the `.env` file.
 | .env.test                         | Test environment configurations |
 | mydb.sql                          | SQLite database for integration tests. Ignored by git and only available after integration tests |
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Logging
 
@@ -252,7 +216,7 @@ export class UserService {
     ...
 ```
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Event Dispatching
 
@@ -277,7 +241,7 @@ export class UserService {
     }
 ```
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Seeding
 
@@ -392,7 +356,7 @@ yarn start db.seed
 | `yarn start "db.seed --factories <path>"`            | Add a different path to your factories (Default: `src/database/`) |
 | `yarn start "db.seed --seeds <path>"`                | Add a different path to your seeds (Default: `src/database/seeds/`) |
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ GraphQL
 
@@ -522,7 +486,7 @@ DB_HOST=localhost
 DB_PORT=3306
 ```
 
-![divider](./w3tec-divider.png)
+![divider]
 
 ## ❯ Further Documentations
 
@@ -546,16 +510,8 @@ DB_PORT=3306
 | [GraphQL Documentation](http://graphql.org/graphql-js/) | A query language for your API. |
 | [DataLoader Documentation](https://github.com/facebook/dataloader) | DataLoader is a generic utility to be used as part of your application's data fetching layer to provide a consistent API over various backends and reduce requests to those backends via batching and caching. |
 
-![divider](./w3tec-divider.png)
+![divider]
 
-## ❯ Related Projects
-
-- [Microsoft/TypeScript-Node-Starter](https://github.com/Microsoft/TypeScript-Node-Starter) - A starter template for TypeScript and Node with a detailed README describing how to use the two together.
-- [express-graphql-typescript-boilerplate](https://github.com/w3tecch/express-graphql-typescript-boilerplate) - A starter kit for building amazing GraphQL API's with TypeScript and express by @w3tecch
-- [aurelia-typescript-boilerplate](https://github.com/w3tecch/aurelia-typescript-boilerplate) - An Aurelia starter kit with TypeScript
-- [Auth0 Mock Server](https://github.com/hirsch88/auth0-mock-server) - Useful for e2e testing or faking an oAuth server
-
-![divider](./w3tec-divider.png)
 
 ## ❯ License
 
