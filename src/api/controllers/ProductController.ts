@@ -34,6 +34,6 @@ export class ProductController {
   @Get('/')
   @ResponseSchema(ProductResponse, { isArray: true })
   public findBySectionCode(@QueryParams() query: GetProductsQuery): Promise<Element[] | undefined> {
-      return this.elementService.findDeeplyByBlockAndSectionId(query.blockId, query.sectionCode);
+      return this.elementService.findDeeplyByBlockAndSectionCode(query.blockId, query.sectionCode);
   }
 }

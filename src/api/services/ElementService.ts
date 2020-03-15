@@ -25,7 +25,7 @@ export class ElementService {
     });
   }
 
-  public async findDeeplyByBlockAndSectionId(_blockId: number, _sectionCode: string): Promise<Element[]> {
+  public async findDeeplyByBlockAndSectionCode(_blockId: number, _sectionCode: string): Promise<Element[]> {
     const promises = [];
     const childSections = await this.sectionService.findChildSections(_blockId, _sectionCode);
     childSections.forEach(item => {
