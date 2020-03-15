@@ -23,7 +23,7 @@ class GetProductsQuery {
   @IsPositive()
   public blockId: number;
 
-  @IsPositive()
+  @IsNotEmpty()
   public sectionCode: string;
 }
 
