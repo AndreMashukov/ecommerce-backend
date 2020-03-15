@@ -24,7 +24,7 @@ class GetProductsQuery {
   public blockId: number;
 
   @IsPositive()
-  public sectionId: number;
+  public sectionCode: string;
 }
 
 @JsonController('/products')
@@ -33,7 +33,7 @@ export class ProductController {
 
   @Get('/')
   @ResponseSchema(ProductResponse, { isArray: true })
-  public find(@QueryParams() query: GetProductsQuery): Promise<Element[] | undefined> {
-      return this.elementService.findRecursivelyByBlockAndSectionId(query.blockId, query.sectionId);
+  public findBySectionCode(@QueryParams() query: GetProductsQuery): Promise<Element[] | undefined> {
+      return this.elementService.findDeeplyByBlockAndSectionId(query.blockId, query.sectionCode);
   }
 }

@@ -26,12 +26,12 @@ export class SectionService {
     });
   }
 
-  public findChildSections(_blockId: number, _id: number): Promise<Section[]> {
-    this.log.info('Find all child sections for section', _id);
+  public findChildSections(_blockId: number, _code: string): Promise<Section[]> {
+    this.log.info('Find all child sections for section', _code);
     return this.sectionRepository.find({
       where: {
         blockId: _blockId,
-        sectionId: _id,
+        sectionCode: _code,
       },
     });
   }

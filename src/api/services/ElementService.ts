@@ -25,9 +25,9 @@ export class ElementService {
     });
   }
 
-  public async findRecursivelyByBlockAndSectionId(_blockId: number, _sectionId: number): Promise<Element[]> {
+  public async findDeeplyByBlockAndSectionId(_blockId: number, _sectionCode: string): Promise<Element[]> {
     const promises = [];
-    const childSections = await this.sectionService.findChildSections(_blockId, _sectionId);
+    const childSections = await this.sectionService.findChildSections(_blockId, _sectionCode);
     childSections.forEach(item => {
       promises.push(this.findByBlockAndSectionId(_blockId, parseInt(item.id, 0)));
     });
