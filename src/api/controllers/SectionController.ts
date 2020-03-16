@@ -1,4 +1,4 @@
-import { IsPositive } from 'class-validator';
+import { IsPositive, IsNotEmpty } from 'class-validator';
 import { Get, JsonController, OnUndefined, QueryParams } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 
@@ -14,8 +14,8 @@ class GetChildSectionsQuery {
   @IsPositive()
   public blockId: number;
 
-  @IsPositive()
-  public sectionId: number;
+  @IsNotEmpty()
+  public sectionCode: string;
 }
 
 class GetSectionsQuery {
@@ -43,6 +43,6 @@ export class SectionController {
   @Get('/children')
   @ResponseSchema(SectionResponse, { isArray: true })
   public async findChildSections(@QueryParams() query: GetChildSectionsQuery): Promise<Section[] | undefined> {
-      return this.sectionService.findChildSections(query.blockId, query.sectionId);
+      return this.sectionService.findChildSections(query.blockId, query.sectionCode);
   }
 }

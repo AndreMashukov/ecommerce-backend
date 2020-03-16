@@ -1,7 +1,7 @@
 import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'b_iblock_section'})
+@Entity({name: 'view_iblock_section'})
 export class Section {
   @PrimaryGeneratedColumn()
   public id: string;
@@ -25,5 +25,9 @@ export class Section {
   @IsNotEmpty()
   @Column()
   public code: string;
+
+  @IsNotEmpty()
+  @Column({name: 'parent_code'})
+  public parentCode: string;
 
 }

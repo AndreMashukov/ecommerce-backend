@@ -33,9 +33,15 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
       key ix_iblock_section_right_margin (iblock_id,right_margin,left_margin),
       key ix_iblock_section_code (iblock_id, code)
     ) default charset=cp1251 auto_increment=110;`);
+    await queryRunner.query(`
+      CREATE OR REPLACE VIEW bitrix.view_iblock_section AS
+      select *, (select code from bitrix.b_iblock_section where iblock_id = t1.iblock_id and id = t1.iblock_section_id) as parent_code
+      from bitrix.b_iblock_section t1
+    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable('b_iblock_section');
+    await queryRunner.dropView('view_iblock_section');
   }
 }

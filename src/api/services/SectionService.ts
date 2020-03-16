@@ -31,7 +31,7 @@ export class SectionService {
     return this.sectionRepository.find({
       where: {
         blockId: _blockId,
-        code: _code,
+        parentCode: _code,
       },
     });
   }
