@@ -27,7 +27,6 @@ export class SectionService {
   }
 
   public findChildSections(_blockId: number, _code: string): Promise<Section[]> {
-    this.log.info('Find all child sections for section', _code);
     return this.sectionRepository.find({
       where: {
         blockId: _blockId,
@@ -35,4 +34,14 @@ export class SectionService {
       },
     });
   }
+
+  public findSection(_blockId: number, _code: string): Promise<Section> {
+    return this.sectionRepository.findOne({
+      where: {
+        blockId: _blockId,
+        code: _code,
+      },
+    });
+  }
+
 }

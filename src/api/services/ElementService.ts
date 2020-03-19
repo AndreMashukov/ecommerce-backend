@@ -28,10 +28,14 @@ export class ElementService {
   public async findDeeplyByBlockAndSectionCode(_blockId: number, _sectionCode: string): Promise<Element[]> {
     const promises = [];
     const childSections = await this.sectionService.findChildSections(_blockId, _sectionCode);
-    childSections.forEach(item => {
-      promises.push(this.findByBlockAndSectionId(_blockId, parseInt(item.id, 0)));
-    });
-
+    if (childSections.length > 0) {
+      childSections.forEach(item => {
+        promises.push(this.findByBlockAndSectionId(_blockId, parseInt(item.id, 0)));
+      });
+    } else {
+      const section = await this.sectionService.findSection(_blockId, _sectionCode);
+      promises.push(this.findByBlockAndSectionId(_blockId, parseInt(section.id, 0)));
+    }
     return Promise.all(promises);
   }
 }
