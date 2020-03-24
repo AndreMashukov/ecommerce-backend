@@ -11,6 +11,10 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
         primary key  (id),
         key ix_user_id (user_id)
       ) default charset=cp1251 auto_increment=1 ;`);
+    await queryRunner.query(`
+      INSERT INTO b_sale_fuser (ID, date_insert, date_update, user_id) VALUES
+      (1, now(), now(), NULL)
+    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
