@@ -9,7 +9,7 @@ import { CartRepository } from '../repositories/CartRepository';
 export class CartService {
   constructor(
     @OrmRepository() private cartRepository: CartRepository,
-    @Logger(__filename) private log: LoggerInterface,
+    @Logger(__filename) private log: LoggerInterface
   ) {}
 
   public findByFuserId(_fuserId: number): Promise<CartItem[] | undefined> {
