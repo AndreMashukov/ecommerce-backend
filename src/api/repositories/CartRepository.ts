@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 
-import { Cart } from '../models/Cart';
+import { CartItem } from '../models/CartItem';
 
-@EntityRepository(Cart)
-export class CartRepository extends Repository<Cart> {}
+@EntityRepository(CartItem)
+export class CartRepository extends Repository<CartItem> {}

@@ -2,7 +2,7 @@ import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({name: 'b_sale_basket'})
-export class Cart {
+export class CartItem {
   @PrimaryGeneratedColumn()
   public id: number;
 

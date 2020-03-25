@@ -2,7 +2,7 @@ import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
 
 import { Logger, LoggerInterface } from '../../decorators/Logger';
-import { Cart } from '../models/Cart';
+import { CartItem } from '../models/CartItem';
 import { CartRepository } from '../repositories/CartRepository';
 
 @Service()
@@ -12,9 +12,9 @@ export class CartService {
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
-  public findByFuserId(_fuserId: number): Promise<Cart | undefined> {
-    this.log.info('Find a Cart for fuser', _fuserId);
-    return this.cartRepository.findOne({
+  public findByFuserId(_fuserId: number): Promise<CartItem[] | undefined> {
+    this.log.info('Find a Cart Items for session', _fuserId);
+    return this.cartRepository.find({
       where: {
         fuserId: _fuserId,
       },
