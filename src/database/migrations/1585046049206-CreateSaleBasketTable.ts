@@ -10,29 +10,23 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
-    queryRunner.query(`
+    await queryRunner.query(`
       create table if not exists b_sale_basket (
         id int(11) not null auto_increment,
         fuser_id int(11) not null,
         order_id int(11) default null,
         product_id int(11) not null,
         product_price_id int(11) default null,
-        price decimal(18,2) not null,
-        currency char(3) not null,
-        date_insert datetime not null,
-        date_update datetime not null,
+        price decimal(18,2) not null default '0.00',
+        currency char(3) not null default 'RUB',
         weight double(18,2) default null,
         quantity double(18,2) not null default '0.00',
-        lid char(2) not null,
-        delay char(1) not null default 'n',
-        name varchar(255) not null,
         can_buy char(1) not null default 'y',
         module varchar(100) default null,
         callback_func varchar(100) default null,
         notes varchar(250) default null,
         order_callback_func varchar(100) default null,
         detail_page_url varchar(250) default null,
-        discount_price decimal(18,2) not null default '0.00',
         cancel_callback_func varchar(100) default null,
         pay_callback_func varchar(100) default null,
         catalog_xml_id varchar(100) default null,
@@ -42,7 +36,6 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         discount_coupon char(32) default null,
         vat_rate decimal(18,2) default '0.00',
         primary key  (id),
-        key ixs_basket_lid (lid),
         key ixs_basket_user_id (fuser_id),
         key ixs_basket_order_id (order_id),
         key ixs_basket_product_id (product_id),
@@ -58,3 +51,12 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     await queryRunner.dropForeignKey('b_sale_basket', this.foreignKeyForBasket);
   }
 }
+
+// date_insert datetime not null,
+// date_update datetime not null,
+// -- lid char(2) not null,
+// -- delay char(1) not null default 'n',
+// -- name varchar(255) not null,
+// -- discount_price decimal(18,2) not null default '0.00',
+
+//  key ixs_basket_lid (lid)

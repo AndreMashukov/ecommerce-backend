@@ -15,10 +15,14 @@ export class CartItem {
   public productId: number;
 
   @IsNotEmpty()
-  @Column({name: 'price'})
+  @Column()
   public price: number;
 
   @IsNotEmpty()
-  @Column({name: 'quantity'})
+  @Column()
+  public currency: string;
+
+  @IsNotEmpty()
+  @Column()
   public quantity: number;
 }
