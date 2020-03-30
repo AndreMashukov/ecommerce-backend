@@ -41,7 +41,7 @@ export class CartController {
   constructor(private cartService: CartService) {}
 
   @Get('/')
-  public findAllItemsByFuserId(@QueryParams() query: GetCartItemsQuery): Promise<CartItem[] | undefined> {
+  public getCartItems(@QueryParams() query: GetCartItemsQuery): Promise<CartItem[] | undefined> {
       return this.cartService.findByFuserId(query.fuserId);
   }
 
@@ -64,7 +64,7 @@ export class CartController {
   }
 
   @Delete('/product')
-  public delete(@QueryParams() query: GetCartProductQuery): Promise<void> {
+  public deleteProduct(@QueryParams() query: GetCartProductQuery): Promise<void> {
     return this.cartService.delete(query.fuserId, query.productId);
   }
 }
