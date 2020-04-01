@@ -15,7 +15,7 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         id int(11) not null auto_increment,
         fuser_id int(11) not null,
         order_id int(11) default null,
-        block_id int(11) not null,
+        iblock_id int(11) not null,
         product_id int(11) not null,
         product_price_id int(11) default null,
         price decimal(18,2) not null default '0.00',
@@ -45,11 +45,20 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       ) default charset=cp1251 auto_increment=1;
       `);
     await queryRunner.createForeignKey('b_sale_basket', this.foreignKeyForBasket);
+    await queryRunner.query(`
+      CREATE OR REPLACE VIEW bitrix.view_sale_basket as
+      select *, (select name
+        from bitrix.b_iblock_element
+          where iblock_id = t1.iblock_id
+          and id = t1.product_id) as name
+      from bitrix.b_sale_basket t1
+    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable('b_sale_basket');
     await queryRunner.dropForeignKey('b_sale_basket', this.foreignKeyForBasket);
+    await queryRunner.dropView('view_sale_basket');
   }
 }
 
