@@ -1,5 +1,5 @@
 import { IsPositive, IsNotEmpty } from 'class-validator';
-import { Delete, Get, JsonController, QueryParams, Post } from 'routing-controllers';
+import { Body, Delete, Get, JsonController, QueryParams, Post } from 'routing-controllers';
 
 import { CartItem } from '../models/CartItem';
 import { CartService } from '../services/CartService';
@@ -52,14 +52,14 @@ export class CartController {
   }
 
   @Post('/product')
-  public addProduct(@QueryParams() query:
+  public addProduct(@Body() body:
     AddProductBody): Promise<CartItem | undefined> {
       const cartItem = new CartItem();
-      cartItem.fuserId = query.fuserId;
-      cartItem.productId = query.productId;
-      cartItem.price = query.price;
-      cartItem.currency = query.currency;
-      cartItem.quantity = query.quantity;
+      cartItem.fuserId = body.fuserId;
+      cartItem.productId = body.productId;
+      cartItem.price = body.price;
+      cartItem.currency = body.currency;
+      cartItem.quantity = body.quantity;
       return this.cartService.addCartItem(cartItem);
   }
 

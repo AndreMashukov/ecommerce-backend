@@ -37,7 +37,7 @@ export class CartService {
         productId: _item.productId,
       },
     });
-    // console.log(resp);
+
     if (!resp) {
       return this.cartRepository.save(_item);
     } else {
