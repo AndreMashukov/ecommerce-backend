@@ -15,6 +15,7 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         id int(11) not null auto_increment,
         fuser_id int(11) not null,
         order_id int(11) default null,
+        block_id int(11) not null,
         product_id int(11) not null,
         product_price_id int(11) default null,
         price decimal(18,2) not null default '0.00',
