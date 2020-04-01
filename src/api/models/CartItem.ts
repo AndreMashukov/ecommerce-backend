@@ -15,6 +15,10 @@ export class CartItem {
   public productId: number;
 
   @IsNotEmpty()
+  @Column({name: 'iblock_id'})
+  public blockId: number;
+
+  @IsNotEmpty()
   @Column()
   public price: number;
 

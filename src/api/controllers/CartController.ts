@@ -25,6 +25,9 @@ class AddProductBody {
   public productId: number;
 
   @IsPositive()
+  public blockId: number;
+
+  @IsPositive()
   @IsNotEmpty()
   public price: number;
 
@@ -56,6 +59,7 @@ export class CartController {
     AddProductBody): Promise<CartItem | undefined> {
       const cartItem = new CartItem();
       cartItem.fuserId = body.fuserId;
+      cartItem.blockId = body.blockId;
       cartItem.productId = body.productId;
       cartItem.price = body.price;
       cartItem.currency = body.currency;
