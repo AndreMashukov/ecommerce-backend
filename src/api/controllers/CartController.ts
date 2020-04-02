@@ -2,7 +2,7 @@ import { IsPositive, IsNotEmpty } from 'class-validator';
 import { Body, Delete, Get, JsonController, QueryParams, Post } from 'routing-controllers';
 
 import { CartItem } from '../models/CartItem';
-import { CartService } from '../services/CartService';
+import { CartService, CartViewService } from '../services';
 
 class GetCartItemsQuery {
   @IsPositive()
@@ -41,11 +41,14 @@ class AddProductBody {
 
 @JsonController('/cart')
 export class CartController {
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private cartViewService: CartViewService
+  ) {}
 
   @Get('/')
   public getCartItems(@QueryParams() query: GetCartItemsQuery): Promise<CartItem[] | undefined> {
-      return this.cartService.findByFuserId(query.fuserId);
+      return this.cartViewService.findByFuserId(query.fuserId);
   }
 
   @Get('/product')
