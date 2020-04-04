@@ -39,6 +39,14 @@ class AddProductBody {
   public currency: string;
 }
 
+class DeleteItemBody {
+  @IsPositive()
+  public fuserId: number;
+
+  @IsPositive()
+  public productId: number;
+}
+
 @JsonController('/cart')
 export class CartController {
   constructor(
@@ -71,7 +79,7 @@ export class CartController {
   }
 
   @Delete('/product')
-  public deleteProduct(@QueryParams() query: GetCartProductQuery): Promise<void> {
-    return this.cartService.delete(query.fuserId, query.productId);
+  public deleteProduct(@Body() body: DeleteItemBody): Promise<void> {
+    return this.cartService.delete(body.fuserId, body.productId);
   }
 }
