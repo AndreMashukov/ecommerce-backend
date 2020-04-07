@@ -45,9 +45,6 @@ export class CreateUserTable1511105183653 implements MigrationInterface {
                 },
             ],
         });
-        await queryRunner.query(`
-          SET SESSION time_zone = "+3:00";
-        `);
         await queryRunner.createTable(table);
     }
 
