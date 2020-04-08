@@ -71,16 +71,6 @@ export class CreateUserTable1583033145800 implements MigrationInterface {
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.query(`
-      SET SESSION time_zone = "+3:00";
-    `);
-
-    await queryRunner.query(`
-      ALTER DATABASE bitrix
-        CHARACTER SET cp1251
-        COLLATE cp1251_general_ci
-    `);
-
     await queryRunner.createTable(this.userTable);
 
     await queryRunner.createIndex('b_user', new TableIndex({
