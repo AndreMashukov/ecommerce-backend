@@ -89,7 +89,7 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
         name: 'description_type',
         type: 'char',
         length: '4',
-        isNullable: false,
+        isNullable: true,
      }, {
         name: 'searchable_content',
         type: 'text',
