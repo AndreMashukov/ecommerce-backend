@@ -180,8 +180,10 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropTable('b_iblock_section');
     await queryRunner.dropView('view_iblock_section');
     await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_1');
+    await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_depth_level');
+    await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_code');
+    await queryRunner.dropTable('b_iblock_section');
   }
 }
