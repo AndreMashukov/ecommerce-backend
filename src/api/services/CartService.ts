@@ -12,6 +12,10 @@ export class CartService {
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
+  public find(): Promise<CartItem[]> {
+    return this.cartRepository.find();
+  }
+
   public findByFuserId(_fuserId: number): Promise<CartItem[] | undefined> {
     this.log.info('Find a Cart Items for session', _fuserId);
     return this.cartRepository.find({
