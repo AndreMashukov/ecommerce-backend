@@ -12,7 +12,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
         isPrimary: true,
         isNullable: false,
         isGenerated: true,
-        generationStrategy: 'increment',
+        // generationStrategy: 'increment',
       }, {
         name: 'timestamp_x',
         type: 'timestamp',

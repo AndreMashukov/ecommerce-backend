@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, TableForeignKey, Table, TableIndex } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
 
 export class CreateIBlockElementProperty1583112852688 implements MigrationInterface {
   public iBlockElementPropertyTable = new Table({
@@ -11,7 +11,7 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
         isPrimary: true,
         isNullable: false,
         isGenerated: true,
-        generationStrategy: 'increment',
+        // generationStrategy: 'increment',
       }, {
         name: 'iblock_property_id',
         type: 'int',
@@ -50,22 +50,6 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
     ],
   });
 
-  private foreignKeyForElement = new TableForeignKey({
-    name: 'fk_iblock_element_property_iblock_element',
-    columnNames: ['iblock_element_id'],
-    referencedColumnNames: ['id'],
-    referencedTableName: 'b_iblock_element',
-    onDelete: 'CASCADE',
-  });
-
-  private foreignKeyForProperty = new TableForeignKey({
-    name: 'fk_iblock_element_property_iblock_property',
-    columnNames: ['iblock_property_id'],
-    referencedColumnNames: ['id'],
-    referencedTableName: 'b_iblock_property',
-    onDelete: 'CASCADE',
-  });
-
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     // create table if not exists b_iblock_element_property (
@@ -85,8 +69,6 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
     // ) default charset=cp1251 auto_increment=13335;
     // `);
     await queryRunner.createTable(this.iBlockElementPropertyTable);
-    await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForElement);
-    await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
 
     await queryRunner.createIndex('b_iblock_element_property', new TableIndex({
       name: 'ix_iblock_element_property_1',
@@ -108,8 +90,6 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
     await queryRunner.dropIndex('b_iblock_element_property', 'ix_iblock_element_property_1');
     await queryRunner.dropIndex('b_iblock_element_property', 'ix_iblock_element_property_2');
     await queryRunner.dropIndex('b_iblock_element_property', 'ix_iblock_element_prop_enum');
-    await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForElement);
-    await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
     await queryRunner.dropTable('b_iblock_element_property');
   }
 }

@@ -11,7 +11,7 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
         isPrimary: true,
         isNullable: false,
         isGenerated: true,
-        generationStrategy: 'increment',
+        // generationStrategy: 'increment',
       }, {
         name: 'date_insert',
         type: 'datetime',

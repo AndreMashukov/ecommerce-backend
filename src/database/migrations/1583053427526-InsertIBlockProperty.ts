@@ -1,14 +1,6 @@
-import { MigrationInterface, QueryRunner, TableForeignKey } from 'typeorm';
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertIBlockProperty1583053427526 implements MigrationInterface {
-  private tableForeignKeyForIBlock = new TableForeignKey({
-    name: 'fk_iblock_property_iblock',
-    columnNames: ['iblock_id'],
-    referencedColumnNames: ['id'],
-    referencedTableName: 'b_iblock',
-    onDelete: 'CASCADE',
-  });
-
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
     INSERT INTO b_iblock_property (ID, TIMESTAMP_X, IBLOCK_ID, NAME, ACTIVE, SORT, CODE, DEFAULT_VALUE, PROPERTY_TYPE, ROW_COUNT, COL_COUNT, LIST_TYPE, MULTIPLE, XML_ID, FILE_TYPE, MULTIPLE_CNT, TMP_ID, LINK_IBLOCK_ID, WITH_DESCRIPTION, SEARCHABLE, FILTRABLE, IS_REQUIRED, VERSION, USER_TYPE, USER_TYPE_SETTINGS, HINT) VALUES
@@ -23,12 +15,9 @@ export class InsertIBlockProperty1583053427526 implements MigrationInterface {
     (21, '2011-12-20 09:43:22', 4, 'Минимальная цена', 'Y', 1100, 'MINIMUM_PRICE', '', 'N', 1, 30, 'L', 'N', NULL, '', 1, NULL, 0, 'N', 'N', 'N', 'N', 1, NULL, NULL, NULL),
     (22, '2011-12-20 09:43:22', 4, 'Максимальная цена', 'Y', 1200, 'MAXIMUM_PRICE', '', 'N', 1, 30, 'L', 'N', NULL, '', 1, NULL, 0, 'N', 'N', 'N', 'N', 1, NULL, NULL, NULL);
     `);
-
-    await queryRunner.createForeignKey('b_iblock_property', this.tableForeignKeyForIBlock);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.clearTable('b_iblock_property');
-    await queryRunner.dropForeignKey('b_iblock_property', this.tableForeignKeyForIBlock);
   }
 }

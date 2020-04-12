@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, TableForeignKey, Table, TableIndex } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
 
 export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
   public saleBasketTable = new Table({
@@ -11,7 +11,7 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         isPrimary: true,
         isNullable: false,
         isGenerated: true,
-        generationStrategy: 'increment',
+        // generationStrategy: 'increment',
       }, {
         name: 'fuser_id',
         type: 'int',
@@ -71,14 +71,6 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     ],
   });
 
-  private foreignKeyForBasket = new TableForeignKey({
-    name: 'fk_sale_basket_sales_fuser',
-    columnNames: ['fuser_id'],
-    referencedColumnNames: ['id'],
-    referencedTableName: 'b_sale_fuser',
-    onDelete: 'CASCADE',
-  });
-
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     //   create table if not exists b_sale_basket (
@@ -115,7 +107,6 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     //   ) default charset=cp1251 auto_increment=1;
     //   `);
     await queryRunner.createTable(this.saleBasketTable);
-    await queryRunner.createForeignKey('b_sale_basket', this.foreignKeyForBasket);
     await queryRunner.createIndex('b_sale_basket', new TableIndex({
       name: 'ixs_basket_user_id',
       columnNames: ['fuser_id'],
@@ -135,7 +126,6 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_order_id');
     await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_product_id');
     await queryRunner.dropTable('b_sale_basket');
-    await queryRunner.dropForeignKey('b_sale_basket', this.foreignKeyForBasket);
   }
 }
 

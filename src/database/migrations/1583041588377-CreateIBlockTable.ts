@@ -11,7 +11,7 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
         isPrimary: true,
         isNullable: false,
         isGenerated: true,
-        generationStrategy: 'increment',
+        // generationStrategy: 'increment',
       }, {
         name: 'timestamp_x',
         type: 'timestamp',
