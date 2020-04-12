@@ -12,7 +12,7 @@ const PRODUCT = {
 };
 
 describe('CartService', () => {
-    test('Find should return a cart item', async (done) => {
+    test('Find should return a all cart items for all sessions', async (done) => {
         const log = new LogMock();
         const repo = new RepositoryMock();
         const cartItem = new CartItem();
@@ -29,4 +29,22 @@ describe('CartService', () => {
         expect(list[0].productId).toBe(cartItem.productId);
         done();
     });
+
+    test('Find should return a all cart items for a certain session ', async (done) => {
+      const log = new LogMock();
+      const repo = new RepositoryMock();
+      const cartItem = new CartItem();
+      cartItem.id = 1;
+      cartItem.fuserId = FUSERID;
+      cartItem.blockId = PRODUCT.blockId;
+      cartItem.productId = PRODUCT.productId;
+      cartItem.price = PRODUCT.price;
+      cartItem.currency = 'RUB';
+      cartItem.quantity = 1;
+      repo.list = [cartItem];
+      const cartService = new CartService(repo as any, log);
+      const list = await cartService.findByFuserId(FUSERID);
+      expect(list[0].productId).toBe(cartItem.productId);
+      done();
+  });
 });
