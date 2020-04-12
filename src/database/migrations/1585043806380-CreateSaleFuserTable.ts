@@ -51,6 +51,7 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
+    await queryRunner.dropIndex('b_sale_fuser', 'ix_user_id');
     await queryRunner.dropTable('b_sale_fuser');
   }
 }
