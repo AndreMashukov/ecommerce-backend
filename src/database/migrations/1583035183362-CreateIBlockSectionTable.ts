@@ -171,16 +171,9 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
       name: 'ix_iblock_section_code',
       columnNames: ['iblock_id', 'code'],
     }));
-
-    await queryRunner.query(`
-      CREATE OR REPLACE VIEW bitrix.view_iblock_section AS
-      select *, (select code from bitrix.b_iblock_section where iblock_id = t1.iblock_id and id = t1.iblock_section_id) as parent_code
-      from bitrix.b_iblock_section t1
-    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropView('view_iblock_section');
     await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_1');
     await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_depth_level');
     await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_code');

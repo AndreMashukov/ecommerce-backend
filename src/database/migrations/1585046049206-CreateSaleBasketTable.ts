@@ -116,14 +116,6 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     //   `);
     await queryRunner.createTable(this.saleBasketTable);
     await queryRunner.createForeignKey('b_sale_basket', this.foreignKeyForBasket);
-    await queryRunner.query(`
-      CREATE OR REPLACE VIEW bitrix.view_sale_basket as
-      select *, (select name
-        from bitrix.b_iblock_element
-          where iblock_id = t1.iblock_id
-          and id = t1.product_id) as name
-      from bitrix.b_sale_basket t1
-    `);
     await queryRunner.createIndex('b_sale_basket', new TableIndex({
       name: 'ixs_basket_user_id',
       columnNames: ['fuser_id'],
@@ -144,7 +136,6 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_product_id');
     await queryRunner.dropTable('b_sale_basket');
     await queryRunner.dropForeignKey('b_sale_basket', this.foreignKeyForBasket);
-    await queryRunner.dropView('view_sale_basket');
   }
 }
 

@@ -102,19 +102,6 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
       name: 'ix_iblock_element_prop_enum',
       columnNames: ['value_enum', 'iblock_property_id'],
     }));
-
-    await queryRunner.query(`
-      CREATE OR REPLACE VIEW bitrix.view_iblock_element_property
-      AS
-      SELECT ep.id, ep.iblock_property_id, ep.iblock_element_id,
-        ep.value, p.name
-      FROM bitrix.b_iblock_element_property ep
-      LEFT JOIN  bitrix.b_iblock_property p
-      ON (ep.iblock_property_id = p.id)
-      LEFT JOIN bitrix.b_iblock_element e
-      ON (ep.iblock_element_id = e.id)
-      AND (e.iblock_id = p.iblock_id)
-    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
@@ -123,7 +110,6 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
     await queryRunner.dropIndex('b_iblock_element_property', 'ix_iblock_element_prop_enum');
     await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForElement);
     await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
-    await queryRunner.dropView('view_iblock_element_property');
     await queryRunner.dropTable('b_iblock_element_property');
   }
 }

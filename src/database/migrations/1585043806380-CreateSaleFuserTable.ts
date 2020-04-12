@@ -46,7 +46,7 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
     }));
     await queryRunner.query(`
       INSERT INTO b_sale_fuser (ID, date_insert, date_update, user_id) VALUES
-      (1, now(), now(), NULL)
+      (1, '2020-04-12 04:56:14', '2020-04-12 04:56:14', NULL)
     `);
   }
 
