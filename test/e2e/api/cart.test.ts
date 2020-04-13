@@ -9,7 +9,6 @@ import { prepareServer } from '../utils/server';
 
 describe('/api/cart', () => {
   let cartItem: CartItem;
-  // let bruceAuthorization: string;
   let settings: BootstrapSettings;
 
   // -------------------------------------------------------------------------
@@ -19,7 +18,6 @@ describe('/api/cart', () => {
   beforeAll(async () => {
     settings = await prepareServer({ migrate: true });
     cartItem = await runSeed<CartItem>(CreateCartItem);
-    // bruceAuthorization = Buffer.from('bruce:1234').toString('base64');
   });
 
   // -------------------------------------------------------------------------
@@ -38,7 +36,6 @@ describe('/api/cart', () => {
   test('GET: / should return a list of cart items', async done => {
     const response = await request(settings.app)
       .get('/api/cart/?fuserId=1')
-      // .set('Authorization', `Basic ${bruceAuthorization}`)
       .expect('Content-Type', /json/)
       .expect(200);
     console.log(response.body);
