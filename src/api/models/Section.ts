@@ -27,7 +27,15 @@ export class Section {
   public code: string;
 
   @IsNotEmpty()
+  @Column()
+  public sort: number;
+
+  @IsNotEmpty()
   @Column({name: 'parent_code'})
   public parentCode: string;
+
+  @IsNotEmpty()
+  @Column({name: 'depth_level'})
+  public depthLevel: number;
 
 }
