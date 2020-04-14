@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, TableForeignKey } from 'typeorm';
+import { MigrationInterface, QueryRunner, TableForeignKey, TableIndex } from 'typeorm';
 
 export class DatabaseSettings1586324560077 implements MigrationInterface {
   private tableForeignKey = new TableForeignKey({
@@ -57,6 +57,22 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     onDelete: 'CASCADE',
   });
 
+  // private foreignKeyForSectionCategory1 = new TableForeignKey({
+  //   name: 'fk_iblock_section_category_1',
+  //   columnNames: ['iblock_id', 'iblock_section_id'],
+  //   referencedColumnNames: ['iblock_id', 'id'],
+  //   referencedTableName: 'b_iblock_section',
+  //   onDelete: 'CASCADE',
+  // });
+
+  private foreignKeyForSectionCategory2 = new TableForeignKey({
+    name: 'fk_iblock_section_category_2',
+    columnNames: ['category_id'],
+    referencedColumnNames: ['id'],
+    referencedTableName: 'b_iblock_category',
+    onDelete: 'CASCADE',
+  });
+
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     //   ALTER DATABASE bitrix
@@ -73,6 +89,8 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     // await queryRunner.query(`ALTER TABLE b_iblock_element_property MODIFY id INT AUTO_INCREMENT;`);
     // await queryRunner.query(`ALTER TABLE b_iblock_property MODIFY id INT AUTO_INCREMENT;`);
     // await queryRunner.query(`ALTER TABLE b_iblock_section MODIFY id INT AUTO_INCREMENT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_section_category MODIFY id INT AUTO_INCREMENT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_category MODIFY id INT AUTO_INCREMENT;`);
     // await queryRunner.query(`ALTER TABLE b_sale_fuser MODIFY id INT AUTO_INCREMENT;`);
     // await queryRunner.query(`ALTER TABLE b_sale_basket MODIFY id INT AUTO_INCREMENT;`);
 
@@ -84,6 +102,14 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForElement);
     await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
     await queryRunner.createForeignKey('b_sale_basket', this.foreignKeyForBasket);
+    // await queryRunner.createForeignKey('b_iblock_section_category', this.foreignKeyForSectionCategory1);
+    await queryRunner.createForeignKey('b_iblock_section_category', this.foreignKeyForSectionCategory2);
+
+    await queryRunner.createIndex('b_iblock_section_category', new TableIndex({
+      name: 'ix_iblock_property_iblock_unique',
+      columnNames: ['iblock_id', 'iblock_section_id', 'category_id'],
+      isUnique: true,
+    }));
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {

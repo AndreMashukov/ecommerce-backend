@@ -4,8 +4,19 @@ export class CreateViews1586672603867 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
       CREATE VIEW view_iblock_section AS
-      select *, (select code from b_iblock_section where iblock_id = t1.iblock_id and id = t1.iblock_section_id) as parent_code
-      from b_iblock_section t1
+      select *,
+      (select code from b_iblock_section
+        where iblock_id = t1.iblock_id
+              and id = t1.iblock_section_id) as parent_code,
+          (select category_id from b_iblock_section_category
+        where iblock_id = t1.iblock_id
+              and iblock_section_id = t1.id) as category_id,
+          (select name from b_iblock_category b1
+        inner join b_iblock_section_category b2
+              on (b1.id = b2.category_id)
+        where b2.iblock_id = t1.iblock_id
+              and b2.iblock_section_id = t1.id) as category_name
+        from b_iblock_section t1
     `);
     await queryRunner.query(`
       CREATE VIEW view_iblock_element_property

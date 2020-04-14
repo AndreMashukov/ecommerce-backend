@@ -31,6 +31,10 @@ export class Section {
   public sort: number;
 
   @IsNotEmpty()
+  @Column()
+  public active: number;
+
+  @IsNotEmpty()
   @Column({name: 'parent_code'})
   public parentCode: string;
 
@@ -38,4 +42,9 @@ export class Section {
   @Column({name: 'depth_level'})
   public depthLevel: number;
 
+  @Column({name: 'category_id'})
+  public categoryId: number;
+
+  @Column({name: 'category_name'})
+  public categoryName: number;
 }

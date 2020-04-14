@@ -75,9 +75,62 @@ export class InsertIBlockSectionTable1583035760066 implements MigrationInterface
     (108, '2020-02-01 07:22:39', 1844, '2020-02-01 10:22:39', 1844, 4, 37, 'Y', 'Y', 500, 'Сыворотки', NULL, 66, 67, 2, 'Мастер', 'text', 'СЫВОРОТКИ\r\nМАСТЕР', 'syvorotki', NULL, NULL, NULL, NULL),
     (109, '2020-02-01 09:00:21', 1844, '2020-02-01 12:00:21', 1844, 4, NULL, 'Y', 'Y', 500, 'Парфюмерия', NULL, 15, 16, 1, 'В составе каждого аромата самые любимые и изысканные ингредиенты, использующиеся при создании духов на протяжении всей истории парфюмерного искусства.', 'html', 'ПАРФЮМЕРИЯ\r\nВ СОСТАВЕ КАЖДОГО АРОМАТА САМЫЕ ЛЮБИМЫЕ И ИЗЫСКАННЫЕ ИНГРЕДИЕНТЫ, ИСПОЛЬЗУЮЩИЕСЯ \r\nПРИ СОЗДАНИИ ДУХОВ НА ПРОТЯЖЕНИИ ВСЕЙ ИСТОРИИ ПАРФЮМЕРНОГО ИСКУССТВА.', 'parfyumeriya', NULL, NULL, NULL, NULL);
     `);
+
+    await queryRunner.query(`
+    INSERT INTO b_iblock_category (ID, NAME)  VALUES
+    (1, 'КРАСОТА'),
+    (2, 'ЗДОРОВЬЕ'),
+    (3, 'ДЕКОР'),
+    (4, 'АКСЕССУАРЫ'),
+    (5, 'PROFESSIONAL');
+    `);
+
+    // await queryRunner.query(`
+    //   ALTER TABLE b_iblock_section_category ADD UNIQUE INDEX(IBLOCK_ID, IBLOCK_SECTION_ID, CATEGORY_ID);
+    // `);
+
+    await queryRunner.query(`
+    INSERT INTO b_iblock_section_category (ID, IBLOCK_ID, IBLOCK_SECTION_ID, CATEGORY_ID)  VALUES
+    (1, 4, 68, 1),
+    (2, 4, 92, 1),
+    (3, 4, 32, 1),
+    (4, 4, 89, 1),
+    (5, 4, 103, 1),
+    (6, 4, 63, 1),
+    (7, 4, 58, 1),
+    (8, 4, 37, 1),
+    (9, 4, 69, 1),
+    (10, 4, 87, 1),
+    (11, 4, 109, 1),
+    (12, 4, 72, 1),
+    (13, 4, 36, 1),
+    (14, 4, 66, 2),
+    (15, 4, 67, 2),
+    (16, 4, 98, 2),
+    (17, 4, 80, 3),
+    (18, 4, 79, 3),
+    (19, 4, 78, 3),
+    (20, 4, 77, 3),
+    (21, 4, 86, 4),
+    (22, 4, 106, 5),
+    (23, 4, 107, 5),
+    (24, 4, 29, 1),
+    (25, 4, 34, 1),
+    (26, 4, 35, 1),
+    (27, 4, 38, 1),
+    (28, 4, 39, 1),
+    (29, 4, 88, 1),
+    (30, 4, 91, 1),
+    (31, 4, 94, 1),
+    (32, 4, 99, 1),
+    (33, 4, 102, 1),
+    (34, 4, 82, 1);
+    `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.clearTable('b_iblock_section');
+    await queryRunner.clearTable('b_iblock_category');
+    await queryRunner.clearTable('b_iblock_section_category');
   }
 }
