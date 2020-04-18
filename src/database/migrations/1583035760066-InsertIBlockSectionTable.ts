@@ -95,7 +95,6 @@ export class InsertIBlockSectionTable1583035760066 implements MigrationInterface
     (2, 4, 92, 1),
     (3, 4, 32, 1),
     (4, 4, 89, 1),
-    (5, 4, 103, 1),
     (6, 4, 63, 1),
     (7, 4, 58, 1),
     (8, 4, 37, 1),

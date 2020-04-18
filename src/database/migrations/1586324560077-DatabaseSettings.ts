@@ -83,16 +83,16 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     // await queryRunner.query(`
     //   SET SESSION time_zone = "+3:00";
     // `);
-    // await queryRunner.query(`ALTER TABLE b_user MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_iblock MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_iblock_element MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_iblock_element_property MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_iblock_property MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_iblock_section MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_iblock_section_category MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_iblock_category MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_sale_fuser MODIFY id INT AUTO_INCREMENT;`);
-    // await queryRunner.query(`ALTER TABLE b_sale_basket MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_user MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_iblock MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_iblock_element MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_iblock_element_property MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_iblock_property MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_iblock_section MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_iblock_section_category MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_iblock_category MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_sale_fuser MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(`ALTER TABLE b_sale_basket MODIFY id INT AUTO_INCREMENT;`);
 
     await queryRunner.query(`SELECT 1`);
     await queryRunner.createForeignKey('b_iblock_section', this.tableForeignKey);
