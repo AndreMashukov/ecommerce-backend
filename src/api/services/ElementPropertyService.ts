@@ -12,12 +12,8 @@ export class ElementPropertyService {
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
-  public findByElementId(_elementId: string): Promise<ElementProperty[]> {
+  public findByElementId(_elementId: number): Promise<ElementProperty[]> {
     this.log.info('Find all properties for element', _elementId);
-    return this.elementPropertyRepository.find({
-      where: {
-        elementId: _elementId,
-      },
-    });
+    return this.elementPropertyRepository.findByElementId(_elementId);
   }
 }
