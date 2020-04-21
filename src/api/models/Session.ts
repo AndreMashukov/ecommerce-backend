@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity({name: 'b_sale_fuser'})
 export class Session {
   @PrimaryGeneratedColumn()
-  public id: string;
+  public id: number;
 
   @IsNotEmpty()
   @Column({name: 'date_insert'})
