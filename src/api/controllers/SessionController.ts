@@ -6,7 +6,7 @@ import { Session } from '../models/Session';
 @JsonController('/session')
 export class SessionController {
   constructor(
-    private sessionService: SessionService,
+    private sessionService: SessionService
   ) {}
 
   @Get('/')
