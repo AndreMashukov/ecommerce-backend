@@ -46,5 +46,8 @@ export class Section {
   public categoryId: number;
 
   @Column({name: 'category_name'})
-  public categoryName: number;
+  public categoryName: string;
+
+  @Column({name: 'description_type'})
+  public descriptionType: string;
 }
