@@ -6,12 +6,12 @@ import { CartService, CartViewService } from '../services';
 
 class GetCartItemsQuery {
   @IsPositive()
-  public fuserId: number;
+  public sessionId: string;
 }
 
 class GetCartProductQuery {
   @IsPositive()
-  public fuserId: number;
+  public sessionId: string;
 
   @IsPositive()
   public productId: number;
@@ -19,7 +19,7 @@ class GetCartProductQuery {
 
 class AddProductBody {
   @IsPositive()
-  public fuserId: number;
+  public sessionId: string;
 
   @IsPositive()
   public productId: number;
@@ -41,7 +41,7 @@ class AddProductBody {
 
 class DeleteItemBody {
   @IsPositive()
-  public fuserId: number;
+  public sessionId: string;
 
   @IsPositive()
   public productId: number;
@@ -56,20 +56,20 @@ export class CartController {
 
   @Get('/')
   public getCartItems(@QueryParams() query: GetCartItemsQuery): Promise<CartItem[] | undefined> {
-      return this.cartViewService.findByFuserId(query.fuserId);
+      return this.cartViewService.findBySessionId(query.sessionId);
   }
 
   @Get('/product')
-  public findProductByProductIdAndFuserId(@QueryParams() query:
+  public findBySessionIdAndProductId(@QueryParams() query:
   GetCartProductQuery): Promise<CartItem | undefined> {
-      return this.cartService.findByFuserIdAndProductId(query.fuserId, query.productId);
+      return this.cartService.findBySessionIdAndProductId(query.sessionId, query.productId);
   }
 
   @Post('/product')
   public addProduct(@Body() body:
     AddProductBody): Promise<CartItem | undefined> {
       const cartItem = new CartItem();
-      cartItem.fuserId = body.fuserId;
+      cartItem.sessionId = body.sessionId;
       cartItem.blockId = body.blockId;
       cartItem.productId = body.productId;
       cartItem.price = body.price;
@@ -80,6 +80,6 @@ export class CartController {
 
   @Delete('/product')
   public deleteProduct(@Body() body: DeleteItemBody): Promise<void> {
-    return this.cartService.delete(body.fuserId, body.productId);
+    return this.cartService.delete(body.sessionId, body.productId);
   }
 }

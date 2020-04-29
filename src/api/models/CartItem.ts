@@ -7,8 +7,8 @@ export class CartItem {
   public id: number;
 
   @IsNotEmpty()
-  @Column({name: 'fuser_id'})
-  public fuserId: number;
+  @Column({name: 'session_id'})
+  public sessionId: string;
 
   @IsNotEmpty()
   @Column({name: 'product_id'})

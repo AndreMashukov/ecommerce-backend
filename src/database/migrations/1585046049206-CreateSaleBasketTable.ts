@@ -13,9 +13,9 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         isGenerated: true,
         // generationStrategy: 'increment',
       }, {
-        name: 'fuser_id',
-        type: 'int',
-        length: '11',
+        name: 'session_id',
+        type: 'varchar',
+        length: '255',
         isNullable: false,
       }, {
         name: 'order_id',
@@ -108,8 +108,8 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     //   `);
     await queryRunner.createTable(this.saleBasketTable);
     await queryRunner.createIndex('b_sale_basket', new TableIndex({
-      name: 'ixs_basket_user_id',
-      columnNames: ['fuser_id'],
+      name: 'ixs_basket_session_id',
+      columnNames: ['session_id'],
     }));
     await queryRunner.createIndex('b_sale_basket', new TableIndex({
       name: 'ixs_basket_order_id',
@@ -122,7 +122,7 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_user_id');
+    await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_session_id');
     await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_order_id');
     await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_product_id');
     await queryRunner.dropTable('b_sale_basket');

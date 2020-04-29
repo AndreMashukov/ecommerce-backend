@@ -12,11 +12,11 @@ export class CartViewService {
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
-  public findByFuserId(_fuserId: number): Promise<CartViewItem[] | undefined> {
-    this.log.info('Find a Cart Items for session', _fuserId);
+  public findBySessionId(_sessionId: string): Promise<CartViewItem[] | undefined> {
+    this.log.info('Find a Cart Items for session', _sessionId);
     return this.cartViewRepository.find({
       where: {
-        fuserId: _fuserId,
+        sessionId: _sessionId,
       },
     });
   }

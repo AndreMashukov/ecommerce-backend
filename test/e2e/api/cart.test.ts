@@ -35,7 +35,7 @@ describe('/api/cart', () => {
 
   test('GET: / should return a list of cart items', async done => {
     const response = await request(settings.app)
-      .get('/api/cart/?fuserId=1')
+      .get('/api/cart/?sessionId=xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx')
       .expect('Content-Type', /json/)
       .expect(200);
     console.log(response.body);

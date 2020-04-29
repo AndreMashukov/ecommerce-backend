@@ -10,7 +10,7 @@ export class CreateCartItem implements Seed {
 
         const item = new CartItem();
         item.id = 1;
-        item.fuserId = 1;
+        item.sessionId = 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx';
         item.blockId = 4;
         item.productId = 1426;
         item.quantity = 1;

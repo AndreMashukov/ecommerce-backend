@@ -16,19 +16,21 @@ export class CartService {
     return this.cartRepository.find();
   }
 
-  public findByFuserId(_fuserId: number): Promise<CartItem[] | undefined> {
-    this.log.info('Find a Cart Items for session', _fuserId);
+  public findBySessionId(_sessionId: string):
+    Promise<CartItem[] | undefined> {
+    this.log.info('Find a Cart Items for session', _sessionId);
     return this.cartRepository.find({
       where: {
-        fuserId: _fuserId,
+        sessionId: _sessionId,
       },
     });
   }
 
-  public findByFuserIdAndProductId(_fuserId: number, _productId: number): Promise<CartItem | undefined> {
+  public findBySessionIdAndProductId(_sessionId: string, _productId: number):
+    Promise<CartItem | undefined> {
     return this.cartRepository.findOne({
       where: {
-        fuserId: _fuserId,
+        sessionId: _sessionId,
         productId: _productId,
       },
     });
@@ -37,7 +39,7 @@ export class CartService {
   public async addCartItem(_item: CartItem): Promise<CartItem | undefined> {
     const resp = await this.cartRepository.findOne({
       where: {
-        fuserId: _item.fuserId,
+        sessionId: _item.sessionId,
         productId: _item.productId,
       },
     });
@@ -49,9 +51,9 @@ export class CartService {
     }
   }
 
-  public delete(_fuserId: number, _productId: number): Promise<any> {
+  public delete(_sessionId: string, _productId: number): Promise<any> {
     return this.cartRepository.delete({
-      fuserId: _fuserId,
+      sessionId: _sessionId,
       productId: _productId,
     });
   }

@@ -3,7 +3,7 @@ import { CartService } from '../../../src/api/services/CartService';
 import { LogMock } from '../lib/LogMock';
 import { RepositoryMock } from '../lib/RepositoryMock';
 
-const FUSERID = 1;
+const SESSION_ID = 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx';
 
 const PRODUCT = {
   productId: 1426,
@@ -17,7 +17,7 @@ describe('CartService', () => {
         const repo = new RepositoryMock();
         const cartItem = new CartItem();
         cartItem.id = 1;
-        cartItem.fuserId = FUSERID;
+        cartItem.sessionId = SESSION_ID;
         cartItem.blockId = PRODUCT.blockId;
         cartItem.productId = PRODUCT.productId;
         cartItem.price = PRODUCT.price;
@@ -35,7 +35,7 @@ describe('CartService', () => {
       const repo = new RepositoryMock();
       const cartItem = new CartItem();
       cartItem.id = 1;
-      cartItem.fuserId = FUSERID;
+      cartItem.sessionId = SESSION_ID;
       cartItem.blockId = PRODUCT.blockId;
       cartItem.productId = PRODUCT.productId;
       cartItem.price = PRODUCT.price;
@@ -43,7 +43,7 @@ describe('CartService', () => {
       cartItem.quantity = 1;
       repo.list = [cartItem];
       const cartService = new CartService(repo as any, log);
-      const list = await cartService.findByFuserId(FUSERID);
+      const list = await cartService.findBySessionId(SESSION_ID);
       expect(list[0].productId).toBe(cartItem.productId);
       done();
   });

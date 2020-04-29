@@ -6,12 +6,10 @@ export class CreateUserTable1583033145800 implements MigrationInterface {
     columns: [
       {
         name: 'id',
-        type: 'int',
-        length: '18',
+        type: 'varchar',
+        length: '255',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
-        // generationStrategy: 'increment',
       }, {
         name: 'timestamp_x',
         type: 'timestamp',
