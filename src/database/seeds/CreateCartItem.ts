@@ -5,7 +5,8 @@ import { CartItem } from '../../../src/api/models/CartItem';
 
 export class CreateCartItem implements Seed {
 
-    public async seed(factory: Factory, connection: Connection): Promise<CartItem> {
+    public async seed(factory: Factory, connection: Connection):
+      Promise<CartItem> {
         const em = connection.createEntityManager();
 
         const item = new CartItem();

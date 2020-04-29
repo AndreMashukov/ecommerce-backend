@@ -43,7 +43,6 @@ describe('/api/users', () => {
             .set('Authorization', `Basic ${bruceAuthorization}`)
             .expect('Content-Type', /json/)
             .expect(200);
-        console.log(response.body);
         expect(response.body.length).toBe(1);
         done();
     });

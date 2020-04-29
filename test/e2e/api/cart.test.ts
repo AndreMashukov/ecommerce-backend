@@ -1,8 +1,8 @@
 import * as nock from 'nock';
 import request from 'supertest';
 import { runSeed } from 'typeorm-seeding';
-import { CartItem } from '../../../src/api/models/CartItem';
-import { CreateCartItem } from '../../../src/database/seeds/CreateCartItem';
+import { CartItem, Session } from '../../../src/api/models';
+import { CreateCartItem, CreateSession } from '../../../src/database/seeds';
 import { closeDatabase } from '../../utils/database';
 import { BootstrapSettings } from '../utils/bootstrap';
 import { prepareServer } from '../utils/server';
@@ -10,6 +10,7 @@ import { prepareServer } from '../utils/server';
 describe('/api/cart', () => {
   let cartItem: CartItem;
   let settings: BootstrapSettings;
+  let session: Session;
 
   // -------------------------------------------------------------------------
   // Setup up
@@ -17,6 +18,7 @@ describe('/api/cart', () => {
 
   beforeAll(async () => {
     settings = await prepareServer({ migrate: true });
+    session = await runSeed<Session>(CreateSession);
     cartItem = await runSeed<CartItem>(CreateCartItem);
   });
 
@@ -35,11 +37,10 @@ describe('/api/cart', () => {
 
   test('GET: / should return a list of cart items', async done => {
     const response = await request(settings.app)
-      .get('/api/cart/?sessionId=xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx')
+      .get('/api/cart/?sessionId=' + session.id)
       .expect('Content-Type', /json/)
       .expect(200);
-    console.log(response.body);
-    console.log(cartItem);
+      console.log(cartItem);
     expect(response.body.length).toBe(1);
     done();
   });
