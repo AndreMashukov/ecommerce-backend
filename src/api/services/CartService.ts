@@ -49,16 +49,12 @@ export class CartService {
     } else {
       const newQuantity: number = resp.quantity + 1;
       try {
-        const result =  await this.cartRepository
-        .update(resp.id, {quantity: newQuantity});
-        if (result.affected === 1) {
-          return await this.cartRepository.findOne(resp.id);
-        } else {
-          return new Promise(_resolve => _resolve(resp));
-        }
+        await this.cartRepository
+          .update(resp.id, {quantity: newQuantity});
+        return await this.cartRepository.findOne(resp.id);
       } catch (err) {
         this.log.info('Error updating cart', err);
-        return new Promise(reject => reject(err));
+        return new Promise(_resolve => _resolve(undefined));
       }
     }
   }
