@@ -1,8 +1,29 @@
 import { IsPositive, IsNotEmpty } from 'class-validator';
 import { Body, Delete, Get, JsonController, QueryParams, Post } from 'routing-controllers';
+import { ResponseSchema } from 'routing-controllers-openapi';
 
 import { CartItem } from '../models/CartItem';
 import { CartService, CartViewService } from '../services';
+
+export class CartPostResponse {
+  @IsNotEmpty()
+  public sessionId: string;
+
+  @IsNotEmpty()
+  public productId: number;
+
+  @IsNotEmpty()
+  public blockId: number;
+
+  @IsNotEmpty()
+  public price: number;
+
+  @IsNotEmpty()
+  public currency: string;
+
+  @IsNotEmpty()
+  public quantity: number;
+}
 
 class GetCartItemsQuery {
   @IsPositive()
@@ -49,33 +70,29 @@ class DeleteItemBody {
 
 @JsonController('/cart')
 export class CartController {
-  constructor(
-    private cartService: CartService,
-    private cartViewService: CartViewService
-  ) {}
+  constructor(private cartService: CartService, private cartViewService: CartViewService) {}
 
   @Get('/')
   public getCartItems(@QueryParams() query: GetCartItemsQuery): Promise<CartItem[] | undefined> {
-      return this.cartViewService.findBySessionId(query.sessionId);
+    return this.cartViewService.findBySessionId(query.sessionId);
   }
 
   @Get('/product')
-  public findBySessionIdAndProductId(@QueryParams() query:
-  GetCartProductQuery): Promise<CartItem | undefined> {
-      return this.cartService.findBySessionIdAndProductId(query.sessionId, query.productId);
+  public findBySessionIdAndProductId(@QueryParams() query: GetCartProductQuery): Promise<CartItem | undefined> {
+    return this.cartService.findBySessionIdAndProductId(query.sessionId, query.productId);
   }
 
   @Post('/product')
-  public addProduct(@Body() body:
-    AddProductBody): Promise<CartItem | undefined> {
-      const cartItem = new CartItem();
-      cartItem.sessionId = body.sessionId;
-      cartItem.blockId = body.blockId;
-      cartItem.productId = body.productId;
-      cartItem.price = body.price;
-      cartItem.currency = body.currency;
-      cartItem.quantity = body.quantity;
-      return this.cartService.addCartItem(cartItem);
+  @ResponseSchema(CartPostResponse)
+  public addProduct(@Body() body: AddProductBody): Promise<CartItem | undefined> {
+    const cartItem = new CartItem();
+    cartItem.sessionId = body.sessionId;
+    cartItem.blockId = body.blockId;
+    cartItem.productId = body.productId;
+    cartItem.price = body.price;
+    cartItem.currency = body.currency;
+    cartItem.quantity = body.quantity;
+    return this.cartService.addCartItem(cartItem);
   }
 
   @Delete('/product')
