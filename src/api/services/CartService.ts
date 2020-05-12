@@ -47,15 +47,12 @@ export class CartService {
     if (!resp) {
       return this.cartRepository.save(_item);
     } else {
-      const newQuantity: number = resp.quantity + 1;
+      const newItem = _item;
+      newItem.id = resp.id;
+      newItem.quantity = resp.quantity + 1;
+
       try {
-        const resultUpdate = await this.cartRepository
-          .update(resp.id, {quantity: newQuantity});
-        if (resultUpdate.raw.affectedRows === 1) {
-          return await this.cartRepository.findOne(resp.id);
-        } else {
-          return new Promise(_resolve => _resolve(undefined));
-        }
+        return this.cartRepository.save(_item);
       } catch (err) {
         this.log.info('Error updating cart', err);
         return new Promise(_resolve => _resolve(undefined));
