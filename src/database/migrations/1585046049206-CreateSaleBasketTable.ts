@@ -119,6 +119,12 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       name: 'ixs_basket_product_id',
       columnNames: ['product_id'],
     }));
+
+    await queryRunner.createIndex('b_sale_basket', new TableIndex({
+      name: 'ix_b_sale_basket_unique',
+      columnNames: ['session_id', 'product_id', 'iblock_id'],
+      isUnique: true,
+    }));
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
