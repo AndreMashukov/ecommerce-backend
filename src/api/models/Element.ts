@@ -48,7 +48,4 @@ export class Element {
 
   @OneToMany(type => ElementProperty, property => property.element)
   public properties: ElementProperty[];
-
-  // @OneToMany(type => Pet, pet => pet.user)
-  // public pets: Pet[];
 }

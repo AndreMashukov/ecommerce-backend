@@ -27,8 +27,4 @@ export class ElementProperty {
   @ManyToOne(type => Element, element => element.properties)
   @JoinColumn({ name: 'iblock_element_id' })
   public element: Element;
-
-  // @ManyToOne(type => User, user => user.pets)
-  // @JoinColumn({ name: 'user_id' })
-  // public user: User;
 }
