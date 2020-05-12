@@ -47,12 +47,12 @@ export class CartService {
     if (!resp) {
       return this.cartRepository.save(_item);
     } else {
-      const newItem = _item;
-      newItem.id = resp.id;
-      newItem.quantity = resp.quantity + 1;
+      const currentItem = _item;
+      currentItem.id = resp.id;
+      currentItem.quantity = resp.quantity + 1;
 
       try {
-        return this.cartRepository.save(_item);
+        return this.cartRepository.save(currentItem);
       } catch (err) {
         this.log.info('Error updating cart', err);
         return new Promise(_resolve => _resolve(undefined));
