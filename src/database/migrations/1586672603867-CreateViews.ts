@@ -32,11 +32,20 @@ export class CreateViews1586672603867 implements MigrationInterface {
     `);
     await queryRunner.query(`
       CREATE VIEW view_sale_basket as
-      select *, (select name
-        from b_iblock_element
-          where iblock_id = t1.iblock_id
-          and id = t1.product_id) as name
-      from b_sale_basket t1
+      select *,
+      (select name
+      from bitrix.b_iblock_element
+        where iblock_id = t1.iblock_id
+        and id = t1.product_id) as name,
+        (select value
+        from view_iblock_element_property
+        where iblock_element_id = t1.product_id
+        and iblock_property_id = 18) as package_type,
+      (select value
+        from view_iblock_element_property
+        where iblock_element_id = t1.product_id
+        and iblock_property_id = 16) as sku_code
+      from bitrix.b_sale_basket t1
     `);
     // await queryRunner.query(`SELECT 1`);
   }

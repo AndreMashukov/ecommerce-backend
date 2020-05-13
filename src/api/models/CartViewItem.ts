@@ -34,4 +34,12 @@ export class CartViewItem {
   @IsNotEmpty()
   @Column()
   public quantity: number;
+
+  @IsNotEmpty()
+  @Column({name: 'package_type'})
+  public packageType: number;
+
+  @IsNotEmpty()
+  @Column({name: 'sku_code'})
+  public skuCode: number;
 }
