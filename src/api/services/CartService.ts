@@ -60,6 +60,34 @@ export class CartService {
     }
   }
 
+  public async decrementQty(_item: CartItem): Promise<CartItem | undefined> {
+    const resp = await this.cartRepository.findOne({
+      where: {
+        sessionId: _item.sessionId,
+        productId: _item.productId,
+      },
+    });
+
+    if (!resp) {
+      return new Promise(_resolve => _resolve(undefined));
+    } else {
+      const currentItem = _item;
+      currentItem.id = resp.id;
+      if (resp.quantity > 1) {
+        currentItem.quantity = resp.quantity - 1;
+      } else {
+        return new Promise(_resolve => _resolve(undefined));
+      }
+
+      try {
+        return this.cartRepository.save(currentItem);
+      } catch (err) {
+        this.log.info('Error updating cart', err);
+        return new Promise(_resolve => _resolve(undefined));
+      }
+    }
+  }
+
   public delete(_sessionId: string, _productId: number): Promise<any> {
     return this.cartRepository.delete({
       sessionId: _sessionId,

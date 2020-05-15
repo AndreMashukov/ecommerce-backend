@@ -95,6 +95,19 @@ export class CartController {
     return this.cartService.addCartItem(cartItem);
   }
 
+  @Post('/product/decrement')
+  @ResponseSchema(CartPostResponse)
+  public decrementQty(@Body() body: AddProductBody): Promise<CartItem | undefined> {
+    const cartItem = new CartItem();
+    cartItem.sessionId = body.sessionId;
+    cartItem.blockId = body.blockId;
+    cartItem.productId = body.productId;
+    cartItem.price = body.price;
+    cartItem.currency = body.currency;
+    cartItem.quantity = body.quantity;
+    return this.cartService.decrementQty(cartItem);
+  }
+
   @Delete('/product')
   public deleteProduct(@Body() body: DeleteItemBody): Promise<void> {
     return this.cartService.delete(body.sessionId, body.productId);
