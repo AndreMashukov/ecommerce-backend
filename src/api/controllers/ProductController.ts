@@ -27,13 +27,34 @@ class GetProductsQuery {
   public sectionCode: string;
 }
 
+class GetProductByCode {
+  @IsPositive()
+  public blockId: number;
+
+  @IsNotEmpty()
+  public code: string;
+}
+
 @JsonController('/products')
 export class ProductController {
   constructor(private elementService: ElementService) {}
 
   @Get('/')
   @ResponseSchema(ProductResponse, { isArray: true })
-  public findBySectionCode(@QueryParams() query: GetProductsQuery): Promise<Element[] | undefined> {
-      return this.elementService.findDeeplyByBlockAndSectionCode(query.blockId, query.sectionCode);
+  public findBySectionCode(
+    @QueryParams() query: GetProductsQuery
+  ): Promise<Element[] | undefined> {
+    return this.elementService.findDeeplyByBlockAndSectionCode(
+      query.blockId,
+      query.sectionCode
+    );
+  }
+
+  @Get('/code')
+  @ResponseSchema(ProductResponse)
+  public findByProductCode(
+    @QueryParams() query: GetProductByCode
+  ): Promise<Element | undefined> {
+    return this.elementService.findByBlockAndCode(query.blockId, query.code);
   }
 }

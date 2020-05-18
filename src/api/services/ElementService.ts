@@ -38,4 +38,15 @@ export class ElementService {
     }
     return Promise.all(promises);
   }
+
+  public findByBlockAndCode(_blockId: number, _code: string): Promise<Element> {
+    this.log.info('Find Element for code', _code);
+    return this.elementRepository.findOne({
+      relations: ['properties'],
+      where: {
+        blockId: _blockId,
+        code: _code,
+      },
+    });
+  }
 }
