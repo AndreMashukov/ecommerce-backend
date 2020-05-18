@@ -46,6 +46,14 @@ export class Element {
   @Column({ name: 'preview_text_type' })
   public previewType: string;
 
+  @IsNotEmpty()
+  @Column({ name: 'detail_text' })
+  public detail: string;
+
+  @IsNotEmpty()
+  @Column({ name: 'detail_text_type' })
+  public detailType: string;
+
   @OneToMany(type => ElementProperty, property => property.element)
   public properties: ElementProperty[];
 }
