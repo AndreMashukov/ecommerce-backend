@@ -24,8 +24,8 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         isNullable: true,
       }, {
         name: 'user_id',
-        type: 'int',
-        length: '11',
+        type: 'varchar',
+        length: '255',
         isNullable: true,
       }, {
         name: 'iblock_id',
