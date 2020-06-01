@@ -52,6 +52,7 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
+    // await queryRunner.query(`ALTER TABLE b_sale_order MODIFY id INT AUTO_INCREMENT;`);
     await queryRunner.createTable(this.orderTable);
     await queryRunner.createIndex('b_sale_order', new TableIndex({
       name: 'ixs_order_user_id',
