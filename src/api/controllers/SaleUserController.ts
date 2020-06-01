@@ -1,8 +1,15 @@
 import { IsEmail, IsNotEmpty, IsUUID } from 'class-validator';
-import { Body, Get, JsonController, OnUndefined, Param, Post, Req } from 'routing-controllers';
+import {
+  Body,
+  Get,
+  JsonController,
+  Post,
+  Req,
+  QueryParams
+} from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 
-import { UserNotFoundError } from '../errors/UserNotFoundError';
+// import { UserNotFoundError } from '../errors/UserNotFoundError';
 import { SaleUser } from '../models/SaleUser';
 import { SaleUserService } from '../services/SaleUserService';
 
@@ -28,6 +35,11 @@ class CreateUserBody extends BaseUser {
   public password: string;
 }
 
+class CheckEmailQuery {
+  @IsNotEmpty()
+  public email: string;
+}
+
 // @Authorized()
 @JsonController('/saleusers')
 // @OpenAPI({ security: [{ basicAuth: [] }] })
@@ -46,11 +58,13 @@ export class SaleUserController {
     return req.user;
   }
 
-  @Get('/email/:email')
-  @OnUndefined(UserNotFoundError)
+  @Get('/email')
+  // @OnUndefined(UserNotFoundError)
   @ResponseSchema(UserResponse)
-  public one(@Param('email') email: string): Promise<SaleUser | undefined> {
-    return this.saleUserService.findOneByEmail(email);
+  public findByEmail(
+    @QueryParams() query: CheckEmailQuery
+  ): Promise<SaleUser | undefined> {
+    return this.saleUserService.findOneByEmail(query.email);
   }
 
   @Post()
