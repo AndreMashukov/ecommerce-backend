@@ -1,6 +1,7 @@
 import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
 import uuid from 'uuid';
+import moment from 'moment';
 
 import { EventDispatcher, EventDispatcherInterface } from '../../decorators/EventDispatcher';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
@@ -11,25 +12,28 @@ import { events } from '../subscribers/events';
 @Service()
 export class SaleUserService {
   constructor(
-    @OrmRepository() private userRepository: SaleUserRepository,
+    @OrmRepository() private saleUserRepository: SaleUserRepository,
     @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
   public find(): Promise<SaleUser[]> {
     this.log.info('Find all users');
-    return this.userRepository.find();
+    return this.saleUserRepository.find();
   }
 
   public findOne(id: string): Promise<SaleUser | undefined> {
     this.log.info('Find one user');
-    return this.userRepository.findOne({ id });
+    return this.saleUserRepository.findOne({ id });
   }
 
   public async create(user: SaleUser): Promise<SaleUser> {
     this.log.info('Create a new user => ', user.toString());
     user.id = uuid.v1();
-    const newUser = await this.userRepository.save(user);
+    user.active = 'Y';
+    user.dateRegister = moment().format('YYYY-MM-DD HH:mm:ss');
+    user.timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+    const newUser = await this.saleUserRepository.save(user);
     this.eventDispatcher.dispatch(events.user.created, newUser);
     return newUser;
   }
@@ -37,12 +41,12 @@ export class SaleUserService {
   public update(id: string, user: SaleUser): Promise<SaleUser> {
     this.log.info('Update a user');
     user.id = id;
-    return this.userRepository.save(user);
+    return this.saleUserRepository.save(user);
   }
 
   public async delete(id: string): Promise<void> {
     this.log.info('Delete a user');
-    await this.userRepository.delete(id);
+    await this.saleUserRepository.delete(id);
     return;
   }
 }

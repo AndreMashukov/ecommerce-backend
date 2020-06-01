@@ -41,6 +41,18 @@ export class SaleUser {
 
   @IsNotEmpty()
   @Column()
+  public active: string;
+
+  @IsNotEmpty()
+  @Column({name: 'timestamp_x'})
+  public timestamp: string;
+
+  @IsNotEmpty()
+  @Column({name: 'date_register'})
+  public dateRegister: string;
+
+  @IsNotEmpty()
+  @Column()
   @Exclude()
   public password: string;
 

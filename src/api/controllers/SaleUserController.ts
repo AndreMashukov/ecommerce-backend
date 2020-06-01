@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, IsUUID } from 'class-validator';
-import { Authorized, Body, Delete, Get, JsonController, OnUndefined, Param, Post, Put, Req } from 'routing-controllers';
-import { OpenAPI, ResponseSchema } from 'routing-controllers-openapi';
+import { Body, Delete, Get, JsonController, OnUndefined, Param, Post, Put, Req } from 'routing-controllers';
+import { ResponseSchema } from 'routing-controllers-openapi';
 
 import { UserNotFoundError } from '../errors/UserNotFoundError';
 import { SaleUser } from '../models/SaleUser';
@@ -28,9 +28,9 @@ class CreateUserBody extends BaseUser {
   public password: string;
 }
 
-@Authorized()
+// @Authorized()
 @JsonController('/saleusers')
-@OpenAPI({ security: [{ basicAuth: [] }] })
+// @OpenAPI({ security: [{ basicAuth: [] }] })
 export class SaleUserController {
   constructor(private saleUserService: SaleUserService) {}
 
