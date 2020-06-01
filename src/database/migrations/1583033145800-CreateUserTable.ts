@@ -76,6 +76,12 @@ export class CreateUserTable1583033145800 implements MigrationInterface {
       columnNames: ['email'],
     }));
 
+    await queryRunner.createIndex('b_user', new TableIndex({
+      name: 'ix_b_user_unique',
+      columnNames: ['email'],
+      isUnique: true,
+    }));
+
   //   await queryRunner.query(`create table if not exists b_user (
   //     id int(18) not null auto_increment,
   //     timestamp_x timestamp not null default current_timestamp on update current_timestamp,
@@ -104,5 +110,6 @@ export class CreateUserTable1583033145800 implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable('b_user');
     await queryRunner.dropIndex('b_user', 'ix_b_user_email');
+    await queryRunner.dropIndex('b_user', 'ix_b_user_unique');
   }
 }
