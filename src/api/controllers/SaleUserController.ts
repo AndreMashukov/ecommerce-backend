@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsUUID } from 'class-validator';
-import { Body, Delete, Get, JsonController, OnUndefined, Param, Post, Put, Req } from 'routing-controllers';
+import { Body, Get, JsonController, OnUndefined, Param, Post, Req } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 
 import { UserNotFoundError } from '../errors/UserNotFoundError';
@@ -46,11 +46,11 @@ export class SaleUserController {
     return req.user;
   }
 
-  @Get('/:id')
+  @Get('/email/:email')
   @OnUndefined(UserNotFoundError)
   @ResponseSchema(UserResponse)
-  public one(@Param('id') id: string): Promise<SaleUser | undefined> {
-    return this.saleUserService.findOne(id);
+  public one(@Param('email') email: string): Promise<SaleUser | undefined> {
+    return this.saleUserService.findOneByEmail(email);
   }
 
   @Post()
@@ -63,21 +63,5 @@ export class SaleUserController {
     user.password = body.password;
 
     return this.saleUserService.create(user);
-  }
-
-  @Put('/:id')
-  @ResponseSchema(UserResponse)
-  public update(@Param('id') id: string, @Body() body: BaseUser): Promise<SaleUser> {
-    const user = new SaleUser();
-    user.email = body.email;
-    user.firstName = body.firstName;
-    user.lastName = body.lastName;
-
-    return this.saleUserService.update(id, user);
-  }
-
-  @Delete('/:id')
-  public delete(@Param('id') id: string): Promise<void> {
-    return this.saleUserService.delete(id);
   }
 }

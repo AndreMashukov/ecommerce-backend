@@ -27,6 +27,14 @@ export class SaleUserService {
     return this.saleUserRepository.findOne({ id });
   }
 
+  public findOneByEmail(_email: string): Promise<SaleUser | undefined> {
+    return this.saleUserRepository.findOne({
+      where: {
+        email: _email,
+      },
+    });
+  }
+
   public async create(user: SaleUser): Promise<SaleUser> {
     this.log.info('Create a new user => ', user.toString());
     user.id = uuid.v1();
