@@ -12,12 +12,14 @@ export class CartViewService {
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
-  public findBySessionId(_sessionId: string): Promise<CartViewItem[] | undefined> {
+  public findBySessionId(
+    _sessionId: string
+  ): Promise<CartViewItem[] | undefined> {
     this.log.info('Find a Cart Items for session', _sessionId);
     return this.cartViewRepository.find({
       where: {
-        sessionId: _sessionId,
-      },
+        sessionId: _sessionId
+      }
     });
   }
 }

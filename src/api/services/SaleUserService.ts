@@ -3,7 +3,10 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import uuid from 'uuid';
 import moment from 'moment';
 
-import { EventDispatcher, EventDispatcherInterface } from '../../decorators/EventDispatcher';
+import {
+  EventDispatcher,
+  EventDispatcherInterface
+} from '../../decorators/EventDispatcher';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { SaleUser } from '../models/SaleUser';
 import { SaleUserRepository } from '../repositories/SaleUserRepository';
@@ -30,8 +33,8 @@ export class SaleUserService {
   public findOneByEmail(_email: string): Promise<SaleUser | undefined> {
     return this.saleUserRepository.findOne({
       where: {
-        email: _email,
-      },
+        email: _email
+      }
     });
   }
 

@@ -8,9 +8,7 @@ import { SessionRepository } from '../repositories/SessionRepository';
 
 @Service()
 export class SessionService {
-  constructor(
-    @OrmRepository() private sessionRepository: SessionRepository
-  ) {}
+  constructor(@OrmRepository() private sessionRepository: SessionRepository) {}
 
   public find(): Promise<Session[]> {
     return this.sessionRepository.find();
@@ -20,7 +18,7 @@ export class SessionService {
     return this.sessionRepository.save({
       id: uuid.v1(),
       dateInsert: moment().format('YYYY-MM-DD HH:mm:ss'),
-      dateUpdate: moment().format('YYYY-MM-DD HH:mm:ss'),
+      dateUpdate: moment().format('YYYY-MM-DD HH:mm:ss')
     });
   }
 }

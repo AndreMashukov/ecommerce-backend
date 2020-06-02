@@ -14,27 +14,43 @@ export class ElementService {
     @Logger(__filename) private log: LoggerInterface
   ) {}
 
-  public findByBlockAndSectionId(_blockId: number, _sectionId: number): Promise<Element[]> {
+  public findByBlockAndSectionId(
+    _blockId: number,
+    _sectionId: number
+  ): Promise<Element[]> {
     this.log.info('Find all Elements for section', _sectionId);
     return this.elementRepository.find({
       relations: ['properties'],
       where: {
         blockId: _blockId,
-        sectionId: _sectionId,
-      },
+        sectionId: _sectionId
+      }
     });
   }
 
-  public async findDeeplyByBlockAndSectionCode(_blockId: number, _sectionCode: string): Promise<Element[]> {
+  public async findDeeplyByBlockAndSectionCode(
+    _blockId: number,
+    _sectionCode: string
+  ): Promise<Element[]> {
     const promises = [];
-    const childSections = await this.sectionService.findChildSections(_blockId, _sectionCode);
+    const childSections = await this.sectionService.findChildSections(
+      _blockId,
+      _sectionCode
+    );
     if (childSections.length > 0) {
-      childSections.forEach(item => {
-        promises.push(this.findByBlockAndSectionId(_blockId, parseInt(item.id, 0)));
+      childSections.forEach((item) => {
+        promises.push(
+          this.findByBlockAndSectionId(_blockId, parseInt(item.id, 0))
+        );
       });
     } else {
-      const section = await this.sectionService.findSection(_blockId, _sectionCode);
-      promises.push(this.findByBlockAndSectionId(_blockId, parseInt(section.id, 0)));
+      const section = await this.sectionService.findSection(
+        _blockId,
+        _sectionCode
+      );
+      promises.push(
+        this.findByBlockAndSectionId(_blockId, parseInt(section.id, 0))
+      );
     }
     return Promise.all(promises);
   }
@@ -45,8 +61,8 @@ export class ElementService {
       relations: ['properties'],
       where: {
         blockId: _blockId,
-        code: _code,
-      },
+        code: _code
+      }
     });
   }
 }

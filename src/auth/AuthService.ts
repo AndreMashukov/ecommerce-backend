@@ -38,8 +38,8 @@ export class AuthService {
   public async validateUser(username: string, password: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: {
-        username,
-      },
+        username
+      }
     });
 
     if (await User.comparePassword(user, password)) {
