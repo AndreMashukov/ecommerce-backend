@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
 
-export class CreateIBlockElementProperty1583112852688 implements MigrationInterface {
+export class CreateIBlockElementProperty1583112852688
+  implements MigrationInterface {
   public iBlockElementPropertyTable = new Table({
     name: 'b_iblock_element_property',
     columns: [
@@ -10,44 +11,51 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'iblock_property_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'iblock_element_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'value',
         type: 'text',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'value_type',
         type: 'char',
         length: '4',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'value_enum',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'value_num',
         type: 'decimal',
         length: '18,4',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'description',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
@@ -70,26 +78,44 @@ export class CreateIBlockElementProperty1583112852688 implements MigrationInterf
     // `);
     await queryRunner.createTable(this.iBlockElementPropertyTable);
 
-    await queryRunner.createIndex('b_iblock_element_property', new TableIndex({
-      name: 'ix_iblock_element_property_1',
-      columnNames: ['iblock_element_id', 'iblock_property_id'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_element_property',
+      new TableIndex({
+        name: 'ix_iblock_element_property_1',
+        columnNames: ['iblock_element_id', 'iblock_property_id']
+      })
+    );
 
-    await queryRunner.createIndex('b_iblock_element_property', new TableIndex({
-      name: 'ix_iblock_element_property_2',
-      columnNames: ['iblock_property_id'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_element_property',
+      new TableIndex({
+        name: 'ix_iblock_element_property_2',
+        columnNames: ['iblock_property_id']
+      })
+    );
 
-    await queryRunner.createIndex('b_iblock_element_property', new TableIndex({
-      name: 'ix_iblock_element_prop_enum',
-      columnNames: ['value_enum', 'iblock_property_id'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_element_property',
+      new TableIndex({
+        name: 'ix_iblock_element_prop_enum',
+        columnNames: ['value_enum', 'iblock_property_id']
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.dropIndex('b_iblock_element_property', 'ix_iblock_element_property_1');
-    await queryRunner.dropIndex('b_iblock_element_property', 'ix_iblock_element_property_2');
-    await queryRunner.dropIndex('b_iblock_element_property', 'ix_iblock_element_prop_enum');
+    await queryRunner.dropIndex(
+      'b_iblock_element_property',
+      'ix_iblock_element_property_1'
+    );
+    await queryRunner.dropIndex(
+      'b_iblock_element_property',
+      'ix_iblock_element_property_2'
+    );
+    await queryRunner.dropIndex(
+      'b_iblock_element_property',
+      'ix_iblock_element_prop_enum'
+    );
     await queryRunner.dropTable('b_iblock_element_property');
   }
 }

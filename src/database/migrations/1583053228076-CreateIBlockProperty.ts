@@ -1,7 +1,6 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
 
 export class CreateIBlockProperty1583053228076 implements MigrationInterface {
-
   public iBlockPropertyTable = new Table({
     name: 'b_iblock_property',
     columns: [
@@ -11,131 +10,156 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'timestamp_x',
         type: 'timestamp',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'iblock_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'name',
         type: 'varchar',
         length: '255',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'active',
         type: 'char',
-        length: '1',
-      }, {
+        length: '1'
+      },
+      {
         name: 'sort',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'code',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'default_value',
         type: 'text',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'property_type',
         type: 'char',
         length: '1',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'row_count',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'col_count',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'list_type',
         type: 'char',
         length: '1',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'multiple',
         type: 'char',
         length: '1',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'xml_id',
         type: 'varchar',
         length: '100',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'file_type',
         type: 'varchar',
         length: '200',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'multiple_cnt',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'tmp_id',
         type: 'varchar',
         length: '40',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'link_iblock_id',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'with_description',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'searchable',
         type: 'char',
         length: '1',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'filtrable',
         type: 'char',
         length: '1',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'is_required',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'version',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'user_type',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'user_type_settings',
         type: 'text',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'hint',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
@@ -173,14 +197,20 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
     // ) default charset=cp1251 auto_increment=23 ;
     // `);
     await queryRunner.createTable(this.iBlockPropertyTable);
-    await queryRunner.createIndex('b_iblock_property', new TableIndex({
-      name: 'ix_iblock_property_1',
-      columnNames: ['iblock_id'],
-    }));
-    await queryRunner.createIndex('b_iblock_property', new TableIndex({
-      name: 'ix_iblock_property_2',
-      columnNames: ['code'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_property',
+      new TableIndex({
+        name: 'ix_iblock_property_1',
+        columnNames: ['iblock_id']
+      })
+    );
+    await queryRunner.createIndex(
+      'b_iblock_property',
+      new TableIndex({
+        name: 'ix_iblock_property_2',
+        columnNames: ['code']
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {

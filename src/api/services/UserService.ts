@@ -2,7 +2,10 @@ import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
 import uuid from 'uuid';
 
-import { EventDispatcher, EventDispatcherInterface } from '../../decorators/EventDispatcher';
+import {
+  EventDispatcher,
+  EventDispatcherInterface
+} from '../../decorators/EventDispatcher';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { User } from '../models/User';
 import { UserRepository } from '../repositories/UserRepository';

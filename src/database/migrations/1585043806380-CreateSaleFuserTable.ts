@@ -9,22 +9,25 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
         type: 'varchar',
         length: '255',
         isPrimary: true,
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'date_insert',
         type: 'datetime',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'date_update',
         type: 'datetime',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'user_id',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
@@ -38,10 +41,13 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
     //     key ix_user_id (user_id)
     //   ) default charset=cp1251 auto_increment=1 ;`);
     await queryRunner.createTable(this.saleSessionTable);
-    await queryRunner.createIndex('b_sale_session', new TableIndex({
-      name: 'ix_user_id',
-      columnNames: ['user_id'],
-    }));
+    await queryRunner.createIndex(
+      'b_sale_session',
+      new TableIndex({
+        name: 'ix_user_id',
+        columnNames: ['user_id']
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {

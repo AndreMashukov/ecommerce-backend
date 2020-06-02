@@ -54,6 +54,6 @@ export class Element {
   @Column({ name: 'detail_text_type' })
   public detailType: string;
 
-  @OneToMany(type => ElementProperty, property => property.element)
+  @OneToMany((type) => ElementProperty, (property) => property.element)
   public properties: ElementProperty[];
 }

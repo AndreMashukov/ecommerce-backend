@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
 
-export class CreateIBlockSectionTable1583035183362 implements MigrationInterface {
+export class CreateIBlockSectionTable1583035183362
+  implements MigrationInterface {
   public iBlockCategoryTable = new Table({
     name: 'b_iblock_category',
     columns: [
@@ -10,15 +11,16 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'name',
         type: 'varchar',
         length: '255',
-        isNullable: false,
-      },
-    ],
+        isNullable: false
+      }
+    ]
   });
 
   public iBlockSectionCategoryTable = new Table({
@@ -30,25 +32,28 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'iblock_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'iblock_section_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'category_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public iBlockSectionTable = new Table({
@@ -60,116 +65,138 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'timestamp_x',
         type: 'timestamp',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'modified_by',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'date_create',
         type: 'datetime',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'created_by',
         type: 'int',
         length: '18',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'iblock_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-     }, {
+        isNullable: false
+      },
+      {
         name: 'iblock_section_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'active',
         type: 'char',
         length: '1',
-        isNullable: false,
-     }, {
+        isNullable: false
+      },
+      {
         name: 'global_active',
         type: 'char',
         length: '1',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'sort',
         type: 'int',
         length: '11',
-        isNullable: false,
+        isNullable: false
         // default: '500',
-     }, {
+      },
+      {
         name: 'name',
         type: 'varchar',
         length: '255',
-        isNullable: false,
-     }, {
+        isNullable: false
+      },
+      {
         name: 'picture',
         type: 'int',
         length: '18',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'left_margin',
         type: 'int',
         length: '18',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'right_margin',
         type: 'int',
         length: '18',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'depth_level',
         type: 'int',
         length: '18',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'description',
         type: 'text',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'description_type',
         type: 'char',
         length: '4',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'searchable_content',
-        type: 'text',
-     }, {
+        type: 'text'
+      },
+      {
         name: 'code',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'xml_id',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'tmp_id',
         type: 'varchar',
         length: '40',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'detail_picture',
         type: 'int',
         length: '18',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'socnet_group_id',
         type: 'int',
         length: '18',
-        isNullable: true,
-     },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
@@ -209,25 +236,37 @@ export class CreateIBlockSectionTable1583035183362 implements MigrationInterface
     await queryRunner.createTable(this.iBlockCategoryTable);
     await queryRunner.createTable(this.iBlockSectionCategoryTable);
 
-    await queryRunner.createIndex('b_iblock_section', new TableIndex({
-      name: 'ix_iblock_section_1',
-      columnNames: ['iblock_id', 'iblock_section_id'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_section',
+      new TableIndex({
+        name: 'ix_iblock_section_1',
+        columnNames: ['iblock_id', 'iblock_section_id']
+      })
+    );
 
-    await queryRunner.createIndex('b_iblock_section', new TableIndex({
-      name: 'ix_iblock_section_depth_level',
-      columnNames: ['iblock_id', 'depth_level'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_section',
+      new TableIndex({
+        name: 'ix_iblock_section_depth_level',
+        columnNames: ['iblock_id', 'depth_level']
+      })
+    );
 
-    await queryRunner.createIndex('b_iblock_section', new TableIndex({
-      name: 'ix_iblock_section_code',
-      columnNames: ['iblock_id', 'code'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_section',
+      new TableIndex({
+        name: 'ix_iblock_section_code',
+        columnNames: ['iblock_id', 'code']
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_1');
-    await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_depth_level');
+    await queryRunner.dropIndex(
+      'b_iblock_section',
+      'ix_iblock_section_depth_level'
+    );
     await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_code');
     await queryRunner.dropTable('b_iblock_section');
     await queryRunner.dropTable('b_iblock_section_category');

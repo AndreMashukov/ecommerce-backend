@@ -10,44 +10,44 @@ export class CreateUserTable1511105183653 implements MigrationInterface {
           type: 'varchar',
           length: '255',
           isPrimary: true,
-          isNullable: false,
+          isNullable: false
         },
         {
           name: 'first_name',
           type: 'varchar',
           length: '255',
           isPrimary: false,
-          isNullable: false,
+          isNullable: false
         },
         {
           name: 'last_name',
           type: 'varchar',
           length: '255',
           isPrimary: false,
-          isNullable: false,
+          isNullable: false
         },
         {
           name: 'email',
           type: 'varchar',
           length: '255',
           isPrimary: false,
-          isNullable: false,
+          isNullable: false
         },
         {
           name: 'username',
           type: 'varchar',
           length: '255',
           isPrimary: false,
-          isNullable: false,
+          isNullable: false
         },
         {
           name: 'password',
           type: 'varchar',
           length: '255',
           isPrimary: false,
-          isNullable: false,
-        },
-      ],
+          isNullable: false
+        }
+      ]
     });
     await queryRunner.createTable(table);
   }

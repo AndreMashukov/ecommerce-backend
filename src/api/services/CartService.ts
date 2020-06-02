@@ -16,23 +16,24 @@ export class CartService {
     return this.cartRepository.find();
   }
 
-  public findBySessionId(_sessionId: string):
-    Promise<CartItem[] | undefined> {
+  public findBySessionId(_sessionId: string): Promise<CartItem[] | undefined> {
     this.log.info('Find a Cart Items for session', _sessionId);
     return this.cartRepository.find({
       where: {
-        sessionId: _sessionId,
-      },
+        sessionId: _sessionId
+      }
     });
   }
 
-  public findBySessionIdAndProductId(_sessionId: string, _productId: number):
-    Promise<CartItem | undefined> {
+  public findBySessionIdAndProductId(
+    _sessionId: string,
+    _productId: number
+  ): Promise<CartItem | undefined> {
     return this.cartRepository.findOne({
       where: {
         sessionId: _sessionId,
-        productId: _productId,
-      },
+        productId: _productId
+      }
     });
   }
 
@@ -40,8 +41,8 @@ export class CartService {
     const resp = await this.cartRepository.findOne({
       where: {
         sessionId: _item.sessionId,
-        productId: _item.productId,
-      },
+        productId: _item.productId
+      }
     });
 
     if (!resp) {
@@ -55,7 +56,7 @@ export class CartService {
         return this.cartRepository.save(currentItem);
       } catch (err) {
         this.log.info('Error updating cart', err);
-        return new Promise(_resolve => _resolve(undefined));
+        return new Promise((_resolve) => _resolve(undefined));
       }
     }
   }
@@ -64,26 +65,26 @@ export class CartService {
     const resp = await this.cartRepository.findOne({
       where: {
         sessionId: _item.sessionId,
-        productId: _item.productId,
-      },
+        productId: _item.productId
+      }
     });
 
     if (!resp) {
-      return new Promise(_resolve => _resolve(undefined));
+      return new Promise((_resolve) => _resolve(undefined));
     } else {
       const currentItem = _item;
       currentItem.id = resp.id;
       if (resp.quantity > 1) {
         currentItem.quantity = resp.quantity - 1;
       } else {
-        return new Promise(_resolve => _resolve(undefined));
+        return new Promise((_resolve) => _resolve(undefined));
       }
 
       try {
         return this.cartRepository.save(currentItem);
       } catch (err) {
         this.log.info('Error updating cart', err);
-        return new Promise(_resolve => _resolve(undefined));
+        return new Promise((_resolve) => _resolve(undefined));
       }
     }
   }
@@ -91,7 +92,7 @@ export class CartService {
   public delete(_sessionId: string, _productId: number): Promise<any> {
     return this.cartRepository.delete({
       sessionId: _sessionId,
-      productId: _productId,
+      productId: _productId
     });
   }
 }

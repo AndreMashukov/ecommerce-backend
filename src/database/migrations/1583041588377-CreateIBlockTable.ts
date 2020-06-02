@@ -10,202 +10,242 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'timestamp_x',
         type: 'timestamp',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'iblock_type_id',
         type: 'varchar',
         length: '50',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'lid',
         type: 'char',
         length: '2',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'code',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'name',
         type: 'varchar',
         length: '255',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'active',
         type: 'char',
-        length: '1',
-      }, {
+        length: '1'
+      },
+      {
         name: 'sort',
         type: 'int',
         length: '11',
-        isNullable: false,
+        isNullable: false
         // default: '500',
-      }, {
+      },
+      {
         name: 'list_page_url',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'detail_page_url',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'section_page_url',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'picture',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'description',
         type: 'text',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'description_type',
         type: 'char',
         length: '4',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'rss_ttl',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'rss_active',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'rss_file_active',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'rss_file_limit',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'rss_file_days',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'rss_yandex_active',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'xml_id',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'tmp_id',
         type: 'varchar',
         length: '40',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'index_element',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'index_section',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'workflow',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'bizproc',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'section_chooser',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'list_mode',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'version',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'last_conv_element',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'socnet_group_id',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'edit_file_before',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'edit_file_after',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'sections_name',
         type: 'varchar',
         length: '100',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'section_name',
         type: 'varchar',
         length: '100',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'elements_name',
         type: 'varchar',
         length: '100',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'element_name',
         type: 'varchar',
         length: '100',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'rights_mode',
         type: 'char',
         length: '1',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.iBlockTable);
 
-    await queryRunner.createIndex('b_iblock', new TableIndex({
-      name: 'ix_iblock',
-      columnNames: ['iblock_type_id', 'active'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock',
+      new TableIndex({
+        name: 'ix_iblock',
+        columnNames: ['iblock_type_id', 'active']
+      })
+    );
 
     // await queryRunner.query(`
     // create table if not exists b_iblock (

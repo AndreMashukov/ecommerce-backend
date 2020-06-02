@@ -10,54 +10,65 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
-      }, {
+        isGenerated: true
+      },
+      {
         name: 'user_id',
         type: 'varchar',
         length: '255',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'date_status',
         type: 'datetime',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'date_insert',
         type: 'datetime',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'date_update',
         type: 'datetime',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'user_description',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'pay_system_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'delivery_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'props',
         type: 'json',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.orderTable);
     // await queryRunner.query(`ALTER TABLE b_sale_order MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.createIndex('b_sale_order', new TableIndex({
-      name: 'ixs_order_user_id',
-      columnNames: ['user_id'],
-    }));
+    await queryRunner.createIndex(
+      'b_sale_order',
+      new TableIndex({
+        name: 'ixs_order_user_id',
+        columnNames: ['user_id']
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {

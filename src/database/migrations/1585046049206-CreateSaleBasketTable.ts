@@ -10,65 +10,76 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'session_id',
         type: 'varchar',
         length: '255',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'order_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'user_id',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'iblock_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'product_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'product_price_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'price',
         type: 'decimal',
         length: '18,2',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'currency',
         type: 'char',
         length: '3',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'weight',
         type: 'double',
         length: '18,2',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'quantity',
         type: 'double',
         length: '18,2',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'notes',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
@@ -107,24 +118,36 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
     //   ) default charset=cp1251 auto_increment=1;
     //   `);
     await queryRunner.createTable(this.saleBasketTable);
-    await queryRunner.createIndex('b_sale_basket', new TableIndex({
-      name: 'ixs_basket_session_id',
-      columnNames: ['session_id'],
-    }));
-    await queryRunner.createIndex('b_sale_basket', new TableIndex({
-      name: 'ixs_basket_order_id',
-      columnNames: ['order_id'],
-    }));
-    await queryRunner.createIndex('b_sale_basket', new TableIndex({
-      name: 'ixs_basket_product_id',
-      columnNames: ['product_id'],
-    }));
+    await queryRunner.createIndex(
+      'b_sale_basket',
+      new TableIndex({
+        name: 'ixs_basket_session_id',
+        columnNames: ['session_id']
+      })
+    );
+    await queryRunner.createIndex(
+      'b_sale_basket',
+      new TableIndex({
+        name: 'ixs_basket_order_id',
+        columnNames: ['order_id']
+      })
+    );
+    await queryRunner.createIndex(
+      'b_sale_basket',
+      new TableIndex({
+        name: 'ixs_basket_product_id',
+        columnNames: ['product_id']
+      })
+    );
 
-    await queryRunner.createIndex('b_sale_basket', new TableIndex({
-      name: 'ix_b_sale_basket_unique',
-      columnNames: ['session_id', 'product_id', 'iblock_id'],
-      isUnique: true,
-    }));
+    await queryRunner.createIndex(
+      'b_sale_basket',
+      new TableIndex({
+        name: 'ix_b_sale_basket_unique',
+        columnNames: ['session_id', 'product_id', 'iblock_id'],
+        isUnique: true
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {

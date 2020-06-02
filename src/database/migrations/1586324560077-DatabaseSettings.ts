@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, TableForeignKey, TableIndex } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  TableForeignKey,
+  TableIndex
+} from 'typeorm';
 
 export class DatabaseSettings1586324560077 implements MigrationInterface {
   private tableForeignKey = new TableForeignKey({
@@ -6,7 +11,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['iblock_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   private tableForeignKeyForIBlock = new TableForeignKey({
@@ -14,7 +19,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['iblock_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   private tableForeignKeyForIBlockSection = new TableForeignKey({
@@ -22,7 +27,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['iblock_section_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock_section',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   private foreignKeyForElement = new TableForeignKey({
@@ -30,7 +35,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['iblock_element_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock_element',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   private foreignKeyForProperty = new TableForeignKey({
@@ -38,7 +43,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['iblock_property_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock_property',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   private foreignKeyForBasket = new TableForeignKey({
@@ -46,7 +51,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['session_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_sale_session',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   private tableForeignKeyForIBlockProperty = new TableForeignKey({
@@ -54,7 +59,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['iblock_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   // private foreignKeyForSectionCategory1 = new TableForeignKey({
@@ -70,7 +75,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     columnNames: ['category_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'b_iblock_category',
-    onDelete: 'CASCADE',
+    onDelete: 'CASCADE'
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
@@ -93,29 +98,71 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     // await queryRunner.query(`ALTER TABLE b_iblock_category MODIFY id INT AUTO_INCREMENT;`);
     // await queryRunner.query(`ALTER TABLE b_sale_basket MODIFY id INT AUTO_INCREMENT;`);
 
-    await queryRunner.createForeignKey('b_iblock_section', this.tableForeignKey);
-    await queryRunner.createForeignKey('b_iblock_element', this.tableForeignKeyForIBlock);
-    await queryRunner.createForeignKey('b_iblock_element', this.tableForeignKeyForIBlockSection);
-    await queryRunner.createForeignKey('b_iblock_property', this.tableForeignKeyForIBlockProperty);
-    await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForElement);
-    await queryRunner.createForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
-    await queryRunner.createForeignKey('b_sale_basket', this.foreignKeyForBasket);
-    await queryRunner.createForeignKey('b_iblock_section_category', this.foreignKeyForSectionCategory2);
+    await queryRunner.createForeignKey(
+      'b_iblock_section',
+      this.tableForeignKey
+    );
+    await queryRunner.createForeignKey(
+      'b_iblock_element',
+      this.tableForeignKeyForIBlock
+    );
+    await queryRunner.createForeignKey(
+      'b_iblock_element',
+      this.tableForeignKeyForIBlockSection
+    );
+    await queryRunner.createForeignKey(
+      'b_iblock_property',
+      this.tableForeignKeyForIBlockProperty
+    );
+    await queryRunner.createForeignKey(
+      'b_iblock_element_property',
+      this.foreignKeyForElement
+    );
+    await queryRunner.createForeignKey(
+      'b_iblock_element_property',
+      this.foreignKeyForProperty
+    );
+    await queryRunner.createForeignKey(
+      'b_sale_basket',
+      this.foreignKeyForBasket
+    );
+    await queryRunner.createForeignKey(
+      'b_iblock_section_category',
+      this.foreignKeyForSectionCategory2
+    );
 
-    await queryRunner.createIndex('b_iblock_section_category', new TableIndex({
-      name: 'ix_iblock_property_iblock_unique',
-      columnNames: ['iblock_id', 'iblock_section_id', 'category_id'],
-      isUnique: true,
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_section_category',
+      new TableIndex({
+        name: 'ix_iblock_property_iblock_unique',
+        columnNames: ['iblock_id', 'iblock_section_id', 'category_id'],
+        isUnique: true
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropForeignKey('b_iblock_section', this.tableForeignKey);
-    await queryRunner.dropForeignKey('b_iblock_element', this.tableForeignKeyForIBlock);
-    await queryRunner.dropForeignKey('b_iblock_element', this.tableForeignKeyForIBlockSection);
-    await queryRunner.dropForeignKey('b_iblock_property', this.tableForeignKeyForIBlockProperty);
-    await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForElement);
-    await queryRunner.dropForeignKey('b_iblock_element_property', this.foreignKeyForProperty);
+    await queryRunner.dropForeignKey(
+      'b_iblock_element',
+      this.tableForeignKeyForIBlock
+    );
+    await queryRunner.dropForeignKey(
+      'b_iblock_element',
+      this.tableForeignKeyForIBlockSection
+    );
+    await queryRunner.dropForeignKey(
+      'b_iblock_property',
+      this.tableForeignKeyForIBlockProperty
+    );
+    await queryRunner.dropForeignKey(
+      'b_iblock_element_property',
+      this.foreignKeyForElement
+    );
+    await queryRunner.dropForeignKey(
+      'b_iblock_element_property',
+      this.foreignKeyForProperty
+    );
     await queryRunner.dropForeignKey('b_sale_basket', this.foreignKeyForBasket);
   }
 }

@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
 
-export class CreateIBlockElementTable1583043930098 implements MigrationInterface {
+export class CreateIBlockElementTable1583043930098
+  implements MigrationInterface {
   public iBlockElementTable = new Table({
     name: 'b_iblock_element',
     columns: [
@@ -10,160 +11,192 @@ export class CreateIBlockElementTable1583043930098 implements MigrationInterface
         length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true,
+        isGenerated: true
         // generationStrategy: 'increment',
-      }, {
+      },
+      {
         name: 'timestamp_x',
         type: 'timestamp',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'modified_by',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'date_create',
         type: 'datetime',
-        isNullable: true,
-     }, {
+        isNullable: true
+      },
+      {
         name: 'created_by',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'iblock_id',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'iblock_section_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'active',
         type: 'char',
         length: '1',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'active_from',
         type: 'datetime',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'active_to',
         type: 'datetime',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'sort',
         type: 'int',
         length: '11',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'name',
         type: 'varchar',
         length: '255',
-        isNullable: false,
-      }, {
+        isNullable: false
+      },
+      {
         name: 'preview_picture',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'preview_text',
         type: 'text',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'preview_text_type',
         type: 'varchar',
         length: '4',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'detail_picture',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'detail_text',
         type: 'longtext',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'detail_text_type',
         type: 'varchar',
         length: '4',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'searchable_content',
         type: 'text',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'wf_status_id',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'wf_parent_element_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'wf_new',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'wf_locked_by',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'wf_date_lock',
         type: 'datetime',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'wf_comments',
         type: 'text',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'in_sections',
         type: 'char',
         length: '1',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'xml_id',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'code',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'tags',
         type: 'varchar',
         length: '255',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'tmp_id',
         type: 'varchar',
         length: '40',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'wf_last_history_id',
         type: 'int',
         length: '11',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'show_counter',
         type: 'int',
         length: '18',
-        isNullable: true,
-      }, {
+        isNullable: true
+      },
+      {
         name: 'show_counter_start',
         type: 'datetime',
-        isNullable: true,
-      },
-    ],
+        isNullable: true
+      }
+    ]
   });
 
   public async up(queryRunner: QueryRunner): Promise<any> {
@@ -210,14 +243,20 @@ export class CreateIBlockElementTable1583043930098 implements MigrationInterface
     // ) default charset=cp1251 auto_increment=1532;
     // `);
     await queryRunner.createTable(this.iBlockElementTable);
-    await queryRunner.createIndex('b_iblock_element', new TableIndex({
-      name: 'ix_iblock_element_1',
-      columnNames: ['iblock_id', 'iblock_section_id'],
-    }));
-    await queryRunner.createIndex('b_iblock_element', new TableIndex({
-      name: 'ix_iblock_element_code',
-      columnNames: ['iblock_id', 'code'],
-    }));
+    await queryRunner.createIndex(
+      'b_iblock_element',
+      new TableIndex({
+        name: 'ix_iblock_element_1',
+        columnNames: ['iblock_id', 'iblock_section_id']
+      })
+    );
+    await queryRunner.createIndex(
+      'b_iblock_element',
+      new TableIndex({
+        name: 'ix_iblock_element_code',
+        columnNames: ['iblock_id', 'code']
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<any> {
