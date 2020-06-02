@@ -44,6 +44,7 @@ export class SaleUserService {
     user.active = 'Y';
     user.dateRegister = moment().format('YYYY-MM-DD HH:mm:ss');
     user.timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+    user.groupId = 1;
     const newUser = await this.saleUserRepository.save(user);
     this.eventDispatcher.dispatch(events.user.created, newUser);
     return newUser;

@@ -77,6 +77,12 @@ export class CreateUserTable1583033145800 implements MigrationInterface {
         type: 'varchar',
         length: '50',
         isNullable: true
+      },
+      {
+        name: 'group_id',
+        type: 'int',
+        length: '11',
+        isNullable: false
       }
     ]
   });

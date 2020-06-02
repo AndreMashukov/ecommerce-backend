@@ -80,18 +80,15 @@ export class SaleUserController {
     user.lastName = body.lastName;
     user.password = body.password;
     const newUser = await this.saleUserService.create(user);
-    const newToken = jwt.sign(
-      {
+    const newToken = jwt.sign({
         id: newUser.id,
         email: newUser.email,
         lastName: newUser.lastName,
-        firstName: newUser.firstName
-      },
-      process.env.APP_JWT_SECRET,
-      {
+        firstName: newUser.firstName,
+        groupId: newUser.groupId
+      }, process.env.APP_JWT_SECRET, {
         expiresIn: '1h'
-      }
-    );
+      });
     return {
       id: newUser.id,
       lastName: newUser.lastName,

@@ -52,6 +52,10 @@ export class SaleUser {
   public dateRegister: string;
 
   @IsNotEmpty()
+  @Column({ name: 'group_id' })
+  public groupId: number;
+
+  @IsNotEmpty()
   @Column()
   @Exclude()
   public password: string;
