@@ -35,12 +35,12 @@ describe('/api/cart', () => {
   // Test cases
   // -------------------------------------------------------------------------
 
-  test('GET: / should return a list of cart items', async done => {
+  test('GET: / should return a list of cart items', async (done) => {
     const response = await request(settings.app)
       .get('/api/cart/?sessionId=' + session.id)
       .expect('Content-Type', /json/)
       .expect(200);
-      console.log(cartItem);
+    console.log(cartItem);
     expect(response.body.length).toBe(1);
     done();
   });
