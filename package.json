@@ -59,6 +59,7 @@
     "graphql": "14.0.2",
     "helmet": "^3.9.0",
     "jsonfile": "5.0.0",
+    "jsonwebtoken": "^8.5.1",
     "microframework-w3tec": "^0.6.3",
     "moment": "^2.24.0",
     "morgan": "^1.9.0",

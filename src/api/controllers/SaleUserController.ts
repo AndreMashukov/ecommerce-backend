@@ -8,6 +8,7 @@ import {
   QueryParams
 } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
+import * as jwt from 'jsonwebtoken';
 
 // import { UserNotFoundError } from '../errors/UserNotFoundError';
 import { SaleUser } from '../models/SaleUser';
@@ -28,6 +29,9 @@ class BaseUser {
 export class UserResponse extends BaseUser {
   @IsUUID()
   public id: string;
+
+  @IsNotEmpty()
+  public token: string;
 }
 
 class CreateUserBody extends BaseUser {
@@ -69,13 +73,22 @@ export class SaleUserController {
 
   @Post()
   @ResponseSchema(UserResponse)
-  public create(@Body() body: CreateUserBody): Promise<SaleUser> {
+  public async create(@Body() body: CreateUserBody): Promise<UserResponse> {
     const user = new SaleUser();
     user.email = body.email;
     user.firstName = body.firstName;
     user.lastName = body.lastName;
     user.password = body.password;
-
-    return this.saleUserService.create(user);
+    const newUser = await this.saleUserService.create(user);
+    const newToken = jwt.sign({ newUser }, process.env.APP_JWT_SECRET, {
+      expiresIn: '1h',
+    });
+    return {
+      id: newUser.id,
+      lastName: newUser.lastName,
+      firstName: newUser.firstName,
+      email: newUser.email,
+      token: newToken,
+    };
   }
 }
