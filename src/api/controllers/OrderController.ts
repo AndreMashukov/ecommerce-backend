@@ -7,9 +7,10 @@ import {
   Post
 } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
-
 import { Order } from '../models/Order';
 import { OrderService } from '../services/OrderService';
+import moment from 'moment';
+import { Roles } from '../../constants';
 
 class CreateOrderBody {
   @IsNotEmpty()
@@ -28,9 +29,8 @@ export class OrderResponse {
   public props: string;
 }
 
-@Authorized()
+@Authorized([Roles.Customer, Roles.Admin])
 @JsonController('/personal/orders')
-// @OpenAPI({ security: [{ basicAuth: [] }] })
 export class OrderController {
   constructor(private orderService: OrderService) {}
 
@@ -44,8 +44,12 @@ export class OrderController {
   @ResponseSchema(OrderResponse)
   public create(@Body() body: CreateOrderBody): Promise<Order> {
     const order = new Order();
+    const currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
     order.userId = body.userId;
     order.props = body.props;
+    order.dateInsert = currentDate;
+    order.dateStatus = currentDate;
+    order.dateUpdate = currentDate;
 
     return this.orderService.create(order);
   }

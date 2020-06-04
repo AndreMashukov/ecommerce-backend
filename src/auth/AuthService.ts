@@ -1,10 +1,10 @@
 import * as express from 'express';
 import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
-
 import { User } from '../api/models/User';
 import { UserRepository } from '../api/repositories/UserRepository';
 import { Logger, LoggerInterface } from '../decorators/Logger';
+import * as jwt from 'jsonwebtoken';
 
 @Service()
 export class AuthService {
@@ -15,19 +15,16 @@ export class AuthService {
 
   public parseBasicAuthFromRequest(
     req: express.Request
-  ): { username: string; password: string } {
+  ): { userId: string, userRole: number } {
     const authorization = req.header('authorization');
-
     if (authorization && authorization.split(' ')[0] === 'Bearer') {
-      const token = Buffer.from(
-        authorization.split(' ')[1],
-        'base64'
-      ).toString('ascii');
-      this.log.info('Credentials provided by the client ', token);
-      const username = '';
-      const password = '';
-      if (username && password) {
-        return { username, password };
+      const token =  authorization.split(' ')[1];
+      // decode when fetching the user from token
+      const decoded = jwt.verify(token, process.env.APP_JWT_SECRET);
+      const userId =  decoded.id;
+      const userRole = decoded.groupId;
+      if (userId) {
+        return { userId, userRole };
       }
     }
 
