@@ -54,6 +54,6 @@ export class OrderController {
     order.dateStatus = currentDate;
     order.dateUpdate = currentDate;
 
-    return this.orderService.create(order);
+    return this.orderService.create(order, body.sessionId);
   }
 }

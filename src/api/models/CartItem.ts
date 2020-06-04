@@ -18,6 +18,9 @@ export class CartItem {
   @Column({ name: 'iblock_id' })
   public blockId: number;
 
+  @Column({ name: 'order_id' })
+  public orderId: number;
+
   @IsNotEmpty()
   @Column()
   public price: number;
