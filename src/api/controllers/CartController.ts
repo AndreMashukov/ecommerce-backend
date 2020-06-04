@@ -1,5 +1,12 @@
 import { IsPositive, IsNotEmpty } from 'class-validator';
-import { Body, Delete, Get, JsonController, QueryParams, Post } from 'routing-controllers';
+import {
+  Body,
+  Delete,
+  Get,
+  JsonController,
+  QueryParams,
+  Post
+} from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 
 import { CartItem } from '../models/CartItem';
@@ -70,21 +77,33 @@ class DeleteItemBody {
 
 @JsonController('/cart')
 export class CartController {
-  constructor(private cartService: CartService, private cartViewService: CartViewService) {}
+  constructor(
+    private cartService: CartService,
+    private cartViewService: CartViewService
+  ) {}
 
   @Get('/')
-  public getCartItems(@QueryParams() query: GetCartItemsQuery): Promise<CartItem[] | undefined> {
+  public getCartItems(
+    @QueryParams() query: GetCartItemsQuery
+  ): Promise<CartItem[] | undefined> {
     return this.cartViewService.findBySessionId(query.sessionId);
   }
 
   @Get('/product')
-  public findBySessionIdAndProductId(@QueryParams() query: GetCartProductQuery): Promise<CartItem | undefined> {
-    return this.cartService.findBySessionIdAndProductId(query.sessionId, query.productId);
+  public findBySessionIdAndProductId(
+    @QueryParams() query: GetCartProductQuery
+  ): Promise<CartItem | undefined> {
+    return this.cartService.findBySessionIdAndProductId(
+      query.sessionId,
+      query.productId
+    );
   }
 
   @Post('/product')
   @ResponseSchema(CartPostResponse)
-  public addProduct(@Body() body: AddProductBody): Promise<CartItem | undefined> {
+  public addProduct(
+    @Body() body: AddProductBody
+  ): Promise<CartItem | undefined> {
     const cartItem = new CartItem();
     cartItem.sessionId = body.sessionId;
     cartItem.blockId = body.blockId;
@@ -97,7 +116,9 @@ export class CartController {
 
   @Post('/product/decrement')
   @ResponseSchema(CartPostResponse)
-  public decrementQty(@Body() body: AddProductBody): Promise<CartItem | undefined> {
+  public decrementQty(
+    @Body() body: AddProductBody
+  ): Promise<CartItem | undefined> {
     const cartItem = new CartItem();
     cartItem.sessionId = body.sessionId;
     cartItem.blockId = body.blockId;

@@ -16,6 +16,9 @@ class CreateOrderBody {
   @IsNotEmpty()
   public userId: string;
 
+  @IsNotEmpty()
+  public sessionId: string;
+
   public props: string;
 }
 
