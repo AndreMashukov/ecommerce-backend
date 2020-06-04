@@ -2,7 +2,6 @@ import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
 import uuid from 'uuid';
 import moment from 'moment';
-
 import {
   EventDispatcher,
   EventDispatcherInterface
@@ -40,12 +39,17 @@ export class SaleUserService {
 
   public async create(user: SaleUser): Promise<SaleUser> {
     this.log.info('Create a new user => ', user.toString());
-    user.id = uuid.v1();
-    user.active = 'Y';
-    user.dateRegister = moment().format('YYYY-MM-DD HH:mm:ss');
-    user.timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
-    user.groupId = 1;
-    const newUser = await this.saleUserRepository.save(user);
+    const postUser = new SaleUser();
+    postUser.email = user.email;
+    postUser.lastName = user.lastName;
+    postUser.firstName = user.firstName;
+    postUser.password = user.password;
+    postUser.id = uuid.v1();
+    postUser.active = 'Y';
+    postUser.dateRegister = moment().format('YYYY-MM-DD HH:mm:ss');
+    postUser.timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+    postUser.groupId = 1;
+    const newUser = await this.saleUserRepository.save(postUser);
     this.eventDispatcher.dispatch(events.user.created, newUser);
     return newUser;
   }

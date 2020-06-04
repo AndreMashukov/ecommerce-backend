@@ -18,14 +18,14 @@ export class AuthService {
   ): { username: string; password: string } {
     const authorization = req.header('authorization');
 
-    if (authorization && authorization.split(' ')[0] === 'Basic') {
-      this.log.info('Credentials provided by the client');
-      const decodedBase64 = Buffer.from(
+    if (authorization && authorization.split(' ')[0] === 'Bearer') {
+      const token = Buffer.from(
         authorization.split(' ')[1],
         'base64'
       ).toString('ascii');
-      const username = decodedBase64.split(':')[0];
-      const password = decodedBase64.split(':')[1];
+      this.log.info('Credentials provided by the client ', token);
+      const username = '';
+      const password = '';
       if (username && password) {
         return { username, password };
       }
