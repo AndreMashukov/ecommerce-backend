@@ -1,6 +1,12 @@
 import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+export interface OrderProps {
+  region: number;
+  city?: string;
+  address: string;
+}
+
 @Entity({ name: 'b_sale_order' })
 export class Order {
   @PrimaryGeneratedColumn()

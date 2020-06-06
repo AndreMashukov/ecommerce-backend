@@ -7,7 +7,7 @@ import {
   Post
 } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
-import { Order } from '../models/Order';
+import { Order, OrderProps } from '../models/Order';
 import { OrderService } from '../services/OrderService';
 import moment from 'moment';
 import { Roles } from '../../constants';
@@ -19,7 +19,7 @@ class CreateOrderBody {
   @IsNotEmpty()
   public sessionId: string;
 
-  public props: string;
+  public props: OrderProps;
 }
 
 export class OrderResponse {
@@ -29,7 +29,7 @@ export class OrderResponse {
   @IsNotEmpty()
   public userId: string;
 
-  public props: string;
+  public props: OrderProps;
 }
 
 @Authorized([Roles.Customer, Roles.Admin])
@@ -49,7 +49,7 @@ export class OrderController {
     const order = new Order();
     const currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
     order.userId = body.userId;
-    order.props = body.props;
+    order.props = JSON.stringify(body.props);
     order.dateInsert = currentDate;
     order.dateStatus = currentDate;
     order.dateUpdate = currentDate;
