@@ -5,14 +5,17 @@ import {
   JsonController,
   Post,
   Req,
-  QueryParams
+  QueryParams,
+  OnUndefined
 } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 import * as jwt from 'jsonwebtoken';
-
-// import { UserNotFoundError } from '../errors/UserNotFoundError';
-import { SaleUser } from '../models/SaleUser';
+import { SaleUser } from '../models';
 import { SaleUserService } from '../services/SaleUserService';
+import { AuthService } from '../../auth/AuthService';
+import { UserNotFoundError, AuthError } from '../errors';
+
+const TOKEN_EXPIRY_PERIOD = '1h';
 
 class BaseUser {
   @IsNotEmpty()
@@ -44,11 +47,19 @@ class CheckEmailQuery {
   public email: string;
 }
 
+class LoginBody extends CheckEmailQuery {
+  @IsNotEmpty()
+  public password: string;
+}
+
 // @Authorized()
 @JsonController('/saleusers')
 // @OpenAPI({ security: [{ basicAuth: [] }] })
 export class SaleUserController {
-  constructor(private saleUserService: SaleUserService) {}
+  constructor(
+    private saleUserService: SaleUserService,
+    private authService: AuthService
+  ) {}
 
   @Get()
   @ResponseSchema(UserResponse, { isArray: true })
@@ -63,7 +74,7 @@ export class SaleUserController {
   }
 
   @Get('/email')
-  // @OnUndefined(UserNotFoundError)
+  @OnUndefined(UserNotFoundError)
   @ResponseSchema(UserResponse)
   public findByEmail(
     @QueryParams() query: CheckEmailQuery
@@ -80,15 +91,19 @@ export class SaleUserController {
     user.lastName = body.lastName;
     user.password = body.password;
     const newUser = await this.saleUserService.create(user);
-    const newToken = jwt.sign({
+    const newToken = jwt.sign(
+      {
         id: newUser.id,
         email: newUser.email,
         lastName: newUser.lastName,
         firstName: newUser.firstName,
         groupId: newUser.groupId
-      }, process.env.APP_JWT_SECRET, {
-        expiresIn: '1h'
-      });
+      },
+      process.env.APP_JWT_SECRET,
+      {
+        expiresIn: TOKEN_EXPIRY_PERIOD
+      }
+    );
     return {
       id: newUser.id,
       lastName: newUser.lastName,
@@ -96,5 +111,29 @@ export class SaleUserController {
       email: newUser.email,
       token: newToken
     };
+  }
+
+  @Post('/auth')
+  @ResponseSchema(UserResponse)
+  @OnUndefined(AuthError)
+  public async login(@Body() body: LoginBody): Promise<UserResponse> {
+    const user = await this.authService.validateUser(body.email, body.password);
+    if (user) {
+      const newToken = jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+          lastName: user.lastName,
+          firstName: user.firstName,
+          groupId: user.groupId
+        },
+        process.env.APP_JWT_SECRET,
+        {
+          expiresIn: TOKEN_EXPIRY_PERIOD
+        }
+      );
+      return { ...user, token: newToken };
+    }
+    return undefined;
   }
 }

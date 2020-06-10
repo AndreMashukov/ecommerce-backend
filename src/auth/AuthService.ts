@@ -1,8 +1,8 @@
 import * as express from 'express';
 import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
-import { User } from '../api/models/User';
-import { UserRepository } from '../api/repositories/UserRepository';
+import { SaleUser } from '../api/models';
+import { SaleUserRepository } from '../api/repositories/SaleUserRepository';
 import { Logger, LoggerInterface } from '../decorators/Logger';
 import * as jwt from 'jsonwebtoken';
 
@@ -10,7 +10,7 @@ import * as jwt from 'jsonwebtoken';
 export class AuthService {
   constructor(
     @Logger(__filename) private log: LoggerInterface,
-    @OrmRepository() private userRepository: UserRepository
+    @OrmRepository() private userRepository: SaleUserRepository
   ) {}
 
   public parseBasicAuthFromRequest(
@@ -32,14 +32,14 @@ export class AuthService {
     return undefined;
   }
 
-  public async validateUser(username: string, password: string): Promise<User> {
+  public async validateUser(email: string, password: string): Promise<SaleUser> {
     const user = await this.userRepository.findOne({
       where: {
-        username
+        email
       }
     });
 
-    if (await User.comparePassword(user, password)) {
+    if (await SaleUser.comparePassword(user, password)) {
       return user;
     }
 
