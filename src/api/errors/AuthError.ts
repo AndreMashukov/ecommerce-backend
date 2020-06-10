@@ -1,7 +1,7 @@
-import { HttpError } from 'routing-controllers';
+import { UnauthorizedError } from 'routing-controllers';
 
-export class AuthError extends HttpError {
+export class AuthError extends UnauthorizedError {
   constructor() {
-    super(403, 'Authentication Failed!');
+    super('Authentication Failed!');
   }
 }

@@ -33,11 +33,15 @@ export class AuthService {
   }
 
   public async validateUser(email: string, password: string): Promise<SaleUser> {
-    const user = await this.userRepository.findOne({
+    const user: SaleUser = await this.userRepository.findOne({
       where: {
         email
       }
     });
+
+    if (!user) {
+      return undefined;
+    }
 
     if (await SaleUser.comparePassword(user, password)) {
       return user;
