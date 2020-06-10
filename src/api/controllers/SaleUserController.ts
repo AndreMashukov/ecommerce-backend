@@ -78,7 +78,7 @@ export class SaleUserController {
   @ResponseSchema(UserResponse)
   public findByEmail(
     @QueryParams() query: CheckEmailQuery
-  ): Promise<SaleUser | undefined> {
+  ): Promise<SaleUser> {
     return this.saleUserService.findOneByEmail(query.email);
   }
 
