@@ -76,9 +76,7 @@ export class SaleUserController {
   @Get('/email')
   @OnUndefined(UserNotFoundError)
   @ResponseSchema(UserResponse)
-  public findByEmail(
-    @QueryParams() query: CheckEmailQuery
-  ): Promise<SaleUser> {
+  public findByEmail(@QueryParams() query: CheckEmailQuery): Promise<SaleUser> {
     return this.saleUserService.findOneByEmail(query.email);
   }
 
@@ -117,7 +115,10 @@ export class SaleUserController {
   @ResponseSchema(UserResponse)
   @OnUndefined(AuthError)
   public async login(@Body() body: LoginBody): Promise<UserResponse> {
-    const user = await this.authService.validateUser(body.email, body.password);
+    const user: SaleUser = await this.authService.validateUser(
+      body.email,
+      body.password
+    );
     if (user) {
       const newToken = jwt.sign(
         {
@@ -132,6 +133,7 @@ export class SaleUserController {
           expiresIn: TOKEN_EXPIRY_PERIOD
         }
       );
+      delete user.password;
       return { ...user, token: newToken };
     }
     return undefined;
