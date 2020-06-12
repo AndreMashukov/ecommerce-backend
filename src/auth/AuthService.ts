@@ -22,7 +22,12 @@ export class AuthService {
     if (authorization && authorization.split(' ')[0] === 'Bearer') {
       const token =  authorization.split(' ')[1];
       // decode when fetching the user from token
-      const decoded = jwt.verify(token, process.env.APP_JWT_SECRET);
+      let decoded;
+      try {
+        decoded = jwt.verify(token, process.env.APP_JWT_SECRET);
+      } catch (err) {
+        return undefined;
+      }
       const userId =  decoded.id;
       const userRole = decoded.groupId;
       if (userId) {
