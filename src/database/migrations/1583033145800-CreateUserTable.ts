@@ -83,6 +83,12 @@ export class CreateUserTable1583033145800 implements MigrationInterface {
         type: 'int',
         length: '11',
         isNullable: false
+      },
+      {
+        name: 'refresh_token',
+        type: 'varchar',
+        length: '500',
+        isNullable: true
       }
     ]
   });

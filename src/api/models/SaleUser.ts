@@ -60,6 +60,10 @@ export class SaleUser {
   @Exclude()
   public password: string;
 
+  @IsNotEmpty()
+  @Column({name: 'refresh_token'})
+  public refreshToken: string;
+
   public toString(): string {
     return `${this.firstName} ${this.lastName} (${this.email})`;
   }

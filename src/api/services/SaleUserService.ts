@@ -37,6 +37,15 @@ export class SaleUserService {
     });
   }
 
+  public findOneByRefreshToken(_userId: string, _refreshToken: string): Promise<SaleUser | undefined> {
+    return this.saleUserRepository.findOne({
+      where: {
+        id: _userId,
+        refreshToken: _refreshToken
+      }
+    });
+  }
+
   public async create(user: SaleUser): Promise<SaleUser> {
     this.log.info('Create a new user => ', user.toString());
     const postUser = new SaleUser();
@@ -49,6 +58,7 @@ export class SaleUserService {
     postUser.dateRegister = moment().format('YYYY-MM-DD HH:mm:ss');
     postUser.timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
     postUser.groupId = 1;
+    postUser.refreshToken = uuid.v1();
     const newUser = await this.saleUserRepository.save(postUser);
     this.eventDispatcher.dispatch(events.user.created, newUser);
     return newUser;
