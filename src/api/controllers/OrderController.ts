@@ -19,6 +19,12 @@ class CreateOrderBody {
   @IsNotEmpty()
   public sessionId: string;
 
+  @IsNotEmpty()
+  public deliveryId: number;
+
+  @IsNotEmpty()
+  public price: number;
+
   public props: OrderProps;
 }
 
@@ -53,6 +59,8 @@ export class OrderController {
     order.dateInsert = currentDate;
     order.dateStatus = currentDate;
     order.dateUpdate = currentDate;
+    order.deliveryId = body.deliveryId;
+    order.price = body.price;
 
     return this.orderService.create(order, body.sessionId);
   }

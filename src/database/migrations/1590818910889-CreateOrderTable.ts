@@ -34,6 +34,12 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
         isNullable: false
       },
       {
+        name: 'price',
+        type: 'decimal',
+        length: '18,2',
+        isNullable: false
+      },
+      {
         name: 'user_description',
         type: 'varchar',
         length: '255',
@@ -49,7 +55,7 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
         name: 'delivery_id',
         type: 'int',
         length: '11',
-        isNullable: true
+        isNullable: false
       },
       {
         name: 'props',

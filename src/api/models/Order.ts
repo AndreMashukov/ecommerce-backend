@@ -28,6 +28,14 @@ export class Order {
   @Column({ name: 'date_update' })
   public dateUpdate: string;
 
+  @IsNotEmpty()
+  @Column()
+  public price: number;
+
+  @IsNotEmpty()
+  @Column({ name: 'delivery_id' })
+  public deliveryId: number;
+
   @Column()
   public props: string;
 }
