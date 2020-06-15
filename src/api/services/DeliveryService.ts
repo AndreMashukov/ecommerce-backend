@@ -16,6 +16,7 @@ export class DeliveryService {
       .where(`JSON_SEARCH(regions->>"$.values",'one',${regionId}) is not null`)
       .andWhere(`order_price_from <= ${orderPrice}`)
       .andWhere(`order_price_to > ${orderPrice}`)
+      .andWhere(`active = 'Y'`)
       .execute();
   }
 }
