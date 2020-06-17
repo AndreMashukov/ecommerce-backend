@@ -65,7 +65,9 @@ export class OrderController {
     order.dateUpdate = currentDate;
     order.deliveryId = body.deliveryId;
     order.price = body.price;
-    order.comment = body.comment;
+    if (body.comment.length > 0) {
+      order.comment = body.comment;
+    }
 
     return this.orderService.create(order, body.sessionId);
   }
