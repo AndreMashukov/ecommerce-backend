@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export interface OrderProps {
@@ -35,6 +35,10 @@ export class Order {
   @IsNotEmpty()
   @Column({ name: 'delivery_id' })
   public deliveryId: number;
+
+  @IsString()
+  @Column({name: 'user_description'})
+  public comment: string;
 
   @Column()
   public props: string;

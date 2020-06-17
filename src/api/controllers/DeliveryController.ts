@@ -3,7 +3,7 @@ import { Get, JsonController, QueryParams } from 'routing-controllers';
 import { Delivery } from '../models';
 import { DeliveryService } from '../services/DeliveryService';
 
-class GetDeliverysQuery {
+class GetDeliveriesQuery {
   @IsNotEmpty()
   @IsPositive()
   @IsNumber()
@@ -21,7 +21,7 @@ export class DeliveryController {
 
   @Get('/')
   public findByRegionIdAndOrderPrice(
-    @QueryParams() query: GetDeliverysQuery
+    @QueryParams() query: GetDeliveriesQuery
   ): Promise<Delivery[] | undefined> {
     return this.deliveryService.findManyByRegionIdAndOrderPrice(
       query.regionId,

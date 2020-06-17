@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import {
   Authorized,
   Body,
@@ -25,7 +25,11 @@ class CreateOrderBody {
   @IsNotEmpty()
   public price: number;
 
+  @IsNotEmpty()
   public props: OrderProps;
+
+  @IsString()
+  public comment: string;
 }
 
 export class OrderResponse {
@@ -61,6 +65,7 @@ export class OrderController {
     order.dateUpdate = currentDate;
     order.deliveryId = body.deliveryId;
     order.price = body.price;
+    order.comment = body.comment;
 
     return this.orderService.create(order, body.sessionId);
   }
