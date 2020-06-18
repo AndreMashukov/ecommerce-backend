@@ -37,6 +37,10 @@ export class Order {
   @Column({ name: 'delivery_id' })
   public deliveryId: number;
 
+  @IsNotEmpty()
+  @Column({ name: 'pay_system_id' })
+  public paySystemId: number;
+
   @IsString()
   @Column({name: 'user_description'})
   public comment: string;

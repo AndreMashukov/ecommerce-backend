@@ -23,6 +23,9 @@ class CreateOrderBody {
   public deliveryId: number;
 
   @IsNotEmpty()
+  public paySystemId: number;
+
+  @IsNotEmpty()
   public price: number;
 
   @IsNotEmpty()
@@ -64,6 +67,7 @@ export class OrderController {
     order.dateStatus = currentDate;
     order.dateUpdate = currentDate;
     order.deliveryId = body.deliveryId;
+    order.paySystemId = body.paySystemId;
     order.price = body.price;
     if (body.comment.length > 0) {
       order.comment = body.comment;
