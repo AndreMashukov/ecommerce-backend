@@ -3,3 +3,4 @@ export * from './Session';
 export * from './SaleUser';
 export * from './Delivery';
 export * from './RegionsList';
+export * from './PaySystem';
