@@ -50,6 +50,7 @@ export class SaleUserService {
     this.log.info('Create a new user => ', user.toString());
     const postUser = new SaleUser();
     postUser.email = user.email;
+    postUser.phone = user.phone;
     postUser.lastName = user.lastName;
     postUser.firstName = user.firstName;
     postUser.password = user.password;

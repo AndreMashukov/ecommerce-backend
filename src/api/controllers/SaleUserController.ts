@@ -28,6 +28,9 @@ class BaseUser {
   @IsEmail()
   @IsNotEmpty()
   public email: string;
+
+  @IsNotEmpty()
+  public phone: string;
 }
 
 export class UserResponse extends BaseUser {
@@ -101,6 +104,7 @@ export class SaleUserController {
   public async create(@Body() body: CreateUserBody): Promise<UserResponse> {
     const user = new SaleUser();
     user.email = body.email;
+    user.phone = body.phone;
     user.firstName = body.firstName;
     user.lastName = body.lastName;
     user.password = body.password;
@@ -123,6 +127,7 @@ export class SaleUserController {
       lastName: newUser.lastName,
       firstName: newUser.firstName,
       email: newUser.email,
+      phone: newUser.phone,
       token: newToken,
       refreshToken: newUser.refreshToken,
       tokenTime: moment().format('YYYY-MM-DD HH:mm:ss')

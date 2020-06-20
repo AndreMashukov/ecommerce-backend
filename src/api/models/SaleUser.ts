@@ -41,6 +41,10 @@ export class SaleUser {
 
   @IsNotEmpty()
   @Column()
+  public phone: string;
+
+  @IsNotEmpty()
+  @Column()
   public active: string;
 
   @IsNotEmpty()

@@ -52,6 +52,12 @@ export class CreateUserTable1583033145800 implements MigrationInterface {
         isNullable: false
       },
       {
+        name: 'phone',
+        type: 'varchar',
+        length: '50',
+        isNullable: false
+      },
+      {
         name: 'last_login',
         type: 'datetime',
         isNullable: true
