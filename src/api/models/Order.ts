@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { CartViewItem } from './CartViewItem';
 import { SaleUser } from './SaleUser';
+import { OrderProps } from './OrderProps';
 
 @Entity({ name: 'b_sale_order' })
 export class Order {
@@ -47,8 +48,8 @@ export class Order {
   @Column({ name: 'user_description' })
   public comment: string;
 
-  @Column()
-  public props: string;
+  @Column({type: 'json'})
+  public props: OrderProps;
 
   @OneToMany((type) => CartViewItem, (cart) => cart.order)
   public cart: CartViewItem[];
