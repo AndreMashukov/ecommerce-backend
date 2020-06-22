@@ -17,15 +17,24 @@ export class OrderService {
     return this.orderRepository.find();
   }
 
-  public findOne(_id: number): Promise<Order | undefined> {
-    return this.orderRepository.findOne({ id: _id });
+  public findOne(id: number): Promise<Order | undefined> {
+    return this.orderRepository.findOne({ id });
   }
 
-  public async create(_order: Order, _sessionId: string): Promise<Order> {
-    const newOrder = await this.orderRepository.save(_order);
+  public findOneByIdAndUserId(
+    id: number,
+    userId: string
+  ): Promise<Order | undefined> {
+    return this.orderRepository.findOne({ id, userId });
+  }
+
+  public async create(order: Order, sessionId: string): Promise<Order> {
+    const newOrder = await this.orderRepository.save(order);
     this.log.info('Creating new order => ', newOrder.id);
-    await this.cartRepository
-      .update({sessionId: _sessionId}, {orderId: newOrder.id});
+    await this.cartRepository.update(
+      { sessionId },
+      { orderId: newOrder.id }
+    );
     return newOrder;
   }
 }

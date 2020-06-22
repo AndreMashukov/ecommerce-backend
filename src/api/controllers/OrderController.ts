@@ -4,13 +4,22 @@ import {
   Body,
   Get,
   JsonController,
-  Post
+  Post,
+  QueryParams
 } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
 import { Order, OrderProps } from '../models/Order';
 import { OrderService } from '../services/OrderService';
 import moment from 'moment';
 import { Roles } from '../../constants';
+
+class GetOrderQuery {
+  @IsNotEmpty()
+  public id: number;
+
+  @IsNotEmpty()
+  public userId: string;
+}
 
 class CreateOrderBody {
   @IsNotEmpty()
@@ -37,7 +46,7 @@ class CreateOrderBody {
 
 export class OrderResponse {
   @IsNotEmpty()
-  public id: string;
+  public id: number;
 
   @IsNotEmpty()
   public userId: string;
@@ -50,10 +59,16 @@ export class OrderResponse {
 export class OrderController {
   constructor(private orderService: OrderService) {}
 
-  @Get()
+  @Get('/list')
   @ResponseSchema(OrderResponse, { isArray: true })
   public find(): Promise<Order[]> {
     return this.orderService.find();
+  }
+
+  @Get()
+  @ResponseSchema(OrderResponse)
+  public getByIdAndUserId(@QueryParams() query: GetOrderQuery): Promise<Order> {
+    return this.orderService.findOneByIdAndUserId(query.id, query.userId);
   }
 
   @Post()
