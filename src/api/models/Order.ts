@@ -1,6 +1,14 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+  JoinColumn
+} from 'typeorm';
 import { CartViewItem } from './CartViewItem';
+import { SaleUser } from './SaleUser';
 
 @Entity({ name: 'b_sale_order' })
 export class Order {
@@ -36,7 +44,7 @@ export class Order {
   public paySystemId: number;
 
   @IsString()
-  @Column({name: 'user_description'})
+  @Column({ name: 'user_description' })
   public comment: string;
 
   @Column()
@@ -44,4 +52,8 @@ export class Order {
 
   @OneToMany((type) => CartViewItem, (cart) => cart.order)
   public cart: CartViewItem[];
+
+  @OneToOne((type) => SaleUser)
+  @JoinColumn({ name: 'user_id' })
+  public user: SaleUser;
 }
