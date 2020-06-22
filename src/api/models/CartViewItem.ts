@@ -1,5 +1,12 @@
 import { IsNotEmpty } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn
+} from 'typeorm';
+import { Order } from './Order';
 
 @Entity({ name: 'view_sale_basket' })
 export class CartViewItem {
@@ -44,4 +51,8 @@ export class CartViewItem {
   @IsNotEmpty()
   @Column({ name: 'sku_code' })
   public skuCode: number;
+
+  @ManyToOne((type) => Order, (order) => order.cart)
+  @JoinColumn({ name: 'order_id' })
+  public order: Order;
 }

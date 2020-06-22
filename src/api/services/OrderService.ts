@@ -25,7 +25,10 @@ export class OrderService {
     id: number,
     userId: string
   ): Promise<Order | undefined> {
-    return this.orderRepository.findOne({ id, userId });
+    return this.orderRepository.findOne({
+      relations: ['cart'],
+      where: { id, userId }
+    });
   }
 
   public async create(order: Order, sessionId: string): Promise<Order> {

@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { CartViewItem } from './CartViewItem';
 
 @Entity({ name: 'b_sale_order' })
 export class Order {
@@ -40,4 +41,7 @@ export class Order {
 
   @Column()
   public props: string;
+
+  @OneToMany((type) => CartViewItem, (cart) => cart.order)
+  public cart: CartViewItem[];
 }
