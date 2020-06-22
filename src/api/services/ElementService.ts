@@ -1,7 +1,5 @@
 import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
-
-import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { Element } from '../models/Element';
 import { ElementRepository } from '../repositories/ElementRepository';
 import { SectionService } from '../services/SectionService';
@@ -10,58 +8,55 @@ import { SectionService } from '../services/SectionService';
 export class ElementService {
   constructor(
     @OrmRepository() private elementRepository: ElementRepository,
-    private sectionService: SectionService,
-    @Logger(__filename) private log: LoggerInterface
+    private sectionService: SectionService
   ) {}
 
   public findByBlockAndSectionId(
-    _blockId: number,
-    _sectionId: number
+    blockId: number,
+    sectionId: number
   ): Promise<Element[]> {
-    this.log.info('Find all Elements for section', _sectionId);
     return this.elementRepository.find({
       relations: ['properties'],
       where: {
-        blockId: _blockId,
-        sectionId: _sectionId
+        blockId,
+        sectionId
       }
     });
   }
 
   public async findDeeplyByBlockAndSectionCode(
-    _blockId: number,
-    _sectionCode: string
+    blockId: number,
+    sectionCode: string
   ): Promise<Element[]> {
     const promises = [];
     const childSections = await this.sectionService.findChildSections(
-      _blockId,
-      _sectionCode
+      blockId,
+      sectionCode
     );
     if (childSections.length > 0) {
       childSections.forEach((item) => {
         promises.push(
-          this.findByBlockAndSectionId(_blockId, parseInt(item.id, 0))
+          this.findByBlockAndSectionId(blockId, parseInt(item.id, 0))
         );
       });
     } else {
       const section = await this.sectionService.findSection(
-        _blockId,
-        _sectionCode
+        blockId,
+        sectionCode
       );
       promises.push(
-        this.findByBlockAndSectionId(_blockId, parseInt(section.id, 0))
+        this.findByBlockAndSectionId(blockId, parseInt(section.id, 0))
       );
     }
     return Promise.all(promises);
   }
 
-  public findByBlockAndCode(_blockId: number, _code: string): Promise<Element> {
-    this.log.info('Find Element for code', _code);
+  public findByBlockAndCode(blockId: number, code: string): Promise<Element> {
     return this.elementRepository.findOne({
       relations: ['properties'],
       where: {
-        blockId: _blockId,
-        code: _code
+        blockId,
+        code
       }
     });
   }

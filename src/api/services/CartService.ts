@@ -16,23 +16,22 @@ export class CartService {
     return this.cartRepository.find();
   }
 
-  public findBySessionId(_sessionId: string): Promise<CartItem[] | undefined> {
-    this.log.info('Find a Cart Items for session', _sessionId);
+  public findBySessionId(sessionId: string): Promise<CartItem[] | undefined> {
     return this.cartRepository.find({
       where: {
-        sessionId: _sessionId
+        sessionId
       }
     });
   }
 
   public findBySessionIdAndProductId(
-    _sessionId: string,
-    _productId: number
+    sessionId: string,
+    productId: number
   ): Promise<CartItem | undefined> {
     return this.cartRepository.findOne({
       where: {
-        sessionId: _sessionId,
-        productId: _productId
+        sessionId,
+        productId
       }
     });
   }
@@ -89,10 +88,10 @@ export class CartService {
     }
   }
 
-  public delete(_sessionId: string, _productId: number): Promise<any> {
+  public delete(sessionId: string, productId: number): Promise<any> {
     return this.cartRepository.delete({
-      sessionId: _sessionId,
-      productId: _productId
+      sessionId,
+      productId
     });
   }
 }

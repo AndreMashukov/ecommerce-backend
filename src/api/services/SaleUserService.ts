@@ -29,19 +29,19 @@ export class SaleUserService {
     return this.saleUserRepository.findOne({ id });
   }
 
-  public findOneByEmail(_email: string): Promise<SaleUser | undefined> {
+  public findOneByEmail(email: string): Promise<SaleUser | undefined> {
     return this.saleUserRepository.findOne({
       where: {
-        email: _email
+        email
       }
     });
   }
 
-  public findOneByRefreshToken(_userId: string, _refreshToken: string): Promise<SaleUser | undefined> {
+  public findOneByRefreshToken(userId: string, refreshToken: string): Promise<SaleUser | undefined> {
     return this.saleUserRepository.findOne({
       where: {
-        id: _userId,
-        refreshToken: _refreshToken
+        id: userId,
+        refreshToken
       }
     });
   }
