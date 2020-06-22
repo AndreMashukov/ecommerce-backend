@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableIndex, TableForeignKey } from 'typeorm';
 
 export class CreateOrderTable1590818910889 implements MigrationInterface {
   public orderTable = new Table({
@@ -65,9 +65,21 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
     ]
   });
 
+  private tableForeignKeyForOrder = new TableForeignKey({
+    name: 'fk_sale_order_user_id',
+    columnNames: ['user_id'],
+    referencedColumnNames: ['id'],
+    referencedTableName: 'b_user',
+    onDelete: 'CASCADE'
+  });
+
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.orderTable);
     // await queryRunner.query(`ALTER TABLE b_sale_order MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.createForeignKey(
+      'b_sale_order',
+      this.tableForeignKeyForOrder
+    );
     await queryRunner.createIndex(
       'b_sale_order',
       new TableIndex({

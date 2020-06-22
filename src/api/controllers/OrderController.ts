@@ -8,7 +8,7 @@ import {
   QueryParams
 } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
-import { Order, OrderProps } from '../models/Order';
+import { Order, OrderProps } from '../models';
 import { OrderService } from '../services/OrderService';
 import moment from 'moment';
 import { Roles } from '../../constants';
@@ -66,7 +66,7 @@ export class OrderController {
   }
 
   @Get()
-  @ResponseSchema(OrderResponse)
+  // @ResponseSchema(OrderResponse)
   public getByIdAndUserId(@QueryParams() query: GetOrderQuery): Promise<Order> {
     return this.orderService.findOneByIdAndUserId(query.id, query.userId);
   }
