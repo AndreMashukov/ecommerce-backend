@@ -77,7 +77,7 @@ export class OrderController {
     const order = new Order();
     const currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
     order.userId = body.userId;
-    order.props = JSON.stringify(body.props);
+    order.props = body.props;
     order.dateInsert = currentDate;
     order.dateStatus = currentDate;
     order.dateUpdate = currentDate;

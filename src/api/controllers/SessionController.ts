@@ -1,4 +1,4 @@
-import { Get, JsonController, Post } from 'routing-controllers';
+import { JsonController, Post } from 'routing-controllers';
 
 import { SessionService } from '../services/SessionService';
 import { Session } from '../models/Session';
@@ -9,10 +9,10 @@ export class SessionController {
     private sessionService: SessionService
   ) {}
 
-  @Get('/')
-  public getAllSessions(): Promise<Session[] | undefined> {
-      return this.sessionService.find();
-  }
+  // @Get('/')
+  // public getAllSessions(): Promise<Session[] | undefined> {
+  //     return this.sessionService.find();
+  // }
 
   @Post('/')
   public createNewSession(): Promise<Session> {
