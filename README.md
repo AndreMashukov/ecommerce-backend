@@ -1,5 +1,7 @@
 <h1 align="center">Ecommerce Backend</h1>
 
+[![DeepScan grade](https://deepscan.io/api/teams/9902/projects/12597/branches/195016/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=9902&pid=12597&bid=195016)
+
 ### Features
 
 - **Beautiful Code** thanks to the awesome annotations of the libraries from [pleerock](https://github.com/pleerock).
