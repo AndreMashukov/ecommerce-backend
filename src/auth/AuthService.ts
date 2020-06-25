@@ -15,12 +15,12 @@ export class AuthService {
     private saleUserService: SaleUserService
   ) {}
 
-  public parseBasicAuthFromRequest(
+  public parseTokenAuthFromRequest(
     req: express.Request
-  ): { userId: string, userRole: number } {
+  ): { userId: string; userRole: number } {
     const authorization = req.header('authorization');
     if (authorization && authorization.split(' ')[0] === 'Bearer') {
-      const token =  authorization.split(' ')[1];
+      const token = authorization.split(' ')[1];
       // decode when fetching the user from token
       let decoded;
       try {
@@ -28,7 +28,7 @@ export class AuthService {
       } catch (err) {
         return undefined;
       }
-      const userId =  decoded.id;
+      const userId = decoded.id;
       const userRole = decoded.groupId;
       if (userId) {
         return { userId, userRole };
@@ -39,7 +39,32 @@ export class AuthService {
     return undefined;
   }
 
-  public async validateUser(email: string, password: string): Promise<SaleUser | undefined> {
+  public parseBasicAuthFromRequest(
+    req: express.Request
+  ): { username: string; password: string } {
+    const authorization = req.header('authorization');
+
+    if (authorization && authorization.split(' ')[0] === 'Basic') {
+      this.log.info('Credentials provided by the client');
+      const decodedBase64 = Buffer.from(
+        authorization.split(' ')[1],
+        'base64'
+      ).toString('ascii');
+      const username = decodedBase64.split(':')[0];
+      const password = decodedBase64.split(':')[1];
+      if (username && password) {
+        return { username, password };
+      }
+    }
+
+    this.log.info('No credentials provided by the client');
+    return undefined;
+  }
+
+  public async validateUser(
+    email: string,
+    password: string
+  ): Promise<SaleUser | undefined> {
     const user: SaleUser = await this.saleUserService.findOneByEmail(email);
 
     if (!user) {

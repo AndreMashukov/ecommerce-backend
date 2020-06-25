@@ -9,11 +9,6 @@ export class SessionController {
     private sessionService: SessionService
   ) {}
 
-  // @Get('/')
-  // public getAllSessions(): Promise<Session[] | undefined> {
-  //     return this.sessionService.find();
-  // }
-
   @Post('/')
   public createNewSession(): Promise<Session> {
       return this.sessionService.createNewSession();
