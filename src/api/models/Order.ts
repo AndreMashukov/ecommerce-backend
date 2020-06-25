@@ -10,6 +10,8 @@ import {
 import { CartViewItem } from './CartViewItem';
 import { SaleUser } from './SaleUser';
 import { OrderProps } from './OrderProps';
+import { Delivery } from './Delivery';
+import { PaySystem } from './PaySystem';
 
 @Entity({ name: 'b_sale_order' })
 export class Order {
@@ -57,4 +59,12 @@ export class Order {
   @OneToOne((type) => SaleUser)
   @JoinColumn({ name: 'user_id' })
   public user: SaleUser;
+
+  @OneToOne((type) => Delivery)
+  @JoinColumn({ name: 'delivery_id' })
+  public delivery: Delivery;
+
+  @OneToOne((type) => PaySystem)
+  @JoinColumn({ name: 'pay_system_id' })
+  public paySystem: PaySystem;
 }

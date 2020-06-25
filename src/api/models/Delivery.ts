@@ -44,6 +44,6 @@ export class Delivery {
   public description: string;
 
   @IsNotEmpty()
-  @Column({ type: 'json'})
+  @Column({ type: 'json' })
   public regions: RegionsList;
 }

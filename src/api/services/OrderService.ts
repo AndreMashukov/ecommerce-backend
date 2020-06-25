@@ -26,7 +26,7 @@ export class OrderService {
     userId: string
   ): Promise<Order | undefined> {
     return this.orderRepository.findOne({
-      relations: ['cart', 'user'],
+      relations: ['cart', 'user', 'delivery', 'paySystem'],
       where: { id, userId }
     });
   }
