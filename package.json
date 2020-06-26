@@ -8,10 +8,11 @@
     "test": "npm start test",
     "build": "npm start build",
     "presetup": "yarn install",
-    "setup": "npm start config && npm start setup.script"
+    "setup": "npm start config && npm start setup.script",
+    "lint": "eslint '*/**/*.{js,ts,tsx}'"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=12.0.0"
   },
   "repository": "git+ssh://git@github.com/AndreMashukov/ecommerce-backend.git",
   "keywords": [
@@ -24,19 +25,7 @@
     "w3tec.ch"
   ],
   "homepage": "https://github.com/AndreMashukov/ecommerce-backend#readme",
-  "author": "w3tec.ch <info@w3tec.ch>",
-  "contributors": [
-    {
-      "name": "David Weber",
-      "email": "david.weber@w3tec.ch",
-      "url": "https://github.com/dweber019"
-    },
-    {
-      "name": "Gery Hirschfeld",
-      "email": "gery.hirschfeld@w3tec.ch",
-      "url": "https://github.com/hirsch88"
-    }
-  ],
+  "author": "Andrey Mashukov <andre.mashukov@gmail.com>",
   "dependencies": {
     "bcrypt": "5.0.0",
     "chalk": "^2.4.1",

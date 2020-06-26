@@ -21,8 +21,6 @@
         - 
           run: "sudo yarn presetup"
         - 
-          run: "yarn lint"
-        - 
           run: "yarn test"
   version: 2.1
   workflows: 
