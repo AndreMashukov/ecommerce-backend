@@ -9,7 +9,7 @@
         - 
           run: "echo \"npm installing\""
         - 
-          run: "npm install"
+          run: "yarn install"
     test: 
       docker: 
         - 
@@ -19,11 +19,11 @@
         - 
           run: "echo \"run testing\""
         - 
-          run: "npm install"
+          run: "yarn install"
         - 
-          run: "npm run lint"
+          run: "yarn lint"
         - 
-          run: "npm test"
+          run: "yarn test"
   version: 2.1
   workflows: 
     build_test_lint: 
