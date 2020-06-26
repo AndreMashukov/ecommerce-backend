@@ -19,7 +19,7 @@
         - 
           run: "echo \"run testing\""
         - 
-          run: "yarn install"
+          run: "sudo yarn presetup"
         - 
           run: "yarn lint"
         - 
