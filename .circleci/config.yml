@@ -5,7 +5,7 @@ jobs:
     steps:
       - checkout
       - run: echo "npm installing"
-      - restore_cache: null
+      - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
