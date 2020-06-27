@@ -10,10 +10,10 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: yarn presetup
-      # - save_cache: null
-      #   paths:
-      #     - node_modules
-      #   key: 'v1-dependencies-{{ checksum "package.json" }}'
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
   test:
     docker:
       - image: 'circleci/node:current'
@@ -22,13 +22,13 @@ jobs:
       - run: echo "run testing"
       - restore_cache:
           keys:
-            - 'v1-dependencies-{{ checksum "package.json" }}'
+            - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: yarn presetup
       - save_cache:
           paths:
             - node_modules
-          key: 'v1-dependencies-{{ checksum "package.json" }}'
+          key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn lint
       - run: yarn test
 version: 2.1
