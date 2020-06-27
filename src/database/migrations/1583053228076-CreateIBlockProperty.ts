@@ -161,7 +161,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       }
     ]
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     // create table if not exists b_iblock_property (
@@ -212,7 +212,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       })
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropIndex('b_iblock_property', 'ix_iblock_property_1');
     await queryRunner.dropIndex('b_iblock_property', 'ix_iblock_property_2');

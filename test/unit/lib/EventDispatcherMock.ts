@@ -1,9 +1,8 @@
 export class EventDispatcherMock {
+  public dispatchMock = jest.fn();
 
-    public dispatchMock = jest.fn();
-
-    public dispatch(...args: any[]): void {
-        this.dispatchMock(args);
-    }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public dispatch(...args: any[]): void {
+    this.dispatchMock(args);
+  }
 }

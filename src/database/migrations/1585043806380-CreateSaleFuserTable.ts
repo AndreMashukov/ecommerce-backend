@@ -29,7 +29,7 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
       }
     ]
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     //   create table if not exists b_sale_fuser (
@@ -49,7 +49,7 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
       })
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropIndex('b_sale_session', 'ix_user_id');
     await queryRunner.dropTable('b_sale_session');

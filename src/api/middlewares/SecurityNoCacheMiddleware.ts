@@ -8,6 +8,7 @@ export class SecurityNoCacheMiddleware implements ExpressMiddlewareInterface {
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): any {
     return helmet.noCache()(req, res, next);
   }

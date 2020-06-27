@@ -198,7 +198,7 @@ export class CreateIBlockElementTable1583043930098
       }
     ]
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     // create table if not exists b_iblock_element (
@@ -258,7 +258,7 @@ export class CreateIBlockElementTable1583043930098
       })
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropIndex('b_iblock_element', 'ix_iblock_element_1');
     await queryRunner.dropIndex('b_iblock_element', 'ix_iblock_element_code');

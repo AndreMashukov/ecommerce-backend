@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUserTable1511105183653 implements MigrationInterface {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     const table = new Table({
       name: 'user',
@@ -52,6 +53,7 @@ export class CreateUserTable1511105183653 implements MigrationInterface {
     await queryRunner.createTable(table);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable('user');
   }

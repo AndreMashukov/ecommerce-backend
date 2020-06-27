@@ -17,7 +17,7 @@ export class User {
   }
 
   public static comparePassword(user: User, password: string): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       bcrypt.compare(password, user.password, (err, res) => {
         resolve(res === true);
       });

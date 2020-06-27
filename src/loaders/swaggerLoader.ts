@@ -17,7 +17,7 @@ export const swaggerLoader: MicroframeworkLoader = (
 ) => {
   if (settings && env.swagger.enabled) {
     const expressApp = settings.getData('express_app');
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { validationMetadatas } = getFromContainer(MetadataStorage) as any;
 
     const schemas = validationMetadatasToSchemas(validationMetadatas, {

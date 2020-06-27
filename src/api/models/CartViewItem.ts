@@ -52,6 +52,7 @@ export class CartViewItem {
   @Column({ name: 'sku_code' })
   public skuCode: number;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToOne((type) => Order, (order) => order.cart)
   @JoinColumn({ name: 'order_id' })
   public order: Order;

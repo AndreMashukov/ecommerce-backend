@@ -13,6 +13,7 @@ describe('AuthService', () => {
   beforeEach(() => {
     log = new LogMock();
     userRepository = new RepositoryMock<User>();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     authService = new AuthService(log, userRepository as any);
   });
 

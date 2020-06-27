@@ -18,6 +18,7 @@ export class ErrorHandlerMiddleware implements ExpressErrorMiddlewareInterface {
     error: HttpError,
     req: express.Request,
     res: express.Response,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     next: express.NextFunction
   ): void {
     res.status(error.httpCode || 500);

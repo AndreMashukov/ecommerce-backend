@@ -2,6 +2,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertSaleDeliveryTable1592192439385
   implements MigrationInterface {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
     INSERT INTO b_sale_delivery (ID, NAME, LID, PERIOD_FROM, PERIOD_TO, PERIOD_TYPE, WEIGHT_FROM, WEIGHT_TO, ORDER_PRICE_FROM, ORDER_PRICE_TO, ORDER_CURRENCY, ACTIVE, PRICE, CURRENCY, SORT, DESCRIPTION, REGIONS) VALUES
@@ -12,6 +13,7 @@ export class InsertSaleDeliveryTable1592192439385
     `);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.clearTable('b_sale_delivery');
   }

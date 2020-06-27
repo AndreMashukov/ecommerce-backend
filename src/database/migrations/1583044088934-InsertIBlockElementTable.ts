@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertIBlockElementTable1583044088934 implements MigrationInterface {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
     INSERT INTO b_iblock_element (ID, TIMESTAMP_X, MODIFIED_BY, DATE_CREATE, CREATED_BY, IBLOCK_ID, IBLOCK_SECTION_ID, ACTIVE, ACTIVE_FROM, ACTIVE_TO, SORT, NAME, PREVIEW_PICTURE, PREVIEW_TEXT, PREVIEW_TEXT_TYPE, DETAIL_PICTURE, DETAIL_TEXT, DETAIL_TEXT_TYPE, SEARCHABLE_CONTENT, WF_STATUS_ID, WF_PARENT_ELEMENT_ID, WF_NEW, WF_LOCKED_BY, WF_DATE_LOCK, WF_COMMENTS, IN_SECTIONS, XML_ID, CODE, TAGS, TMP_ID, WF_LAST_HISTORY_ID, SHOW_COUNTER, SHOW_COUNTER_START) VALUES
@@ -475,7 +476,7 @@ export class InsertIBlockElementTable1583044088934 implements MigrationInterface
 
     await queryRunner.query(`delete from b_iblock_element where iblock_id=8;`);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.clearTable('b_iblock_element');
   }

@@ -45,6 +45,7 @@ export class UserController {
 
   @Get('/me')
   @ResponseSchema(UserResponse, { isArray: true })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public findMe(@Req() req: any): Promise<User[]> {
     return req.user;
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Query, Resolver } from 'type-graphql';
 import { Service } from 'typedi';
 
@@ -10,6 +11,7 @@ export class UserResolver {
   constructor(private userService: UserService) {}
 
   @Query((returns) => [User])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public users(): Promise<any> {
     return this.userService.find();
   }

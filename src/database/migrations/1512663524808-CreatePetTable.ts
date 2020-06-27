@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreatePetTable1512663524808 implements MigrationInterface {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     const table = new Table({
       name: 'pet',
@@ -36,7 +37,7 @@ export class CreatePetTable1512663524808 implements MigrationInterface {
     });
     await queryRunner.createTable(table);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable('pet');
   }

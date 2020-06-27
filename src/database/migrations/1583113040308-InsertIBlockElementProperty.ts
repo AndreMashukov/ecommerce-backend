@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertIBlockElementProperty1583113040308 implements MigrationInterface {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
     INSERT INTO b_iblock_element_property (ID, IBLOCK_PROPERTY_ID, IBLOCK_ELEMENT_ID, VALUE, VALUE_TYPE, VALUE_ENUM, VALUE_NUM, DESCRIPTION) VALUES
@@ -2115,7 +2116,7 @@ export class InsertIBlockElementProperty1583113040308 implements MigrationInterf
     (10276, 22, 1143, '999.00', 'text', 993, 999.0000, '');
     `);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.clearTable('b_iblock_element_property');
   }

@@ -198,7 +198,7 @@ export class CreateIBlockSectionTable1583035183362
       }
     ]
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`create table if not exists b_iblock_section (
     //   id int(11) not null auto_increment,
@@ -260,7 +260,7 @@ export class CreateIBlockSectionTable1583035183362
       })
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropIndex('b_iblock_section', 'ix_iblock_section_1');
     await queryRunner.dropIndex(

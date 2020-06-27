@@ -4,6 +4,7 @@ import * as uuid from 'uuid';
 
 import { User } from '../../../src/api/models/User';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 define(User, (faker: typeof Faker, settings: { role: string }) => {
     const gender = faker.random.number(1);
     const firstName = faker.name.firstName(gender);

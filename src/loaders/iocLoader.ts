@@ -5,6 +5,7 @@ import { useContainer as typeGraphQLUseContainer } from 'type-graphql';
 import { Container } from 'typedi';
 import { useContainer as ormUseContainer } from 'typeorm';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const iocLoader: MicroframeworkLoader = (settings: MicroframeworkSettings | undefined) => {
 
     /**

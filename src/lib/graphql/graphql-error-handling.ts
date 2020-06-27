@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 import * as uuid from 'uuid';
 

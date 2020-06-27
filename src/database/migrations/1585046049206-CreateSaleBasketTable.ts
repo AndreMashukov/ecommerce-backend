@@ -81,7 +81,7 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       }
     ]
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     //   create table if not exists b_sale_basket (
@@ -149,7 +149,7 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       })
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_session_id');
     await queryRunner.dropIndex('b_sale_basket', 'ixs_basket_order_id');

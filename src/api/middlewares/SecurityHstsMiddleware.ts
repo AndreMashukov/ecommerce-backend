@@ -8,6 +8,7 @@ export class SecurityHstsMiddleware implements ExpressMiddlewareInterface {
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): any {
     return helmet.hsts({
       maxAge: 31536000,

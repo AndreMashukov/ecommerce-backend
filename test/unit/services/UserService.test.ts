@@ -17,6 +17,7 @@ describe('UserService', () => {
         user.lastName = 'Doe';
         user.email = 'john.doe@test.com';
         repo.list = [user];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const userService = new UserService(repo as any, ed as any, log);
         const list = await userService.find();
         expect(list[0].firstName).toBe(user.firstName);
@@ -32,6 +33,7 @@ describe('UserService', () => {
         user.firstName = 'John';
         user.lastName = 'Doe';
         user.email = 'john.doe@test.com';
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const userService = new UserService(repo as any, ed as any, log);
         const newUser = await userService.create(user);
         expect(ed.dispatchMock).toBeCalledWith([events.user.created, newUser]);

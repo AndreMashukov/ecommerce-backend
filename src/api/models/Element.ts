@@ -54,6 +54,7 @@ export class Element {
   @Column({ name: 'detail_text_type' })
   public detailType: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToMany((type) => ElementProperty, (property) => property.element)
   public properties: ElementProperty[];
 }

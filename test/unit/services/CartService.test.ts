@@ -8,7 +8,7 @@ const SESSION_ID = 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx';
 const PRODUCT = {
   productId: 1426,
   blockId: 4,
-  price: 599.00,
+  price: 599.00
 };
 
 describe('CartService', () => {
@@ -24,6 +24,7 @@ describe('CartService', () => {
         cartItem.currency = 'RUB';
         cartItem.quantity = 1;
         repo.list = [cartItem];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const cartService = new CartService(repo as any, log);
         const list = await cartService.find();
         expect(list[0].productId).toBe(cartItem.productId);
@@ -42,6 +43,7 @@ describe('CartService', () => {
       cartItem.currency = 'RUB';
       cartItem.quantity = 1;
       repo.list = [cartItem];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const cartService = new CartService(repo as any, log);
       const list = await cartService.findBySessionId(SESSION_ID);
       expect(list[0].productId).toBe(cartItem.productId);

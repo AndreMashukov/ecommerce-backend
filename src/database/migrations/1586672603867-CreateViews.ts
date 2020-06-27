@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CreateViews1586672603867 implements MigrationInterface {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
       CREATE VIEW view_iblock_section AS
@@ -49,7 +50,7 @@ export class CreateViews1586672603867 implements MigrationInterface {
     `);
     // await queryRunner.query(`SELECT 1`);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropView('view_iblock_section');
     await queryRunner.dropView('view_iblock_element_property');

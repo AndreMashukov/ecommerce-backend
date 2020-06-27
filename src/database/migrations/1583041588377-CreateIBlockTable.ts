@@ -235,7 +235,7 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
       }
     ]
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.iBlockTable);
 
@@ -292,7 +292,7 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
     // ) default charset=cp1251 auto_increment=5;
     // `);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable('b_iblock');
   }

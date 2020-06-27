@@ -32,7 +32,9 @@ export const env = {
   isDevelopment: process.env.NODE_ENV === 'development',
   app: {
     name: getOsEnv('APP_NAME'),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     version: (pkg as any).version,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     description: (pkg as any).description,
     host: getOsEnv('APP_HOST'),
     schema: getOsEnv('APP_SCHEMA'),

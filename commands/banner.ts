@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import * as figlet from 'figlet';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 figlet.text(process.argv[2], (error: any, data: any) => {
     if (error) {
         return process.exit(1);

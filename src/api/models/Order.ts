@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IsNotEmpty, IsString } from 'class-validator';
 import {
   Column,

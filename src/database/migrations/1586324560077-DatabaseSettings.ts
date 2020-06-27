@@ -77,7 +77,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
     referencedTableName: 'b_iblock_category',
     onDelete: 'CASCADE'
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     // await queryRunner.query(`
     //   ALTER DATABASE bitrix
@@ -140,7 +140,7 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
       })
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropForeignKey('b_iblock_section', this.tableForeignKey);
     await queryRunner.dropForeignKey(

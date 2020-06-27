@@ -24,6 +24,7 @@ export class ElementProperty {
   @Column()
   public name: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToOne(type => Element, element => element.properties)
   @JoinColumn({ name: 'iblock_element_id' })
   public element: Element;

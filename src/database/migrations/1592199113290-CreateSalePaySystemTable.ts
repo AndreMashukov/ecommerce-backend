@@ -70,6 +70,7 @@ export class CreateSalePaySystemTable1592199113290
     onDelete: 'CASCADE'
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.salePaySystemTable);
     await queryRunner.createForeignKey(
@@ -83,6 +84,7 @@ export class CreateSalePaySystemTable1592199113290
     `);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable(this.salePaySystemTable);
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import DataLoader from 'dataloader';
 import { ObjectType } from 'typedi';
 import { getCustomRepository, getRepository, Repository } from 'typeorm';

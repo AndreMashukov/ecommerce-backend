@@ -30,7 +30,8 @@ export function getOsPaths(key: string): string[] {
     return getPaths(getOsEnvArray(key));
 }
 
-export function getOsEnvArray(key: string, delimiter: string = ','): string[] {
+// tslint:disable-next-line: typedef
+export function getOsEnvArray(key: string, delimiter = ','): string[] {
     return process.env[key] && process.env[key].split(delimiter) || [];
 }
 

@@ -8,6 +8,7 @@ declare type LoggerOptions = boolean | 'all' | Array<('query' | 'schema' | 'erro
 export const createDatabaseConnection = async (): Promise<Connection> => {
     useContainer(Container);
     const connection = await createConnection({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         type: env.db.type as any, // See createConnection options for valid types
         database: env.db.database,
         logging: env.db.logging as LoggerOptions,

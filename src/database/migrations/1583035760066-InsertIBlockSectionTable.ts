@@ -1,6 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertIBlockSectionTable1583035760066 implements MigrationInterface {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.query(`
     INSERT INTO b_iblock_section (ID, TIMESTAMP_X, MODIFIED_BY, DATE_CREATE, CREATED_BY, IBLOCK_ID, IBLOCK_SECTION_ID, ACTIVE, GLOBAL_ACTIVE, SORT, NAME, PICTURE, LEFT_MARGIN, RIGHT_MARGIN, DEPTH_LEVEL, DESCRIPTION, DESCRIPTION_TYPE, SEARCHABLE_CONTENT, CODE, XML_ID, TMP_ID, DETAIL_PICTURE, SOCNET_GROUP_ID) VALUES
@@ -137,7 +138,7 @@ export class InsertIBlockSectionTable1583035760066 implements MigrationInterface
     (48, 4, 57, 1);
     `);
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.clearTable('b_iblock_section');
     await queryRunner.clearTable('b_iblock_category');

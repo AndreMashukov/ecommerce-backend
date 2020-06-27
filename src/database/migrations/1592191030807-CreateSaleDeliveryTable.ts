@@ -124,6 +124,7 @@ export class CreateSaleDeliveryTable1592191030807
     onDelete: 'CASCADE'
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.saleDeliveryTable);
     await queryRunner.createForeignKey(
@@ -131,7 +132,7 @@ export class CreateSaleDeliveryTable1592191030807
       this.tableForeignKeyForOrder
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropTable(this.saleDeliveryTable);
   }

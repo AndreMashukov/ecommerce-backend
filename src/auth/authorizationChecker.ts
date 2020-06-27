@@ -5,7 +5,9 @@ import { Logger } from '../lib/logger';
 import { AuthService } from './AuthService';
 
 export function authorizationChecker(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   connection: Connection
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): (action: Action, roles: any[]) => Promise<boolean> | boolean {
   const log = new Logger(__filename);
   const authService = Container.get<AuthService>(AuthService);

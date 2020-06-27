@@ -4,7 +4,6 @@ import {
   Get,
   JsonController,
   Post,
-  Req,
   QueryParams,
   OnUndefined
 } from 'routing-controllers';
@@ -86,11 +85,11 @@ export class SaleUserController {
     return this.saleUserService.find();
   }
 
-  @Get('/me')
-  @ResponseSchema(UserResponse, { isArray: true })
-  public findMe(@Req() req: any): Promise<SaleUser[]> {
-    return req.user;
-  }
+  // @Get('/me')
+  // @ResponseSchema(UserResponse, { isArray: true })
+  // public findMe(@Req() req: any): Promise<SaleUser[]> {
+  //   return req.user;
+  // }
 
   @Get('/email')
   @OnUndefined(UserNotFoundError)

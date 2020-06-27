@@ -72,7 +72,7 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
     referencedTableName: 'b_user',
     onDelete: 'CASCADE'
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.orderTable);
     // await queryRunner.query(`ALTER TABLE b_sale_order MODIFY id INT AUTO_INCREMENT;`);
@@ -88,7 +88,7 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
       })
     );
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async down(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.dropIndex('b_sale_order', 'ixs_order_user_id');
     await queryRunner.dropTable('b_sale_order');

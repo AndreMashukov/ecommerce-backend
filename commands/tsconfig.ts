@@ -3,6 +3,7 @@ import * as path from 'path';
 
 import * as tsconfig from '../tsconfig.json';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const content: any = tsconfig;
 content.compilerOptions.outDir = '.tmp';
 content.include = [

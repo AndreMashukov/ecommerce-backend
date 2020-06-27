@@ -12,6 +12,7 @@ export const typeormLoader: MicroframeworkLoader = async (
   const loadedConnectionOptions = await getConnectionOptions();
 
   const connectionOptions = Object.assign(loadedConnectionOptions, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     type: env.db.type as any, // See createConnection options for valid types
     host: env.db.host,
     port: env.db.port,

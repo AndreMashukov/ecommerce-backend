@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { EventDispatcher as EventDispatcherClass } from 'event-dispatch';
 import { Container } from 'typedi';
 

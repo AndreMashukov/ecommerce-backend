@@ -88,6 +88,7 @@ export class CartService {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public delete(sessionId: string, productId: number): Promise<any> {
     return this.cartRepository.delete({
       sessionId,
