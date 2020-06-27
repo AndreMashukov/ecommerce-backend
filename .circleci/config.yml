@@ -6,9 +6,9 @@ jobs:
       - checkout
       - run: echo "npm installing"
       - restore_cache: null
-        keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
       - run: yarn presetup
       # - save_cache: null
       #   paths:
