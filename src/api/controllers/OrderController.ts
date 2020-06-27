@@ -83,6 +83,7 @@ export class OrderController {
     order.dateUpdate = currentDate;
     order.deliveryId = body.deliveryId;
     order.paySystemId = body.paySystemId;
+    order.payed = 'N';
     order.price = body.price;
     if (body.comment.length > 0) {
       order.comment = body.comment;

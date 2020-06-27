@@ -1,4 +1,10 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex, TableForeignKey } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableIndex,
+  TableForeignKey
+} from 'typeorm';
 
 export class CreateOrderTable1590818910889 implements MigrationInterface {
   public orderTable = new Table({
@@ -61,6 +67,17 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
         name: 'props',
         type: 'json',
         isNullable: true
+      },
+      {
+        name: 'payed',
+        type: 'char',
+        length: '1',
+        isNullable: false
+      },
+      {
+        name: 'date_payed',
+        type: 'datetime',
+        isNullable: true
       }
     ]
   });
@@ -75,7 +92,9 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.orderTable);
-    // await queryRunner.query(`ALTER TABLE b_sale_order MODIFY id INT AUTO_INCREMENT;`);
+    await queryRunner.query(
+      `ALTER TABLE b_sale_order MODIFY id INT AUTO_INCREMENT;`
+    );
     await queryRunner.createForeignKey(
       'b_sale_order',
       this.tableForeignKeyForOrder

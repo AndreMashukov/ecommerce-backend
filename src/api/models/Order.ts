@@ -54,6 +54,13 @@ export class Order {
   @Column({type: 'json'})
   public props: OrderProps;
 
+  @IsNotEmpty()
+  @Column()
+  public payed: string;
+
+  @Column({ name: 'date_payed' })
+  public datePayed: string;
+
   @OneToMany((type) => CartViewItem, (cart) => cart.order)
   public cart: CartViewItem[];
 
