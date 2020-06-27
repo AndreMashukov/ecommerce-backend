@@ -8,8 +8,19 @@
         - checkout
         - 
           run: "echo \"npm installing\""
-        - 
-          run: "yarn install"
+      # Download and cache dependencies
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn presetup
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
     test: 
       docker: 
         - 
@@ -18,8 +29,19 @@
         - checkout
         - 
           run: "echo \"run testing\""
-        - 
-          run: "sudo yarn presetup"
+        # Download and cache dependencies
+        - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+        - run: yarn presetup
+
+        - save_cache:
+            paths:
+              - node_modules
+            key: v1-dependencies-{{ checksum "package.json" }}
         - 
           run: "yarn lint"
         - 
