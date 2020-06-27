@@ -5,15 +5,15 @@ jobs:
     steps:
       - checkout
       - run: echo "npm installing"
-      - restore_cache: null
-        keys:
-          - 'v1-dependencies-{{ checksum "package.json" }}'
-          - v1-dependencies-
+      # - restore_cache: null
+      #   keys:
+      #     - 'v1-dependencies-{{ checksum "package.json" }}'
+      #     - v1-dependencies-
       - run: yarn presetup
-      - save_cache: null
-        paths:
-          - node_modules
-        key: 'v1-dependencies-{{ checksum "package.json" }}'
+      # - save_cache: null
+      #   paths:
+      #     - node_modules
+      #   key: 'v1-dependencies-{{ checksum "package.json" }}'
   test:
     docker:
       - image: 'circleci/node:current'
