@@ -21,6 +21,11 @@ class GetOrderQuery {
   public userId: string;
 }
 
+class GetOrderListQuery {
+  @IsNotEmpty()
+  public userId: string;
+}
+
 class CreateOrderBody {
   @IsNotEmpty()
   public userId: string;
@@ -60,13 +65,14 @@ export class OrderController {
   constructor(private orderService: OrderService) {}
 
   @Get('/list')
-  @ResponseSchema(OrderResponse, { isArray: true })
-  public find(): Promise<Order[]> {
-    return this.orderService.find();
+  public async getByUserId(
+    @QueryParams() query: GetOrderListQuery
+  ): Promise<{orders: Order[]}> {
+    const list = await this.orderService.findManyByUserId(query.userId);
+    return {orders: list};
   }
 
   @Get()
-  // @ResponseSchema(OrderResponse)
   public getByIdAndUserId(@QueryParams() query: GetOrderQuery): Promise<Order> {
     return this.orderService.findOneByIdAndUserId(query.id, query.userId);
   }

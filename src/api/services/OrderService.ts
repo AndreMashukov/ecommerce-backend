@@ -21,6 +21,15 @@ export class OrderService {
     return this.orderRepository.findOne({ id });
   }
 
+  public findManyByUserId(
+    userId: string
+  ): Promise<Order[] | undefined> {
+    return this.orderRepository.find({
+      relations: ['cart', 'user', 'delivery', 'paySystem'],
+      where: { userId }
+    });
+  }
+
   public findOneByIdAndUserId(
     id: number,
     userId: string
