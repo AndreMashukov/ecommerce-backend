@@ -83,5 +83,5 @@ export class Order {
 
   @OneToOne((type) => OrderStatus)
   @JoinColumn({ name: 'status_id' })
-  public status: OrderStatus;
+  public orderStatus: OrderStatus;
 }

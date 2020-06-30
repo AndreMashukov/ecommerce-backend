@@ -7,7 +7,8 @@ import { CartRepository } from '../repositories/CartRepository';
 
 @Service()
 export class OrderService {
-  public relations = ['cart', 'user', 'delivery', 'paySystem', 'status'];
+  public relations = ['cart', 'user', 'delivery', 'paySystem', 'orderStatus'];
+
   constructor(
     @OrmRepository() private orderRepository: OrderRepository,
     @OrmRepository() private cartRepository: CartRepository,
