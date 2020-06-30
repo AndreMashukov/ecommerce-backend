@@ -25,6 +25,12 @@ export class CreateOrderTable1590818910889 implements MigrationInterface {
         isNullable: false
       },
       {
+        name: 'status_id',
+        type: 'char',
+        length: '1',
+        isNullable: false
+      },
+      {
         name: 'date_status',
         type: 'datetime',
         isNullable: false

@@ -7,6 +7,7 @@ import { CartRepository } from '../repositories/CartRepository';
 
 @Service()
 export class OrderService {
+  public relations = ['cart', 'user', 'delivery', 'paySystem', 'status'];
   constructor(
     @OrmRepository() private orderRepository: OrderRepository,
     @OrmRepository() private cartRepository: CartRepository,
@@ -25,7 +26,7 @@ export class OrderService {
     userId: string
   ): Promise<Order[] | undefined> {
     return this.orderRepository.find({
-      relations: ['cart', 'user', 'delivery', 'paySystem'],
+      relations: this.relations,
       where: { userId }
     });
   }
@@ -35,7 +36,7 @@ export class OrderService {
     userId: string
   ): Promise<Order | undefined> {
     return this.orderRepository.findOne({
-      relations: ['cart', 'user', 'delivery', 'paySystem'],
+      relations: this.relations,
       where: { id, userId }
     });
   }

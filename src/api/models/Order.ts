@@ -11,6 +11,7 @@ import {
 import { CartViewItem } from './CartViewItem';
 import { SaleUser } from './SaleUser';
 import { OrderProps } from './OrderProps';
+import { OrderStatus } from './OrderStatus';
 import { Delivery } from './Delivery';
 import { PaySystem } from './PaySystem';
 
@@ -22,6 +23,10 @@ export class Order {
   @IsNotEmpty()
   @Column({ name: 'user_id' })
   public userId: string;
+
+  @IsNotEmpty()
+  @Column({ name: 'status_id' })
+  public statusId: string;
 
   @IsNotEmpty()
   @Column({ name: 'date_status' })
@@ -75,4 +80,8 @@ export class Order {
   @OneToOne((type) => PaySystem)
   @JoinColumn({ name: 'pay_system_id' })
   public paySystem: PaySystem;
+
+  @OneToOne((type) => OrderStatus)
+  @JoinColumn({ name: 'status_id' })
+  public status: OrderStatus;
 }

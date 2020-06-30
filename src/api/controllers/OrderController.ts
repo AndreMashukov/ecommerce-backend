@@ -90,6 +90,7 @@ export class OrderController {
     order.deliveryId = body.deliveryId;
     order.paySystemId = body.paySystemId;
     order.payed = 'N';
+    order.statusId = 'N';
     order.price = body.price;
     if (body.comment.length > 0) {
       order.comment = body.comment;
