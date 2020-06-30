@@ -28,7 +28,8 @@ export class OrderService {
   ): Promise<Order[] | undefined> {
     return this.orderRepository.find({
       relations: this.relations,
-      where: { userId }
+      where: { userId },
+      take: 10
     });
   }
 
