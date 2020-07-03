@@ -37,7 +37,10 @@ export class SaleUserService {
     });
   }
 
-  public findOneByRefreshToken(userId: string, refreshToken: string): Promise<SaleUser | undefined> {
+  public findOneByRefreshToken(
+    userId: string,
+    refreshToken: string
+  ): Promise<SaleUser | undefined> {
     return this.saleUserRepository.findOne({
       where: {
         id: userId,
@@ -65,8 +68,39 @@ export class SaleUserService {
     return newUser;
   }
 
-  public update(id: string, user: SaleUser): Promise<SaleUser> {
-    this.log.info('Update a user');
+  public async updateName(
+    id: string,
+    firstName: string,
+    lastName: string
+  ): Promise<SaleUser> {
+    const user = await this.saleUserRepository.findOne({
+      where: {
+        id
+      }
+    });
+
+    user.firstName = firstName;
+    user.lastName = lastName;
+
+    return this.update(id, user);
+  }
+
+  public async updatePassword(
+    id: string,
+    password: string
+  ): Promise<SaleUser> {
+    const user = await this.saleUserRepository.findOne({
+      where: {
+        id
+      }
+    });
+    user.password = password;
+
+    return this.update(id, user);
+  }
+
+  public update(id: string, user: Partial<SaleUser>): Promise<SaleUser> {
+    this.log.info('Update a user', id);
     user.id = id;
     return this.saleUserRepository.save(user);
   }
