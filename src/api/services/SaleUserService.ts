@@ -94,7 +94,7 @@ export class SaleUserService {
         id
       }
     });
-    user.password = password;
+    user.password = await SaleUser.hashPassword(password);
 
     return this.update(id, user);
   }
