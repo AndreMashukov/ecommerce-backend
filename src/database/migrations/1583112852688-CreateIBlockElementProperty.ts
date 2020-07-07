@@ -8,22 +8,22 @@ export class CreateIBlockElementProperty1583112852688
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true
-        // generationStrategy: 'increment',
+        isGenerated: true,
+        generationStrategy: 'increment'
       },
       {
         name: 'iblock_property_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
         name: 'iblock_element_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
@@ -40,7 +40,7 @@ export class CreateIBlockElementProperty1583112852688
       {
         name: 'value_enum',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {

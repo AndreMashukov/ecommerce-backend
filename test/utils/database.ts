@@ -12,8 +12,10 @@ export const createDatabaseConnection = async (): Promise<Connection> => {
         type: env.db.type as any, // See createConnection options for valid types
         database: env.db.database,
         logging: env.db.logging as LoggerOptions,
+        username: env.db.username,
+        password: env.db.password,
         entities: env.app.dirs.entities,
-        migrations: env.app.dirs.migrations,
+        migrations: env.app.dirs.migrations
     });
     return connection;
 };

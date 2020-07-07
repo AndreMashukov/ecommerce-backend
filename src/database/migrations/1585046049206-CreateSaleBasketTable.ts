@@ -7,11 +7,11 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true
-        // generationStrategy: 'increment',
+        isGenerated: true,
+        generationStrategy: 'increment'
       },
       {
         name: 'session_id',
@@ -22,7 +22,7 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       {
         name: 'order_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -34,19 +34,19 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       {
         name: 'iblock_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
         name: 'product_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
         name: 'product_price_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -63,14 +63,13 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
       },
       {
         name: 'weight',
-        type: 'double',
+        type: 'decimal',
         length: '18,2',
         isNullable: true
       },
       {
         name: 'quantity',
-        type: 'double',
-        length: '18,2',
+        type: 'int',
         isNullable: false
       },
       {

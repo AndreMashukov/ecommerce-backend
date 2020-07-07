@@ -13,12 +13,12 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
       },
       {
         name: 'date_insert',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: false
       },
       {
         name: 'date_update',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: false
       },
       {
@@ -34,8 +34,8 @@ export class CreateSaleFuserTable1585043806380 implements MigrationInterface {
     // await queryRunner.query(`
     //   create table if not exists b_sale_fuser (
     //     id int(11) not null auto_increment,
-    //     date_insert datetime not null,
-    //     date_update datetime not null,
+    //     date_insert time not null,
+    //     date_update time not null,
     //     user_id int(11) default null,
     //     primary key  (id),
     //     key ix_user_id (user_id)

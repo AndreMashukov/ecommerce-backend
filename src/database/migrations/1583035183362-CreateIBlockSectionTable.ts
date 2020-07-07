@@ -8,7 +8,7 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
         isGenerated: true
@@ -29,7 +29,7 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
         isGenerated: true
@@ -38,19 +38,19 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'iblock_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
         name: 'iblock_section_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
         name: 'category_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       }
     ]
@@ -62,7 +62,7 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
         isGenerated: true
@@ -76,30 +76,30 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'modified_by',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'date_create',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: true
       },
       {
         name: 'created_by',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'iblock_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
         name: 'iblock_section_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -117,7 +117,7 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'sort',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
         // default: '500',
       },
@@ -130,25 +130,25 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'picture',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'left_margin',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'right_margin',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'depth_level',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
@@ -187,13 +187,13 @@ export class CreateIBlockSectionTable1583035183362
       {
         name: 'detail_picture',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'socnet_group_id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       }
     ]
@@ -204,7 +204,7 @@ export class CreateIBlockSectionTable1583035183362
     //   id int(11) not null auto_increment,
     //   timestamp_x timestamp not null default current_timestamp on update current_timestamp,
     //   modified_by int(18) default null,
-    //   date_create datetime default null,
+    //   date_create time default null,
     //   created_by int(18) default null,
     //   iblock_id int(11) not null,
     //   iblock_section_id int(11) default null,

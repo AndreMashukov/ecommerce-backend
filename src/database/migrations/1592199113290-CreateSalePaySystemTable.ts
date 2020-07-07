@@ -13,10 +13,11 @@ export class CreateSalePaySystemTable1592199113290
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true
+        isGenerated: true,
+        generationStrategy: 'increment'
       },
       {
         name: 'name',
@@ -45,7 +46,7 @@ export class CreateSalePaySystemTable1592199113290
       {
         name: 'sort',
         type: 'int',
-        length: '1',
+        // length: '1',
         isNullable: true
       },
       {

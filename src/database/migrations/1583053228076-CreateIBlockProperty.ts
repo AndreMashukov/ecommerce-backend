@@ -7,11 +7,11 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true
-        // generationStrategy: 'increment',
+        isGenerated: true,
+        generationStrategy: 'increment'
       },
       {
         name: 'timestamp_x',
@@ -21,7 +21,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       {
         name: 'iblock_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
@@ -38,7 +38,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       {
         name: 'sort',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
@@ -61,13 +61,13 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       {
         name: 'row_count',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
         name: 'col_count',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
@@ -97,7 +97,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       {
         name: 'multiple_cnt',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -109,7 +109,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       {
         name: 'link_iblock_id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
@@ -139,7 +139,7 @@ export class CreateIBlockProperty1583053228076 implements MigrationInterface {
       {
         name: 'version',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {

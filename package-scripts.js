@@ -176,7 +176,7 @@ module.exports = {
                     hiddenFromHelp: true
                 },
                 run: {
-                    script: 'cross-env NODE_ENV=test jest --testPathPattern=unit',
+                    script: 'cross-env NODE_ENV=test jest --testPathPattern=unit --detectOpenHandles',
                     hiddenFromHelp: true
                 },
                 verbose: {
@@ -203,7 +203,7 @@ module.exports = {
                 },
                 run: {
                     // -i. Run all tests serially in the current process, rather than creating a worker pool of child processes that run tests. This can be useful for debugging.
-                    script: 'cross-env NODE_ENV=test jest --testPathPattern=integration -i',
+                    script: 'cross-env NODE_ENV=test jest --testPathPattern=integration -i --runInBand --detectOpenHandles --forceExit',
                     hiddenFromHelp: true
                 },
                 verbose: {
@@ -230,7 +230,7 @@ module.exports = {
                 },
                 run: {
                     // -i. Run all tests serially in the current process, rather than creating a worker pool of child processes that run tests. This can be useful for debugging.
-                    script: 'cross-env NODE_ENV=test jest --testPathPattern=e2e -i',
+                    script: 'cross-env NODE_ENV=test jest --testPathPattern=e2e -i --runInBand --detectOpenHandles --forceExit',
                     hiddenFromHelp: true
                 },
                 verbose: {
@@ -277,9 +277,9 @@ function copyDir(source, target) {
     return `ncp ${source} ${target}`;
 }
 
-function run(path) {
-    return `ts-node ${path}`;
-}
+// function run(path) {
+//     return `ts-node ${path}`;
+// }
 
 function runFast(path) {
     return `ts-node --transpileOnly ${path}`;

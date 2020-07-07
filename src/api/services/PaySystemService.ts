@@ -15,7 +15,7 @@ export class PaySystemService {
     return this.paySystemRepository
       .createQueryBuilder('pay_system')
       .select()
-      .where(`JSON_SEARCH(regions->>"$.values",'one',${regionId}) is not null`)
+      .where(`regions->>'values' like '%${regionId}%'`)
       .andWhere(`active = 'Y'`)
       .execute();
   }

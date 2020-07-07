@@ -7,11 +7,11 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true
-        // generationStrategy: 'increment',
+        isGenerated: true,
+        generationStrategy: 'increment'
       },
       {
         name: 'timestamp_x',
@@ -50,7 +50,7 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
       {
         name: 'sort',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
         // default: '500',
       },
@@ -75,7 +75,7 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
       {
         name: 'picture',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
@@ -92,7 +92,7 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
       {
         name: 'rss_ttl',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -110,13 +110,13 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
       {
         name: 'rss_file_limit',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
         name: 'rss_file_days',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -176,19 +176,19 @@ export class CreateIBlockTable1583041588377 implements MigrationInterface {
       {
         name: 'version',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
         name: 'last_conv_element',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
         name: 'socnet_group_id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {

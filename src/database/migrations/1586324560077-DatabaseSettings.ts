@@ -79,24 +79,28 @@ export class DatabaseSettings1586324560077 implements MigrationInterface {
   });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async up(queryRunner: QueryRunner): Promise<any> {
-    await queryRunner.query(`
-      ALTER DATABASE bitrix
-        CHARACTER SET cp1251
-        COLLATE cp1251_general_ci
-    `);
+    // await queryRunner.query(`
+    //   ALTER DATABASE bitrix
+    //     CHARACTER SET cp1251
+    //     COLLATE cp1251_general_ci
+    // `);
+
+    // await queryRunner.query(`
+    //   SET SESSION time_zone = "+3:00";
+    // `);
 
     await queryRunner.query(`
-      SET SESSION time_zone = "+3:00";
+      SET TIMEZONE = +3;
     `);
 
-    await queryRunner.query(`ALTER TABLE b_iblock MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.query(`ALTER TABLE b_iblock_element MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.query(`ALTER TABLE b_iblock_element_property MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.query(`ALTER TABLE b_iblock_property MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.query(`ALTER TABLE b_iblock_section MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.query(`ALTER TABLE b_iblock_section_category MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.query(`ALTER TABLE b_iblock_category MODIFY id INT AUTO_INCREMENT;`);
-    await queryRunner.query(`ALTER TABLE b_sale_basket MODIFY id INT AUTO_INCREMENT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock ALTER COLUMN id BIGINT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_element ALTER COLUMN id BIGINT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_element_property ALTER COLUMN id BIGINT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_property ALTER COLUMN id BIGINT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_section ALTER COLUMN id BIGINT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_section_category ALTER COLUMN id BIGINT;`);
+    // await queryRunner.query(`ALTER TABLE b_iblock_category ALTER COLUMN id BIGINT;`);
+    // await queryRunner.query(`ALTER TABLE b_sale_basket ALTER COLUMN id BIGINT;`);
 
     await queryRunner.createForeignKey(
       'b_iblock_section',

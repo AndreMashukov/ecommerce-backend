@@ -8,11 +8,11 @@ export class CreateIBlockElementTable1583043930098
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true
-        // generationStrategy: 'increment',
+        isGenerated: true,
+        generationStrategy: 'increment'
       },
       {
         name: 'timestamp_x',
@@ -22,30 +22,30 @@ export class CreateIBlockElementTable1583043930098
       {
         name: 'modified_by',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'date_create',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: true
       },
       {
         name: 'created_by',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'iblock_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
         name: 'iblock_section_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -56,18 +56,18 @@ export class CreateIBlockElementTable1583043930098
       },
       {
         name: 'active_from',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: true
       },
       {
         name: 'active_to',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: true
       },
       {
         name: 'sort',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: false
       },
       {
@@ -79,7 +79,7 @@ export class CreateIBlockElementTable1583043930098
       {
         name: 'preview_picture',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
@@ -96,12 +96,12 @@ export class CreateIBlockElementTable1583043930098
       {
         name: 'detail_picture',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'detail_text',
-        type: 'longtext',
+        type: 'text',
         isNullable: true
       },
       {
@@ -118,13 +118,13 @@ export class CreateIBlockElementTable1583043930098
       {
         name: 'wf_status_id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'wf_parent_element_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -136,12 +136,12 @@ export class CreateIBlockElementTable1583043930098
       {
         name: 'wf_locked_by',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'wf_date_lock',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: true
       },
       {
@@ -182,18 +182,18 @@ export class CreateIBlockElementTable1583043930098
       {
         name: 'wf_last_history_id',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
         name: 'show_counter',
         type: 'int',
-        length: '18',
+        // length: '18',
         isNullable: true
       },
       {
         name: 'show_counter_start',
-        type: 'datetime',
+        type: 'timestamp',
         isNullable: true
       }
     ]
@@ -203,15 +203,15 @@ export class CreateIBlockElementTable1583043930098
     // await queryRunner.query(`
     // create table if not exists b_iblock_element (
     //   id int(11) not null auto_increment,
-    //   timestamp_x datetime default null,
+    //   timestamp_x time default null,
     //   modified_by int(18) default null,
-    //   date_create datetime default null,
+    //   date_create time default null,
     //   created_by int(18) default null,
     //   iblock_id int(11) not null default '0',
     //   iblock_section_id int(11) default null,
     //   active char(1) not null default 'y',
-    //   active_from datetime default null,
-    //   active_to datetime default null,
+    //   active_from time default null,
+    //   active_to time default null,
     //   sort int(11) not null default '500',
     //   name varchar(255) not null,
     //   preview_picture int(18) default null,
@@ -225,7 +225,7 @@ export class CreateIBlockElementTable1583043930098
     //   wf_parent_element_id int(11) default null,
     //   wf_new char(1) default null,
     //   wf_locked_by int(18) default null,
-    //   wf_date_lock datetime default null,
+    //   wf_date_lock time default null,
     //   wf_comments text,
     //   in_sections char(1) not null default 'n',
     //   xml_id varchar(255) default null,
@@ -234,7 +234,7 @@ export class CreateIBlockElementTable1583043930098
     //   tmp_id varchar(40) default null,
     //   wf_last_history_id int(11) default null,
     //   show_counter int(18) default null,
-    //   show_counter_start datetime default null,
+    //   show_counter_start time default null,
     //   primary key  (id),
     //   key ix_iblock_element_1 (iblock_id,iblock_section_id),
     //   key ix_iblock_element_4 (iblock_id,xml_id,wf_parent_element_id),

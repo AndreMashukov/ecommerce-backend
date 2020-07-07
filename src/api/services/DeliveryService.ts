@@ -13,7 +13,7 @@ export class DeliveryService {
     return this.deliveryRepository
       .createQueryBuilder('delivery')
       .select()
-      .where(`JSON_SEARCH(regions->>"$.values",'one',${regionId}) is not null`)
+      .where(`regions->>'values' like '%${regionId}%'`)
       .andWhere(`order_price_from <= ${orderPrice}`)
       .andWhere(`order_price_to > ${orderPrice}`)
       .andWhere(`active = 'Y'`)

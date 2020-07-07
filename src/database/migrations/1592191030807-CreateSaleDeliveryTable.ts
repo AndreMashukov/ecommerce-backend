@@ -13,10 +13,11 @@ export class CreateSaleDeliveryTable1592191030807
       {
         name: 'id',
         type: 'int',
-        length: '18',
+        // length: '18',
         isPrimary: true,
         isNullable: false,
-        isGenerated: true
+        isGenerated: true,
+        generationStrategy: 'increment'
       },
       {
         name: 'name',
@@ -33,13 +34,13 @@ export class CreateSaleDeliveryTable1592191030807
       {
         name: 'period_from',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
         name: 'period_to',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -51,13 +52,13 @@ export class CreateSaleDeliveryTable1592191030807
       {
         name: 'weight_from',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
         name: 'weight_to',
         type: 'int',
-        length: '11',
+        // length: '11',
         isNullable: true
       },
       {
@@ -99,7 +100,7 @@ export class CreateSaleDeliveryTable1592191030807
       {
         name: 'sort',
         type: 'int',
-        length: '1',
+        // length: '1',
         isNullable: true
       },
       {
