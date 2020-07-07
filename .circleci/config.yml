@@ -1,5 +1,6 @@
 jobs:
   build:
+    machine: true
     docker:
       - image: 'circleci/node:current'  
     steps:
@@ -14,6 +15,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: docker build - < Dockerfile
   test:
     docker:
       - image: 'circleci/node:current'
