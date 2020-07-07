@@ -12,7 +12,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
     "docker:build": "docker build -t andreymashukov/ecommerce-backend:latest .",
     "docker:login": "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD",
-    "docker:push": "docker push andreymashukov/ecommerce-backend:latest",
+    // "docker:push": "docker push andreymashukov/ecommerce-backend:latest",
     "ci:docker": "npm run docker:build && npm run docker:login && npm run docker:push"
   },
   "engines": {
