@@ -9,7 +9,6 @@
       "strict": true,
       "noImplicitAny": false,
       "strictNullChecks": false,
-      "experimentalDecorators": true,
       "allowJs": true,
       "noImplicitThis": true,
       "alwaysStrict": true,
