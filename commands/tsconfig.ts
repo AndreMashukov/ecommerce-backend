@@ -7,7 +7,7 @@ import * as tsconfig from '../tsconfig.json';
 const content: any = tsconfig;
 content.compilerOptions.outDir = '.tmp';
 content.include = [
-    'src/**/*',
+    'src/**/*'
 ];
 
 const filePath = path.join(process.cwd(), 'tsconfig.build.json');
