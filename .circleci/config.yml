@@ -2,6 +2,11 @@ jobs:
   build:
     docker:
       - image: 'circleci/node:current'
+      - image: circleci/postgres:11-alpine-ram
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: bitrix_test      
     steps:
       - checkout
       - run: echo "npm installing"
