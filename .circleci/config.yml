@@ -1,12 +1,7 @@
 jobs:
   build:
     docker:
-      - image: 'circleci/node:current'
-      - image: circleci/postgres:11-alpine-ram
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: root
-          POSTGRES_DB: bitrix_test      
+      - image: 'circleci/node:current'  
     steps:
       - checkout
       - run: echo "npm installing"
@@ -22,6 +17,11 @@ jobs:
   test:
     docker:
       - image: 'circleci/node:current'
+      - image: circleci/postgres:11-alpine-ram
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: bitrix_test
     steps:
       - checkout
       - run: echo "run testing"
@@ -35,6 +35,14 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn lint
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="18.06.3-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
       - run: yarn test
 version: 2.1
 workflows:
