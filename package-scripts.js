@@ -161,7 +161,7 @@ module.exports = {
          * These run various kinds of tests. Default is unit.
          */
         test: {
-            default: 'nps test.unit',
+            default: 'nps test.unit && nps test.integration && nps test.e2e',
             unit: {
                 default: {
                     script: series(
