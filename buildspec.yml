@@ -18,4 +18,5 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 664947791947.dkr.ecr.eu-central-1.amazonaws.com/ecommerce-backend/ecommerce-backend:latest
+      - docker push 664947791947.dkr.ecr.eu-central-1.amazonaws.com/ecommerce-backend:latest
+      # docker push 123456789012.dkr.ecr.eu-central-1.amazonaws.com/randserver:0.0.1
