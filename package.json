@@ -14,7 +14,7 @@
     "docker:login": "echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin",
     "docker:push": "docker push andreymashukov/ecommerce-backend:latest",
     "ci:docker": "npm run docker:build && npm run docker:login && npm run docker:push",
-    "aws:login": "ssh -i ec2-user@ec2-35-158-128-18.eu-central-1.compute.amazonaws.com",
+    "aws:login": "ssh -i a8:ad:61:7b:b9:07:03:d1:6e:64:3c:70:47:7f:81:7c ec2-user@ec2-35-158-128-18.eu-central-1.compute.amazonaws.com",
     "aws:deploy": "npm run aws:login"
   },
   "engines": {
