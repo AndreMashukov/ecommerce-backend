@@ -4637,7 +4637,7 @@ ncp@2.0.0, ncp@^2.0.0:
   resolved "https://registry.yarnpkg.com/ncp/-/ncp-2.0.0.tgz#195a21d6c46e361d2fb1281ba38b91e9df7bdbb3"
   integrity sha1-GVoh1sRuNh0vsSgbo4uR6d9727M=
 
-needle@^2.2.1, needle@^2.5.0:
+needle@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/needle/-/needle-2.5.0.tgz#e6fc4b3cc6c25caed7554bd613a5cf0bac8c31c0"
   integrity sha512-o/qITSDR0JCyCKEQ1/1bnUXMmznxabbwi/Y4WwJElf+evwJNFNwIDMCCt5IigFVxgeGBJESLohGtIS9gEzo1fA==
@@ -4724,22 +4724,6 @@ node-pre-gyp@0.15.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4.4.2"
-
-node-pre-gyp@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.11.0.tgz#db1f33215272f692cd38f03238e3e9b47c5dd054"
-  integrity sha512-TwWAOZb0j7e9eGaf9esRx3ZcLaE5tQ2lvYy1pb5IAaG1a2e2Kv5Lms1Y4hpj+ciXJRofIxxlt5haeQ/2ANeE0Q==
-  dependencies:
-    detect-libc "^1.0.2"
-    mkdirp "^0.5.1"
-    needle "^2.2.1"
-    nopt "^4.0.1"
-    npm-packlist "^1.1.6"
-    npmlog "^4.0.2"
-    rc "^1.2.7"
-    rimraf "^2.6.1"
-    semver "^5.3.0"
-    tar "^4"
 
 nodemon@^1.12.1:
   version "1.19.4"
@@ -6322,14 +6306,6 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sqlite3@^4.0.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-4.2.0.tgz#49026d665e9fc4f922e56fb9711ba5b4c85c4901"
-  integrity sha512-roEOz41hxui2Q7uYnWsjMOTry6TcNUNmp8audCx18gF10P2NknwdpF+E+HKvz/F2NvPKGGBF4NGc+ZPQ+AABwg==
-  dependencies:
-    nan "^2.12.1"
-    node-pre-gyp "^0.11.0"
-
 sqlstring@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/sqlstring/-/sqlstring-2.3.1.tgz#475393ff9e91479aea62dcaf0ca3d14983a7fb40"
@@ -6613,7 +6589,7 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
-tar@^4, tar@^4.4.2:
+tar@^4.4.2:
   version "4.4.13"
   resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.13.tgz#43b364bc52888d555298637b10d60790254ab525"
   integrity sha512-w2VwSrBoHa5BsSyH+KxEqeQBAllHhccyMFVHtGtdMpF4W7IRWfZjFiQceJPChOeTsSDVUpER2T8FA93pr0L+QA==
