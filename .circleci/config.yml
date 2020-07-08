@@ -17,6 +17,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true    
       - run: yarn ci:docker
+      - run: yarn aws:deploy
   test:
     docker:
       - image: 'circleci/node:current'
