@@ -14,13 +14,9 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      # - setup_remote_docker:
-      #     docker_layer_caching: true    
-      # - run: yarn ci:docker
-      - add_ssh_keys:
-          fingerprints:
-            a8:ad:61:7b:b9:07:03:d1:6e:64:3c:70:47:7f:81:7c
-      - run: yarn aws:deploy
+      - setup_remote_docker:
+          docker_layer_caching: true    
+      - run: yarn ci:docker
   test:
     docker:
       - image: 'circleci/node:current'
