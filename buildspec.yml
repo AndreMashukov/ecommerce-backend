@@ -13,7 +13,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t ecommerce-backend:latest .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
+      - docker tag ecommerce-backend:latest 664947791947.dkr.ecr.eu-central-1.amazonaws.com/ecommerce-backend:latest      
   post_build:
     commands:
       - echo Build completed on `date`
