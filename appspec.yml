@@ -7,7 +7,7 @@ hooks:
   ApplicationStop:
     - location: scripts/kill_container.sh
       timeout: 20
-      runas: ec2-user
+      runas: root
   AfterInstall:
     - location: scripts/after_install.sh
       timeout: 300
