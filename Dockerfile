@@ -11,11 +11,10 @@ COPY . /usr/src/app
 
 # Install app dependencies
 RUN yarn install
-RUN yarn install forever -g
 
 WORKDIR /usr/src/app
 RUN wget https://s6pfsyn4tusk5yap.s3.eu-central-1.amazonaws.com/config/ecommerce-backend/env.production
 RUN mv env.production .env
 
 # Build and run the app
-CMD forever serve
+CMD ./node_modules/.bin/pm2 start npm -- start serve
