@@ -17,4 +17,4 @@ RUN wget https://s6pfsyn4tusk5yap.s3.eu-central-1.amazonaws.com/config/ecommerce
 RUN mv env.production .env
 
 # Build and run the app
-CMD ./node_modules/.bin/pm2 start npm -- start serve
+CMD ./node_modules/.bin/pm2-docker start npm -- start serve
