@@ -13,7 +13,7 @@ COPY . /usr/src/app
 RUN yarn install
 
 WORKDIR /usr/src/app
-RUN wget https://s6pfsyn4tusk5yap.s3.eu-central-1.amazonaws.com/config/env.production
+RUN wget https://s6pfsyn4tusk5yap.s3.eu-central-1.amazonaws.com/config/ecommerce-backend/env.production
 RUN mv env.production .env
 
 # Build and run the app
