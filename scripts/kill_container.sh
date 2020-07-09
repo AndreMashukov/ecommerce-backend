@@ -2,4 +2,4 @@
 echo "Stopping and removing the running container"
 cd ~
 docker stop -a
-docker image rm -a
+docker image rm -f -a
