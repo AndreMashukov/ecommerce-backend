@@ -61,6 +61,7 @@
     "nps": "^5.9.3",
     "nps-utils": "^1.5.0",
     "pg": "^8.2.1",
+    "pm2": "^4.4.0",
     "reflect-metadata": "^0.1.10",
     "routing-controllers": "^0.7.6",
     "routing-controllers-openapi": "^1.7.0",
