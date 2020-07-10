@@ -7,4 +7,4 @@ aws ecr get-login-password --region eu-central-1 | docker login --username AWS -
 # docker pull andreymashukov/ecommerce-backend
 # docker pull 664947791947.dkr.ecr.eu-central-1.amazonaws.com/ecommerce-backend:latest
 # docker run -p 3001:3001 docker.io/andreymashukov/ecommerce-backend
-docker run -p 3001:3001 664947791947.dkr.ecr.eu-central-1.amazonaws.com/ecommerce-backend:latest
+docker run -d -it -p 3001:3001 664947791947.dkr.ecr.eu-central-1.amazonaws.com/ecommerce-backend:latest
