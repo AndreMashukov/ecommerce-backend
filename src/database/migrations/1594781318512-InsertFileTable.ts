@@ -1,6 +1,15 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import { MigrationInterface, QueryRunner, TableForeignKey } from 'typeorm';
 
 export class InsertFileTable1594781318512 implements MigrationInterface {
+
+  private foreignKeyForBlockElement = new TableForeignKey({
+    name: 'fk_block_element_detail_picture',
+    columnNames: ['detail_picture'],
+    referencedColumnNames: ['id'],
+    referencedTableName: 'b_file',
+    onDelete: 'CASCADE'
+  });
+
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
     INSERT INTO b_file (ID, TIMESTAMP_X, MODULE_ID, HEIGHT, WIDTH, FILE_SIZE, CONTENT_TYPE, SUBDIR, FILE_NAME, ORIGINAL_NAME, DESCRIPTION, HANDLER_ID) VALUES
@@ -765,6 +774,17 @@ export class InsertFileTable1594781318512 implements MigrationInterface {
     (1493,'2018-08-31 19:43:40','iblock',400,121,41390,'image/png','iblock/44c','44c9505a152934ab195e688dd3c5074f.png','969169a47425cb406890ddc1179c83a1.png','',NULL),
     (1253,'2016-10-17 15:45:20','iblock',363,184,52201,'image/png','iblock/6ac','6ac10965ba9024d2a0b5314628021881.png','32588455ef44bd23c7639ca7a286cd3a.png','',NULL);
     `);
+
+    await queryRunner.query(`
+      update b_iblock_element el
+      set detail_picture = null
+      where detail_picture is not null
+      and detail_picture not in (select id from b_file)
+    `);
+    await queryRunner.createForeignKey(
+      'b_iblock_element',
+      this.foreignKeyForBlockElement
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

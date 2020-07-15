@@ -1,4 +1,8 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table
+} from 'typeorm';
 
 export class CreateFileTable1594780624253 implements MigrationInterface {
   public fileTable = new Table({
@@ -80,6 +84,7 @@ export class CreateFileTable1594780624253 implements MigrationInterface {
       }
     ]
   });
+
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(this.fileTable);
   }

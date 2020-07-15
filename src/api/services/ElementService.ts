@@ -6,6 +6,7 @@ import { SectionService } from '../services/SectionService';
 
 @Service()
 export class ElementService {
+  public relations = ['properties', 'picture'];
   constructor(
     @OrmRepository() private elementRepository: ElementRepository,
     private sectionService: SectionService
@@ -16,7 +17,7 @@ export class ElementService {
     sectionId: number
   ): Promise<Element[]> {
     return this.elementRepository.find({
-      relations: ['properties'],
+      relations: this.relations,
       where: {
         blockId,
         sectionId
@@ -53,7 +54,7 @@ export class ElementService {
 
   public findByBlockAndCode(blockId: number, code: string): Promise<Element> {
     return this.elementRepository.findOne({
-      relations: ['properties'],
+      relations: this.relations,
       where: {
         blockId,
         code

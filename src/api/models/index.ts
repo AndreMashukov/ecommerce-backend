@@ -7,3 +7,4 @@ export * from './PaySystem';
 export * from './OrderProps';
 export * from './Order';
 export * from './OrderStatus';
+export * from './File';
