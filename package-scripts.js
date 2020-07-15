@@ -21,17 +21,14 @@ module.exports = {
             inspector: {
                 script: series(
                     'nps banner.serve', 
-                    // 'node_modules/.bin/typeorm migration:run',
-                    'nodemon --watch src --watch .env --inspect',
-                    'node_modules/typeorm/cli.js migration:run'
+                    'nodemon --watch src --watch .env --inspect'
                 ),
                 description: 'Serves the current app and watches for changes to restart it, you may attach inspector to it.'
             },
             script: series(
                 'nps banner.serve',
-                // 'node_modules/.bin/typeorm migration:run',
-                'nodemon --watch src --watch .env',
-                'node_modules/typeorm/cli.js migration:run'
+                'nps db.migrate',
+                'nodemon --watch src --watch .env'
             ),
             description: 'Serves the current app and watches for changes to restart it'
         },
