@@ -15,4 +15,5 @@ RUN yarn install
 WORKDIR /usr/src/app
 
 # Build and run the app
-CMD ./node_modules/.bin/pm2-runtime start npm -- start serve
+# CMD ./node_modules/.bin/pm2-runtime start npm -- start serve
+CMD yarn start serve
