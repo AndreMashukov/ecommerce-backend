@@ -1,6 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn } from 'typeorm';
-
 import { ElementProperty } from './ElementProperty';
 import { File } from './File';
 

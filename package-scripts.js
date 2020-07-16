@@ -26,8 +26,8 @@ module.exports = {
                 description: 'Serves the current app and watches for changes to restart it, you may attach inspector to it.'
             },
             script: series(
-                'nps banner.serve',
                 'nps db.migrate',
+                // 'nps banner.serve',
                 'nodemon --watch src --watch .env'
             ),
             description: 'Serves the current app and watches for changes to restart it'

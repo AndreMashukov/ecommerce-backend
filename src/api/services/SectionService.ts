@@ -7,6 +7,7 @@ import { SectionRepository } from '../repositories/SectionRepository';
 
 @Service()
 export class SectionService {
+  public relations = ['pictureData'];
   constructor(
     @OrmRepository() private sectionRepository: SectionRepository,
     @Logger(__filename) private log: LoggerInterface
@@ -17,32 +18,34 @@ export class SectionService {
     return this.sectionRepository.find();
   }
 
-  public findByBlockId(_blockId: number): Promise<Section[]> {
-    this.log.info('Find all sections for block', _blockId);
+  public findByBlockId(blockId: number): Promise<Section[]> {
     return this.sectionRepository.find({
+      relations: this.relations,
       where: {
-        blockId: _blockId
+        blockId
       }
     });
   }
 
   public findChildSections(
-    _blockId: number,
-    _code: string
+    blockId: number,
+    code: string
   ): Promise<Section[]> {
     return this.sectionRepository.find({
+      relations: this.relations,
       where: {
-        blockId: _blockId,
-        parentCode: _code
+        blockId,
+        parentCode: code
       }
     });
   }
 
-  public findSection(_blockId: number, _code: string): Promise<Section> {
+  public findSection(blockId: number, code: string): Promise<Section> {
     return this.sectionRepository.findOne({
+      relations: this.relations,
       where: {
-        blockId: _blockId,
-        code: _code
+        blockId,
+        code
       }
     });
   }
