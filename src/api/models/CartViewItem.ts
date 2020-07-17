@@ -45,6 +45,13 @@ export class CartViewItem {
   public quantity: number;
 
   @IsNotEmpty()
+  @Column({ name: 'detail_page_url' })
+  public detailPageUrl: string;
+
+  @Column()
+  public picture: string;
+
+  @IsNotEmpty()
   @Column({ name: 'package_type' })
   public packageType: number;
 

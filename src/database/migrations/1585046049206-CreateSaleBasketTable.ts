@@ -77,6 +77,18 @@ export class CreateSaleBasketTable1585046049206 implements MigrationInterface {
         type: 'varchar',
         length: '255',
         isNullable: true
+      },
+      {
+        name: 'detail_page_url',
+        type: 'varchar',
+        length: '255',
+        isNullable: true
+      },
+      {
+        name: 'picture',
+        type: 'varchar',
+        length: '255',
+        isNullable: true
       }
     ]
   });

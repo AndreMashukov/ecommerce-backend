@@ -65,6 +65,11 @@ class AddProductBody {
 
   @IsNotEmpty()
   public currency: string;
+
+  @IsNotEmpty()
+  public detailPageUrl: string;
+
+  public picture: string;
 }
 
 class DeleteItemBody {
@@ -111,6 +116,8 @@ export class CartController {
     cartItem.price = body.price;
     cartItem.currency = body.currency;
     cartItem.quantity = body.quantity;
+    cartItem.detailPageUrl = body.detailPageUrl;
+    cartItem.picture = body.picture;
     return this.cartService.addCartItem(cartItem);
   }
 

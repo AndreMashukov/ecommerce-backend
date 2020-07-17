@@ -32,4 +32,11 @@ export class CartItem {
   @IsNotEmpty()
   @Column()
   public quantity: number;
+
+  @IsNotEmpty()
+  @Column({ name: 'detail_page_url' })
+  public detailPageUrl: string;
+
+  @Column()
+  public picture: string;
 }
