@@ -9,8 +9,8 @@ import WinstonCloudWatch from 'winston-cloudwatch';
 import * as AWS from 'aws-sdk';
 
 AWS.config.update({
-  accessKeyId: 'AKIAZVUP2DBFQOFPIFBG',
-  secretAccessKey: '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',
+  accessKeyId: process.env.APP_AWS_KEY_ID,
+  secretAccessKey: process.env.APP_AWS_ACCESS_KEY,
   region: 'eu-central-1'
 });
 
