@@ -2,31 +2,32 @@ import {
   MicroframeworkLoader,
   MicroframeworkSettings
 } from 'microframework-w3tec';
-import { configure, format, transports } from 'winston';
+import { configure } from 'winston';
+// import { configure, format, transports } from 'winston';
 import WinstonCloudWatch from 'winston-cloudwatch';
-import { env } from '../env';
+// import { env } from '../env';
 import * as AWS from 'aws-sdk';
 
 AWS.config.update({
-  accessKeyId: process.env.APP_AWS_KEY_ID,
-  secretAccessKey: process.env.APP_AWS_ACCESS_KEY,
+  accessKeyId: 'AKIAZVUP2DBFQOFPIFBG',
+  secretAccessKey: '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',
   region: 'eu-central-1'
 });
 
-const consoleTransport = new transports.Console({
-  level: env.log.level,
-  handleExceptions: true,
-  format:
-    env.node !== 'development'
-      ? format.combine(format.json())
-      : format.combine(format.colorize(), format.simple())
-});
+// const consoleTransport = new transports.Console({
+//   level: env.log.level,
+//   handleExceptions: true,
+//   format:
+//     env.node !== 'development'
+//       ? format.combine(format.json())
+//       : format.combine(format.colorize(), format.simple())
+// });
 
 const cloudWatchTransport = new WinstonCloudWatch({
   cloudWatchLogs: new AWS.CloudWatchLogs(),
-  logGroupName: process.env.LOG_GROUP,
-  logStreamName: process.env.LOG_STREAM,
-  retentionInDays: parseInt(process.env.LOG_RETENTION, 0)
+  logGroupName: 'ecommerce-backend',
+  logStreamName: 'ecommerce-backend-stream',
+  retentionInDays: 5
 });
 
 export const winstonLoader: MicroframeworkLoader = (
@@ -35,7 +36,7 @@ export const winstonLoader: MicroframeworkLoader = (
 ) => {
   configure({
     transports: [
-      process.env.LOG_TYPE === 'aws' ? cloudWatchTransport : consoleTransport
+      cloudWatchTransport
     ]
   });
 };
