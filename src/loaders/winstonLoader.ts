@@ -35,7 +35,7 @@ export const winstonLoader: MicroframeworkLoader = (
 ) => {
   configure({
     transports: [
-      env.log.type === 'aws' ? cloudWatchTransport : consoleTransport
+      process.env.LOG_TYPE === 'aws' ? cloudWatchTransport : consoleTransport
     ]
   });
 };
