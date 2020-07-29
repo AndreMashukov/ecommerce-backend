@@ -4,7 +4,7 @@ import {
 } from 'microframework-w3tec';
 // import { configure } from 'winston';
 import { configure, format, transports } from 'winston';
-import WinstonCloudWatch from 'winston-cloudwatch';
+// import WinstonCloudWatch from 'winston-cloudwatch';
 import { env } from '../env';
 import * as AWS from 'aws-sdk';
 
