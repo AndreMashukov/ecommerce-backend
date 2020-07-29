@@ -23,18 +23,18 @@ const consoleTransport = new transports.Console({
       : format.combine(format.colorize(), format.simple())
 });
 
-const cloudWatchTransport = new WinstonCloudWatch({
-  cloudWatchLogs: new AWS.CloudWatchLogs(),
-  logGroupName: 'ecommerce-backend',
-  logStreamName: 'ecommerce-backend-stream',
-  retentionInDays: 5
-});
+// const cloudWatchTransport = new WinstonCloudWatch({
+//   cloudWatchLogs: new AWS.CloudWatchLogs(),
+//   logGroupName: 'ecommerce-backend',
+//   logStreamName: 'ecommerce-backend-stream',
+//   retentionInDays: 5
+// });
 
 export const winstonLoader: MicroframeworkLoader = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   settings: MicroframeworkSettings | undefined
 ) => {
-  console.log(cloudWatchTransport);
+  console.log(new AWS.CloudWatchLogs());
   return configure({
     transports: [
       consoleTransport
