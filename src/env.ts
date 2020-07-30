@@ -41,9 +41,9 @@ export const env = {
     routePrefix: getOsEnv('APP_ROUTE_PREFIX'),
     port: normalizePort(process.env.PORT || getOsEnv('APP_PORT')),
     banner: toBool(getOsEnv('APP_BANNER')),
-    awsKeyId: getOsEnv('APP_AWS_KEY_ID'),
-    awsAccessKey: getOsEnv('APP_AWS_ACCESS_KEY'),
-    awsRegion: getOsEnv('APP_AWS_REGION'),
+    awsKeyId: process.env.APP_AWS_KEY_ID,
+    awsAccessKey: process.env.APP_AWS_ACCESS_KEY,
+    awsRegion: process.env.APP_AWS_REGION,
     dirs: {
       migrations: getOsPaths('TYPEORM_MIGRATIONS'),
       migrationsDir: getOsPath('TYPEORM_MIGRATIONS_DIR'),
@@ -57,6 +57,7 @@ export const env = {
     }
   },
   log: {
+    type: getOsEnv('LOG_TYPE'),
     level: getOsEnv('LOG_LEVEL'),
     json: toBool(getOsEnvOptional('LOG_JSON')),
     output: getOsEnv('LOG_OUTPUT')

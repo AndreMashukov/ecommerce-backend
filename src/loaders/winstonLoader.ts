@@ -7,11 +7,13 @@ import WinstonCloudWatch from 'winston-cloudwatch';
 import { env } from '../env';
 import * as AWS from 'aws-sdk';
 
-AWS.config.update({
-  accessKeyId: env.app.awsKeyId,
-  secretAccessKey: env.app.awsAccessKey,
-  region: env.app.awsRegion
-});
+if (env.log.type === 'aws')  {
+  AWS.config.update({
+    accessKeyId: env.app.awsKeyId,
+    secretAccessKey: env.app.awsAccessKey,
+    region: env.app.awsRegion
+  });
+}
 
 const consoleTransport = new transports.Console({
   level: env.log.level,
@@ -23,7 +25,7 @@ const consoleTransport = new transports.Console({
 });
 
 const cloudWatchTransport = new WinstonCloudWatch({
-  cloudWatchLogs: new AWS.CloudWatchLogs(),
+  cloudWatchLogs: env.log.type === 'aws' ? new AWS.CloudWatchLogs() : undefined,
   logGroupName: 'ecommerce-backend',
   logStreamName: 'ecommerce-backend-stream',
   retentionInDays: 5
@@ -37,7 +39,7 @@ export const winstonLoader: MicroframeworkLoader = (
   return configure({
     transports: [
       consoleTransport,
-      cloudWatchTransport
+      env.log.type === 'aws' && cloudWatchTransport
     ]
   });
 };
