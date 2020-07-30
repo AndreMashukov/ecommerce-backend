@@ -35,11 +35,9 @@ export const winstonLoader: MicroframeworkLoader = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   settings: MicroframeworkSettings | undefined
 ) => {
-  console.log(new AWS.CloudWatchLogs());
   return configure({
     transports: [
-      consoleTransport,
-      env.log.type === 'aws' && cloudWatchTransport
+      env.log.type === 'aws' ? cloudWatchTransport : consoleTransport
     ]
   });
 };
