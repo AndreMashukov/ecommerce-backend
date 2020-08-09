@@ -26,9 +26,9 @@ const consoleTransport = new transports.Console({
 
 const cloudWatchTransport = new WinstonCloudWatch({
   cloudWatchLogs: env.log.type === 'aws' ? new AWS.CloudWatchLogs() : undefined,
-  logGroupName: 'ecommerce-backend',
-  logStreamName: 'ecommerce-backend-stream',
-  retentionInDays: 5
+  logGroupName: env.log.group,
+  logStreamName: env.log.stream,
+  retentionInDays: parseInt(env.log.retention, 0)
 });
 
 export const winstonLoader: MicroframeworkLoader = (

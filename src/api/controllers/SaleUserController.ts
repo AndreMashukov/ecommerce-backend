@@ -14,8 +14,7 @@ import { SaleUserService } from '../services/SaleUserService';
 import { AuthService } from '../../auth/AuthService';
 import { UserNotFoundError, AuthError } from '../errors';
 import moment from 'moment';
-
-const TOKEN_EXPIRY_PERIOD = '5d';
+import { TOKEN_EXPIRY_PERIOD } from '../../constants';
 
 class BaseUser {
   @IsNotEmpty()

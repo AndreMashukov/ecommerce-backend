@@ -60,7 +60,10 @@ export const env = {
     type: process.env.LOG_TYPE,
     level: getOsEnv('LOG_LEVEL'),
     json: toBool(getOsEnvOptional('LOG_JSON')),
-    output: getOsEnv('LOG_OUTPUT')
+    output: getOsEnv('LOG_OUTPUT'),
+    group: process.env.LOG_GROUP,
+    stream: process.env.LOG_STREAM,
+    retention: process.env.LOG_RETENTION
   },
   db: {
     type: getOsEnv('TYPEORM_CONNECTION'),

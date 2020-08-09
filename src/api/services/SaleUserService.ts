@@ -10,6 +10,7 @@ import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { SaleUser } from '../models/SaleUser';
 import { SaleUserRepository } from '../repositories/SaleUserRepository';
 import { events } from '../subscribers/events';
+import { Roles } from '../../constants';
 
 @Service()
 export class SaleUserService {
@@ -61,7 +62,7 @@ export class SaleUserService {
     postUser.active = 'Y';
     postUser.dateRegister = moment().format('YYYY-MM-DD HH:mm:ss');
     postUser.timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
-    postUser.groupId = 1;
+    postUser.groupId = Roles.Customer;
     postUser.refreshToken = uuid.v1();
     const newUser = await this.saleUserRepository.save(postUser);
     this.eventDispatcher.dispatch(events.user.created, newUser);
