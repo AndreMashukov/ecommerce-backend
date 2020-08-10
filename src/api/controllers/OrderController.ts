@@ -59,7 +59,7 @@ export class OrderResponse {
   public props: OrderProps;
 }
 
-@Authorized([Roles.Customer, Roles.Admin])
+@Authorized([`${Roles.Admin}`, `${Roles.Customer}`])
 @JsonController('/personal/orders')
 export class OrderController {
   constructor(private orderService: OrderService) {}

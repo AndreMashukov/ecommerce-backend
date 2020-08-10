@@ -14,7 +14,7 @@ export function authorizationChecker(
 
   return async function innerAuthorizationChecker(
     action: Action,
-    roles: number[]
+    roles: string[]
   ): Promise<boolean> {
     // here you can use request/response objects from action
     // also if decorator defines roles it needs to access the action
@@ -30,8 +30,8 @@ export function authorizationChecker(
     // TODO check if user exists?
     // action.request.user = await authService.validateUser(credentials.username,
     // credentials.password);
-    if (!roles.find((role) => role === credentials.userRole)) {
-      log.warn('Given role is in not authorized');
+    if (!roles.find((role) => role === `${credentials.userRole}`)) {
+      log.warn('Given role is in not authorized. Role: ', credentials.userRole);
       return false;
     }
 
