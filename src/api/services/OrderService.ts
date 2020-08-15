@@ -29,7 +29,16 @@ export class OrderService {
     return this.orderRepository.find({
       relations: this.relations,
       where: { userId },
-      take: 10
+      take: 10,
+      order: { dateInsert: 'DESC' }
+    });
+  }
+
+  public findLast100(): Promise<Order[] | undefined> {
+    return this.orderRepository.find({
+      relations: this.relations,
+      take: 100,
+      order: { dateInsert: 'DESC' }
     });
   }
 

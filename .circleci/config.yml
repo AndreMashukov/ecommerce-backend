@@ -43,6 +43,8 @@ version: 2.1
 workflows:
   build_test_lint:
     jobs:
-      - build
       - test
+      - build:
+          requires:
+            - test
   version: 2.1
