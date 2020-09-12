@@ -10,7 +10,8 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # Install app dependencies
-RUN yarn install --production
+# RUN yarn install --production
+RUN npm install --only=prod
 
 WORKDIR /usr/src/app
 
