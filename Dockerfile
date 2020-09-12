@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # Install app dependencies
-RUN sudo yarn install --production
+RUN su yarn install --production
 
 WORKDIR /usr/src/app
 
