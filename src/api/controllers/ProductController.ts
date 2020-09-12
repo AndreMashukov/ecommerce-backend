@@ -27,6 +27,14 @@ class GetProductsQuery {
   public sectionCode: string;
 }
 
+class GetProductsShallowQuery {
+  @IsPositive()
+  public blockId: number;
+
+  @IsNotEmpty()
+  public sectionId: string;
+}
+
 class GetProductByCode {
   @IsPositive()
   public blockId: number;
@@ -56,5 +64,16 @@ export class ProductController {
     @QueryParams() query: GetProductByCode
   ): Promise<Element | undefined> {
     return this.elementService.findByBlockAndCode(query.blockId, query.code);
+  }
+
+  @Get('/shallow')
+  @ResponseSchema(ProductResponse, { isArray: true })
+  public findShallowBySectionCode(
+    @QueryParams() query: GetProductsShallowQuery
+  ): Promise<Element[] | undefined> {
+    return this.elementService.findByBlockAndSectionId(
+      query.blockId,
+      parseInt(query.sectionId, 0)
+    );
   }
 }
