@@ -30,7 +30,8 @@ export class AuthService {
         return undefined;
       }
       const userId = decoded.id;
-      const userRoles = decoded.metadata.roles;
+      const userRoles = decoded.metadata ? decoded.metadata.roles : [];
+
       if (userId) {
         return { userId, userRoles };
       }

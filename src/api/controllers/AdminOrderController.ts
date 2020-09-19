@@ -7,7 +7,7 @@ import { Order } from '../models';
 import { OrderService } from '../services/OrderService';
 import { Roles } from '../../constants';
 
-@Authorized([`${Roles.Admin}`])
+@Authorized([Roles.Admin])
 @JsonController('/admin/orders')
 export class AdminOrderController {
   constructor(private orderService: OrderService) {}
