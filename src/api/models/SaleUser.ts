@@ -2,6 +2,7 @@ import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
 import { BeforeInsert, Column, Entity, PrimaryColumn } from 'typeorm';
+import { UserMetadata } from './UserMetadata';
 
 @Entity('b_user')
 export class SaleUser {
@@ -55,9 +56,8 @@ export class SaleUser {
   @Column({name: 'date_register'})
   public dateRegister: string;
 
-  @IsNotEmpty()
-  @Column({ name: 'group_id' })
-  public groupId: number;
+  @Column({type: 'json'})
+  public metadata: UserMetadata;
 
   @IsNotEmpty()
   @Column()

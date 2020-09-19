@@ -6,6 +6,7 @@ import { SaleUser } from '../api/models';
 import { Logger, LoggerInterface } from '../decorators/Logger';
 import * as jwt from 'jsonwebtoken';
 import { SaleUserService } from '../api/services/SaleUserService';
+import { Roles } from 'src/constants';
 
 @Service()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
 
   public parseTokenAuthFromRequest(
     req: express.Request
-  ): { userId: string; userRole: number } {
+  ): { userId: string; userRoles: Roles[] } {
     const authorization = req.header('authorization');
     if (authorization && authorization.split(' ')[0] === 'Bearer') {
       const token = authorization.split(' ')[1];
@@ -29,9 +30,10 @@ export class AuthService {
         return undefined;
       }
       const userId = decoded.id;
-      const userRole = decoded.groupId;
+      const userRoles = decoded.metadata ? decoded.metadata.roles : [];
+
       if (userId) {
-        return { userId, userRole };
+        return { userId, userRoles };
       }
     }
 

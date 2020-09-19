@@ -1,6 +1,6 @@
 export enum Roles {
-  Admin,
-  Customer
+  Admin = 'Admin',
+  Customer = 'Customer'
 }
 
 export const TOKEN_EXPIRY_PERIOD = '5d';
