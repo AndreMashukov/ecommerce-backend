@@ -62,7 +62,7 @@ export class SaleUserService {
     postUser.active = 'Y';
     postUser.dateRegister = moment().format('YYYY-MM-DD HH:mm:ss');
     postUser.timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
-    postUser.groupId = Roles.Customer;
+    postUser.metadata.roles = [Roles.Customer];
     postUser.refreshToken = uuid.v1();
     const newUser = await this.saleUserRepository.save(postUser);
     this.eventDispatcher.dispatch(events.user.created, newUser);

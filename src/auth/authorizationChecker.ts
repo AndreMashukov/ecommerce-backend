@@ -3,18 +3,19 @@ import { Container } from 'typedi';
 import { Connection } from 'typeorm';
 import { Logger } from '../lib/logger';
 import { AuthService } from './AuthService';
+import { Roles } from '../constants';
 
 export function authorizationChecker(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   connection: Connection
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): (action: Action, roles: any[]) => Promise<boolean> | boolean {
+): (action: Action, roles: Roles[]) => Promise<boolean> | boolean {
   const log = new Logger(__filename);
   const authService = Container.get<AuthService>(AuthService);
 
   return async function innerAuthorizationChecker(
     action: Action,
-    roles: string[]
+    roles: Roles[]
   ): Promise<boolean> {
     // here you can use request/response objects from action
     // also if decorator defines roles it needs to access the action
@@ -30,8 +31,8 @@ export function authorizationChecker(
     // TODO check if user exists?
     // action.request.user = await authService.validateUser(credentials.username,
     // credentials.password);
-    if (!roles.find((role) => role === `${credentials.userRole}`)) {
-      log.warn('Given role is in not authorized. Role: ', credentials.userRole);
+    if (!roles.find((role) => credentials.userRoles.includes(role))) {
+      log.warn('Given role is in not authorized. Role: ', credentials.userRoles);
       return false;
     }
 

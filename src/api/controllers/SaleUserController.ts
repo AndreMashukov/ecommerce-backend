@@ -179,7 +179,8 @@ export class SaleUserController {
           email: user.email,
           lastName: user.lastName,
           firstName: user.firstName,
-          groupId: user.groupId
+          groupId: user.groupId,
+          metadata: user.metadata
         },
         process.env.APP_JWT_SECRET,
         {
