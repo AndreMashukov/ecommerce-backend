@@ -1,4 +1,3 @@
-import { IsNotEmpty, IsString } from 'class-validator';
 import {
   Authorized,
   Body,
@@ -8,56 +7,13 @@ import {
   QueryParams
 } from 'routing-controllers';
 import { ResponseSchema } from 'routing-controllers-openapi';
-import { Order, OrderProps } from '../models';
-import { OrderService } from '../services/OrderService';
 import moment from 'moment';
+
+import { Order } from '../models';
+import { OrderService } from '../services/OrderService';
 import { Roles } from '../../constants';
-
-class GetOrderQuery {
-  @IsNotEmpty()
-  public id: number;
-
-  @IsNotEmpty()
-  public userId: string;
-}
-
-class GetOrderListQuery {
-  @IsNotEmpty()
-  public userId: string;
-}
-
-class CreateOrderBody {
-  @IsNotEmpty()
-  public userId: string;
-
-  @IsNotEmpty()
-  public sessionId: string;
-
-  @IsNotEmpty()
-  public deliveryId: number;
-
-  @IsNotEmpty()
-  public paySystemId: number;
-
-  @IsNotEmpty()
-  public price: number;
-
-  @IsNotEmpty()
-  public props: OrderProps;
-
-  @IsString()
-  public comment: string;
-}
-
-export class OrderResponse {
-  @IsNotEmpty()
-  public id: number;
-
-  @IsNotEmpty()
-  public userId: string;
-
-  public props: OrderProps;
-}
+import { GetOrderListQuery, CreateOrderBody, GetOrderQuery } from './requests';
+import { OrderResponse } from './responses';
 
 @Authorized([Roles.Admin, Roles.Customer])
 @JsonController('/personal/orders')
@@ -66,36 +22,46 @@ export class OrderController {
 
   @Get('/list')
   public async getByUserId(
-    @QueryParams() query: GetOrderListQuery
-  ): Promise<{orders: Order[]}> {
-    const list = await this.orderService.findManyByUserId(query.userId);
-    return {orders: list};
+    @QueryParams() { userId }: GetOrderListQuery
+  ): Promise<{ orders: Order[] }> {
+    const list = await this.orderService.findManyByUserId(userId);
+    return { orders: list };
   }
 
   @Get()
-  public getByIdAndUserId(@QueryParams() query: GetOrderQuery): Promise<Order> {
-    return this.orderService.findOneByIdAndUserId(query.id, query.userId);
+  public getByIdAndUserId(
+    @QueryParams() { id, userId }: GetOrderQuery
+  ): Promise<Order> {
+    return this.orderService.findOneByIdAndUserId(id, userId);
   }
 
   @Post()
   @ResponseSchema(OrderResponse)
-  public create(@Body() body: CreateOrderBody): Promise<Order> {
+  public create(@Body() {
+    sessionId,
+    userId,
+    props,
+    deliveryId,
+    paySystemId,
+    price,
+    comment
+  }: CreateOrderBody): Promise<Order> {
     const order = new Order();
     const currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
-    order.userId = body.userId;
-    order.props = body.props;
+    order.userId = userId;
+    order.props = props;
     order.dateInsert = currentDate;
     order.dateStatus = currentDate;
     order.dateUpdate = currentDate;
-    order.deliveryId = body.deliveryId;
-    order.paySystemId = body.paySystemId;
+    order.deliveryId = deliveryId;
+    order.paySystemId = paySystemId;
     order.payed = 'N';
     order.statusId = 'N';
-    order.price = body.price;
-    if (body.comment.length > 0) {
-      order.comment = body.comment;
+    order.price = price;
+    if (comment.length > 0) {
+      order.comment = comment;
     }
 
-    return this.orderService.create(order, body.sessionId);
+    return this.orderService.create(order, sessionId);
   }
 }

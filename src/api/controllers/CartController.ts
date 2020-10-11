@@ -1,4 +1,3 @@
-import { IsPositive, IsNotEmpty } from 'class-validator';
 import {
   Body,
   Delete,
@@ -11,74 +10,13 @@ import { ResponseSchema } from 'routing-controllers-openapi';
 
 import { CartItem } from '../models/CartItem';
 import { CartService, CartViewService } from '../services';
-
-export class CartPostResponse {
-  @IsNotEmpty()
-  public sessionId: string;
-
-  @IsNotEmpty()
-  public productId: number;
-
-  @IsNotEmpty()
-  public blockId: number;
-
-  @IsNotEmpty()
-  public price: number;
-
-  @IsNotEmpty()
-  public currency: string;
-
-  @IsNotEmpty()
-  public quantity: number;
-}
-
-class GetCartItemsQuery {
-  @IsPositive()
-  public sessionId: string;
-}
-
-class GetCartProductQuery {
-  @IsPositive()
-  public sessionId: string;
-
-  @IsPositive()
-  public productId: number;
-}
-
-class AddProductBody {
-  @IsPositive()
-  public sessionId: string;
-
-  @IsPositive()
-  public productId: number;
-
-  @IsPositive()
-  public blockId: number;
-
-  @IsPositive()
-  @IsNotEmpty()
-  public price: number;
-
-  @IsPositive()
-  @IsNotEmpty()
-  public quantity: number;
-
-  @IsNotEmpty()
-  public currency: string;
-
-  @IsNotEmpty()
-  public detailPageUrl: string;
-
-  public picture: string;
-}
-
-class DeleteItemBody {
-  @IsPositive()
-  public sessionId: string;
-
-  @IsPositive()
-  public productId: number;
-}
+import {
+  GetCartItemsQuery,
+  GetCartProductQuery,
+  AddProductBody,
+  DeleteItemBody
+} from './requests';
+import { CartPostResponse } from './responses';
 
 @JsonController('/cart')
 export class CartController {
@@ -89,50 +27,66 @@ export class CartController {
 
   @Get('/')
   public getCartItems(
-    @QueryParams() query: GetCartItemsQuery
+    @QueryParams() { sessionId }: GetCartItemsQuery
   ): Promise<CartItem[] | undefined> {
-    return this.cartViewService.findBySessionId(query.sessionId);
+    return this.cartViewService.findBySessionId(sessionId);
   }
 
   @Get('/product')
   public findBySessionIdAndProductId(
-    @QueryParams() query: GetCartProductQuery
+    @QueryParams() { sessionId, productId }: GetCartProductQuery
   ): Promise<CartItem | undefined> {
     return this.cartService.findBySessionIdAndProductId(
-      query.sessionId,
-      query.productId
+      sessionId,
+      productId
     );
   }
 
   @Post('/product')
   @ResponseSchema(CartPostResponse)
   public addProduct(
-    @Body() body: AddProductBody
+    @Body() {
+      sessionId,
+      blockId,
+      productId,
+      price,
+      currency,
+      quantity,
+      detailPageUrl,
+      picture
+     }: AddProductBody
   ): Promise<CartItem | undefined> {
     const cartItem = new CartItem();
-    cartItem.sessionId = body.sessionId;
-    cartItem.blockId = body.blockId;
-    cartItem.productId = body.productId;
-    cartItem.price = body.price;
-    cartItem.currency = body.currency;
-    cartItem.quantity = body.quantity;
-    cartItem.detailPageUrl = body.detailPageUrl;
-    cartItem.picture = body.picture;
+    cartItem.sessionId = sessionId;
+    cartItem.blockId = blockId;
+    cartItem.productId = productId;
+    cartItem.price = price;
+    cartItem.currency = currency;
+    cartItem.quantity = quantity;
+    cartItem.detailPageUrl = detailPageUrl;
+    cartItem.picture = picture;
     return this.cartService.addCartItem(cartItem);
   }
 
   @Post('/product/decrement')
   @ResponseSchema(CartPostResponse)
   public decrementQty(
-    @Body() body: AddProductBody
+    @Body() {
+      sessionId,
+      blockId,
+      productId,
+      price,
+      currency,
+      quantity
+    }: AddProductBody
   ): Promise<CartItem | undefined> {
     const cartItem = new CartItem();
-    cartItem.sessionId = body.sessionId;
-    cartItem.blockId = body.blockId;
-    cartItem.productId = body.productId;
-    cartItem.price = body.price;
-    cartItem.currency = body.currency;
-    cartItem.quantity = body.quantity;
+    cartItem.sessionId = sessionId;
+    cartItem.blockId = blockId;
+    cartItem.productId = productId;
+    cartItem.price = price;
+    cartItem.currency = currency;
+    cartItem.quantity = quantity;
     return this.cartService.decrementQty(cartItem);
   }
 

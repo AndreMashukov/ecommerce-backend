@@ -1,14 +1,8 @@
-import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 import { Get, JsonController, QueryParams } from 'routing-controllers';
+
 import { PaySystem } from '../models';
 import { PaySystemService } from '../services/PaySystemService';
-
-class GetPaymentSystemsQuery {
-  @IsNotEmpty()
-  @IsPositive()
-  @IsNumber()
-  public regionId: number;
-}
+import { GetPaymentSystemsQuery } from './requests';
 
 @JsonController('/pay_system')
 export class PaySystemController {
@@ -16,10 +10,10 @@ export class PaySystemController {
 
   @Get('/')
   public findByRegionId(
-    @QueryParams() query: GetPaymentSystemsQuery
+    @QueryParams() { regionId }: GetPaymentSystemsQuery
   ): Promise<PaySystem[] | undefined> {
     return this.paySystemService.findManyByRegionId(
-      query.regionId
+      regionId
     );
   }
 }
