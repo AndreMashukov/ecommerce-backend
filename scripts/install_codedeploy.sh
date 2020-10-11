@@ -7,3 +7,5 @@ chmod +x ./install
 sudo ./install auto
 # sudo service codedeploy-agent start
 # sudo service codedeploy-agent status
+sudo yum install docker
+sudo service docker start
