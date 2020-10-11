@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { OrderProps } from 'src/api/models';
+import { OrderProps } from '../../models';
 
 export class GetOrderQuery {
   @IsNotEmpty()
