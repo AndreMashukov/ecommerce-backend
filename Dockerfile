@@ -11,7 +11,8 @@ COPY . /usr/src/app
 
 # Install app dependencies
 # RUN yarn install --production
-RUN npm install --only=prod --legacy-peer-deps
+# RUN npm install --only=prod --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 WORKDIR /usr/src/app
 
