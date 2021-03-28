@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 import {
-  Authorized,
+  // Authorized,
   Get,
   Post,
   JsonController,
@@ -9,7 +9,7 @@ import {
 import { Order } from '../models';
 import { OrderService } from '../services/OrderService';
 import { SessionService } from '../services/SessionService';
-import { Roles } from '../../constants';
+// import { Roles } from '../../constants';
 import { DeleteResult } from 'typeorm';
 
 class PostBody {
@@ -17,22 +17,21 @@ class PostBody {
   public id: string;
 }
 
-@Authorized([Roles.Admin])
+// @Authorized([Roles.Admin])
 @JsonController('/admin')
 export class AdminController {
-  constructor(
-    private orderService: OrderService,
-    private sessionService: SessionService
-  ) {}
+  constructor(private orderService: OrderService, private sessionService: SessionService) {}
 
   @Get('/orders/list')
-  public async getLast100(): Promise<{ orders: Order[] }> {
+  public async getLast100(): Promise<{orders: Order[]}> {
     const list = await this.orderService.findLast100();
-    return { orders: list };
+    return {orders: list};
   }
 
   @Post('/test/prepare')
-  public async prepareForTest(@Body() body: PostBody): Promise<DeleteResult> {
+  public async prepareForTest(
+    @Body() body: PostBody
+  ): Promise<DeleteResult> {
     console.log('body', body);
     return this.sessionService.clearOldSessions();
   }

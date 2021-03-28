@@ -61,7 +61,7 @@
           "call-signature",
           "parameter"
       ],
-      "trailing-comma": [false, { "multiline": "never", "singleline": "never" }],
+      "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
       "align": [
           true,
           "parameters"
