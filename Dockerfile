@@ -11,7 +11,7 @@ COPY . /usr/src/app
 
 # Install app dependencies
 # RUN yarn install --production
-RUN npm install --only=prod
+RUN npm install --only=prod --force
 
 WORKDIR /usr/src/app
 
