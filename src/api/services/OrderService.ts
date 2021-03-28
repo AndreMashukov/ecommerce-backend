@@ -4,6 +4,7 @@ import { Logger, LoggerInterface } from '../../decorators/Logger';
 import { Order } from '../models/Order';
 import { OrderRepository } from '../repositories/OrderRepository';
 import { CartRepository } from '../repositories/CartRepository';
+import { DeleteResult } from 'typeorm';
 
 @Service()
 export class OrderService {
@@ -50,6 +51,10 @@ export class OrderService {
       relations: this.relations,
       where: { id, userId }
     });
+  }
+
+  public async clearPreviousOrders(userId: string): Promise<DeleteResult> {
+    return this.orderRepository.clearPreviousOrders(userId);
   }
 
   public async create(order: Order, sessionId: string): Promise<Order> {
