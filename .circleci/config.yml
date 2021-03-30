@@ -57,4 +57,5 @@ workflows:
           service-role-arn: arn:aws:iam::664947791947:role/CodeDeployService
           bundle-bucket: sc5a94-deploy-scripts/ecommerce-backend
           bundle-key: sc5a94-deploy-scripts
+          bundle-type: tar.gz
   version: 2.1
