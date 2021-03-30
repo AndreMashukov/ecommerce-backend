@@ -55,6 +55,6 @@ workflows:
           application-name: e-b
           deployment-group: e-b
           service-role-arn: arn:aws:iam::664947791947:role/CodeDeployService
-          bundle-bucket: sc5a94-deploy-scripts
-          bundle-key: ecommerce-backend
+          bundle-bucket: sc5a94-deploy-scripts/ecommerce-backend
+          bundle-key: sc5a94-deploy-scripts
   version: 2.1
