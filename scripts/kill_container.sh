@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Stopping and removing the running container"
+echo "Removinng the running container"
 cd ~
 # sudo docker stop -a
 sudo docker stop $(sudo docker ps -aq)
