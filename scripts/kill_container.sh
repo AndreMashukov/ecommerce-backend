@@ -7,7 +7,7 @@ cd ~
 
 CONTAINER=sudo docker ps -aq
 if [ $CONTAINER ]; then
-   sudo docker stop $CONTAINER
+   sudo docker stop $(sudo docker ps -aq)
 else
    echo "No running containers"
 fi
