@@ -8,7 +8,13 @@ cd ~
 CONTAINER=sudo docker ps -aq
 if [ $CONTAINER ]; then
    sudo docker stop $CONTAINER
-   sudo docker image rm -f $(sudo docker images -a -q)
 else
    echo "No running containers"
+fi
+
+IMAGE=sudo docker images -a -q
+if [ $IMAGE ]; then
+   sudo docker image rm -f $(sudo docker images -a -q)
+else
+   echo "No images"
 fi
