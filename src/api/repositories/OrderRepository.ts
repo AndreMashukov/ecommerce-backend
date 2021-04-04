@@ -7,7 +7,9 @@ export class OrderRepository extends Repository<Order> {
     return this.createQueryBuilder()
       .delete()
       .from('b_sale_order')
-      .where(`user_id = ${userId}`)
+      .where(`user_id = :id`, {id: userId})
       .execute();
   }
 }
+
+//  .where('date_update < :date', { date: new Date() })

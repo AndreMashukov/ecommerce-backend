@@ -1,24 +1,35 @@
 import {
-  Authorized,
+  // Authorized,
   Body,
   Get,
   JsonController,
   Post,
   QueryParams
 } from 'routing-controllers';
+import { IsNotEmpty } from 'class-validator';
 import { ResponseSchema } from 'routing-controllers-openapi';
 import moment from 'moment';
+import { DeleteResult } from 'typeorm';
 
 import { Order } from '../models';
 import { OrderService } from '../services/OrderService';
-import { Roles } from '../../constants';
+import { SessionService } from '../services/SessionService';
+// import { Roles } from '../../constants';
 import { GetOrderListQuery, CreateOrderBody, GetOrderQuery } from './requests';
 import { OrderResponse } from './responses';
 
-@Authorized([Roles.Admin, Roles.Customer])
+class TestPrepareBody {
+  @IsNotEmpty()
+  public id: string;
+}
+
+// @Authorized([Roles.Admin, Roles.Customer])
 @JsonController('/personal/orders')
 export class OrderController {
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private orderService: OrderService,
+    private sessionService: SessionService
+  ) {}
 
   @Get('/list')
   public async getByUserId(
@@ -37,15 +48,18 @@ export class OrderController {
 
   @Post()
   @ResponseSchema(OrderResponse)
-  public create(@Body() {
-    sessionId,
-    userId,
-    props,
-    deliveryId,
-    paySystemId,
-    price,
-    comment
-  }: CreateOrderBody): Promise<Order> {
+  public create(
+    @Body()
+    {
+      sessionId,
+      userId,
+      props,
+      deliveryId,
+      paySystemId,
+      price,
+      comment
+    }: CreateOrderBody
+  ): Promise<Order> {
     const order = new Order();
     const currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
     order.userId = userId;
@@ -63,5 +77,15 @@ export class OrderController {
     }
 
     return this.orderService.create(order, sessionId);
+  }
+
+  @Post('/test/prepare')
+  public async prepareForTest(
+    @Body() { id }: TestPrepareBody
+  ): Promise<DeleteResult[]> {
+    const removeOrdersResult = await this.orderService.clearPreviousOrders(id);
+    const removeSessionsResult = await this.sessionService.clearOldSessions();
+
+    return [removeOrdersResult, removeSessionsResult];
   }
 }
