@@ -45,13 +45,13 @@ orbs:
 workflows:
   build_test_lint:
     jobs:
-      # - test
-      # - build:
-      #     requires:
-      #       - test
+      - test
+      - build:
+          requires:
+            - test
       - aws-code-deploy/deploy:
-          # requires:
-          #   - build
+          requires:
+            - build
           application-name: e-b
           deployment-group: e-b-2021-03
           service-role-arn: arn:aws:iam::664947791947:role/CodeDeployService
