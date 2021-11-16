@@ -28,7 +28,7 @@
   "homepage": "https://github.com/AndreMashukov/ecommerce-backend#readme",
   "author": "Andrey Mashukov <andre.mashukov@gmail.com>",
   "dependencies": {
-    "aws-sdk": "^2.721.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "5.0.0",
     "chalk": "^2.4.1",
     "class-transformer": "^0.2.3",
